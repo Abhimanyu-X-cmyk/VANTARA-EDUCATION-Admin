@@ -16,25 +16,25 @@ export default async function handler(request, response) {
     });
   }
 
-  if (
-    username === "vantaraadmin" &&
-    password === "Vantara@123"
-  ) {
+  const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
+  if (
+    username === ADMIN_USERNAME &&
+    password === ADMIN_PASSWORD
+  ) {
     return response.status(200).json({
       success: true,
       message: "Login successful",
       user: {
-        username: "vantaraadmin",
+        username: username,
         role: "admin"
       }
     });
-
   }
 
   return response.status(401).json({
     success: false,
-    message: "Invalid username or password"
+    message: "Invalid login details"
   });
-
 }
