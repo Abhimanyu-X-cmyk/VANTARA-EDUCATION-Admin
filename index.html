@@ -2,1772 +2,1634 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>VANTARA Admin Portal</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* =========================
-   GLOBAL
-========================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#0b0f14;
+color:#fff;
+min-height:100vh
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0b0f14;
-    color: #ffffff;
-    min-height: 100vh;
+button,input,select,textarea{
+font-family:inherit
 }
 
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
+button{
+cursor:pointer
 }
 
-button {
-    cursor: pointer;
+#loginPage{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:radial-gradient(circle at top,#182332 0%,#0b0f14 55%)
 }
 
-
-/* =========================
-   LOGIN PAGE
-========================= */
-
-#loginPage {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background:
-        radial-gradient(circle at top, #182332 0%, #0b0f14 55%);
+.login-card{
+width:100%;
+max-width:420px;
+background:#111821;
+border:1px solid #263342;
+border-radius:20px;
+padding:32px 25px;
+box-shadow:0 20px 60px rgba(0,0,0,.45)
 }
 
-.login-card {
-    width: 100%;
-    max-width: 420px;
-    background: #111821;
-    border: 1px solid #263342;
-    border-radius: 20px;
-    padding: 32px 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+.logo-box{
+text-align:center;
+margin-bottom:25px
 }
 
-.logo-box {
-    text-align: center;
-    margin-bottom: 25px;
+.logo-circle,
+.brand-icon{
+border-radius:50%;
+background:#fff;
+color:#111821;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800
 }
 
-.logo-circle {
-    width: 75px;
-    height: 75px;
-    margin: 0 auto 14px;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #111821;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    font-weight: 800;
+.logo-circle{
+width:75px;
+height:75px;
+margin:0 auto 14px;
+font-size:25px
 }
 
-.logo-box h1 {
-    font-size: 27px;
-    letter-spacing: 1px;
+.logo-box h1{
+font-size:27px;
+letter-spacing:1px
 }
 
-.logo-box p {
-    color: #9ba8b7;
-    margin-top: 7px;
-    font-size: 14px;
+.logo-box p{
+color:#9ba8b7;
+margin-top:7px;
+font-size:14px
 }
 
-.form-group {
-    margin-bottom: 17px;
+.form-group{
+margin-bottom:17px
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    color: #dce4ec;
-    font-size: 14px;
-    font-weight: 600;
+.form-group label{
+display:block;
+margin-bottom:7px;
+color:#dce4ec;
+font-size:14px;
+font-weight:600
 }
 
 .form-group input,
 .form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 13px 14px;
-    border: 1px solid #303d4c;
-    border-radius: 10px;
-    background: #0b1118;
-    color: #ffffff;
-    outline: none;
-    font-size: 15px;
+.form-group select{
+width:100%;
+padding:13px 14px;
+border:1px solid #303d4c;
+border-radius:10px;
+background:#0b1118;
+color:#fff;
+outline:none;
+font-size:15px
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
-.form-group select:focus {
-    border-color: #6f849a;
+.form-group select:focus{
+border-color:#6f849a
 }
 
-.login-button {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 14px;
-    background: #ffffff;
-    color: #10151c;
-    font-size: 16px;
-    font-weight: 700;
-    margin-top: 5px;
+.login-button,
+.primary-button{
+border:none;
+background:#fff;
+color:#10151c;
+font-weight:700
 }
 
-.login-button:hover {
-    background: #e6e6e6;
+.login-button{
+width:100%;
+border-radius:10px;
+padding:14px;
+font-size:16px;
+margin-top:5px
 }
 
-.login-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.login-button:disabled{
+opacity:.6;
+cursor:not-allowed
 }
 
-.login-error {
-    display: none;
-    margin-top: 15px;
-    padding: 11px;
-    border-radius: 8px;
-    background: #35171b;
-    border: 1px solid #71333b;
-    color: #ffb8bf;
-    font-size: 14px;
-    text-align: center;
+.login-error{
+display:none;
+margin-top:15px;
+padding:11px;
+border-radius:8px;
+background:#35171b;
+border:1px solid #71333b;
+color:#ffb8bf;
+font-size:14px;
+text-align:center
 }
 
-.login-footer {
-    text-align: center;
-    color: #6f7c89;
-    font-size: 12px;
-    margin-top: 22px;
+.login-footer{
+text-align:center;
+color:#6f7c89;
+font-size:12px;
+margin-top:22px
 }
 
-
-/* =========================
-   PORTAL
-========================= */
-
-#portalPage {
-    display: none;
-    min-height: 100vh;
+#portalPage{
+display:none;
+min-height:100vh
 }
 
-.topbar {
-    height: 70px;
-    background: #111821;
-    border-bottom: 1px solid #263342;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 22px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
+.topbar{
+height:70px;
+background:#111821;
+border-bottom:1px solid #263342;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 22px;
+position:sticky;
+top:0;
+z-index:50
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.brand{
+display:flex;
+align-items:center;
+gap:12px
 }
 
-.brand-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #111821;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
+.brand-icon{
+width:42px;
+height:42px
 }
 
-.brand-text strong {
-    display: block;
-    font-size: 17px;
+.brand-text strong{
+display:block;
+font-size:17px
 }
 
-.brand-text span {
-    display: block;
-    color: #8795a4;
-    font-size: 11px;
-    margin-top: 2px;
+.brand-text span{
+display:block;
+color:#8795a4;
+font-size:11px;
+margin-top:2px
 }
 
-.logout-button {
-    border: 1px solid #354454;
-    background: transparent;
-    color: #ffffff;
-    padding: 9px 14px;
-    border-radius: 8px;
+.logout-button,
+.secondary-button,
+.mobile-menu{
+border:1px solid #354454;
+background:transparent;
+color:#fff;
+padding:9px 14px;
+border-radius:8px
 }
 
-.logout-button:hover {
-    background: #1b2530;
+.logout-button:hover,
+.secondary-button:hover{
+background:#1b2530
 }
 
-
-/* =========================
-   LAYOUT
-========================= */
-
-.portal-layout {
-    display: flex;
-    min-height: calc(100vh - 70px);
+.portal-layout{
+display:flex;
+min-height:calc(100vh - 70px)
 }
 
-.sidebar {
-    width: 235px;
-    background: #0e141b;
-    border-right: 1px solid #263342;
-    padding: 18px 12px;
-    flex-shrink: 0;
+.sidebar{
+width:235px;
+background:#0e141b;
+border-right:1px solid #263342;
+padding:18px 12px;
+flex-shrink:0
 }
 
-.nav-title {
-    color: #657484;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 12px;
+.nav-title{
+color:#657484;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:1px;
+padding:10px 12px
 }
 
-.nav-button {
-    width: 100%;
-    border: none;
-    background: transparent;
-    color: #aeb9c5;
-    text-align: left;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 4px;
-    font-size: 14px;
+.nav-button{
+width:100%;
+border:none;
+background:transparent;
+color:#aeb9c5;
+text-align:left;
+padding:12px;
+border-radius:8px;
+margin-bottom:4px;
+font-size:14px
 }
 
 .nav-button:hover,
-.nav-button.active {
-    background: #1a2530;
-    color: #ffffff;
+.nav-button.active{
+background:#1a2530;
+color:#fff
 }
 
-.main-content {
-    flex: 1;
-    padding: 25px;
-    min-width: 0;
+.main-content{
+flex:1;
+padding:25px;
+min-width:0
 }
 
-.section {
-    display: none;
+.section{
+display:none
 }
 
-.section.active {
-    display: block;
+.section.active{
+display:block
 }
 
-
-/* =========================
-   PAGE HEADER
-========================= */
-
-.page-header {
-    margin-bottom: 25px;
+.page-header{
+margin-bottom:25px
 }
 
-.page-header h2 {
-    font-size: 25px;
-    margin-bottom: 6px;
+.page-header h2{
+font-size:25px;
+margin-bottom:6px
 }
 
-.page-header p {
-    color: #8996a4;
-    font-size: 14px;
+.page-header p{
+color:#8996a4;
+font-size:14px
 }
 
-
-/* =========================
-   DASHBOARD CARDS
-========================= */
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:25px
 }
 
-.stat-card {
-    background: #111821;
-    border: 1px solid #263342;
-    border-radius: 14px;
-    padding: 20px;
+.stat-card{
+background:#111821;
+border:1px solid #263342;
+border-radius:14px;
+padding:20px
 }
 
-.stat-card .stat-title {
-    color: #8996a4;
-    font-size: 13px;
-    margin-bottom: 10px;
+.stat-title{
+color:#8996a4;
+font-size:13px;
+margin-bottom:10px
 }
 
-.stat-card .stat-number {
-    font-size: 30px;
-    font-weight: 700;
+.stat-number{
+font-size:30px;
+font-weight:700
 }
 
-.stat-card .stat-small {
-    color: #657484;
-    font-size: 11px;
-    margin-top: 5px;
+.stat-small{
+color:#657484;
+font-size:11px;
+margin-top:5px
 }
 
-
-/* =========================
-   PANELS
-========================= */
-
-.panel {
-    background: #111821;
-    border: 1px solid #263342;
-    border-radius: 14px;
-    padding: 20px;
-    margin-bottom: 20px;
+.panel{
+background:#111821;
+border:1px solid #263342;
+border-radius:14px;
+padding:20px;
+margin-bottom:20px
 }
 
-.panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 17px;
+.panel-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+margin-bottom:17px
 }
 
-.panel-header h3 {
-    font-size: 17px;
+.panel-header h3{
+font-size:17px
 }
 
-.panel-header p {
-    color: #7f8d9b;
-    font-size: 12px;
+.panel-header p{
+color:#7f8d9b;
+font-size:12px
 }
 
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
+.table-wrapper{
+width:100%;
+overflow-x:auto
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px;
+table{
+width:100%;
+border-collapse:collapse;
+min-width:650px
 }
 
-th,
-td {
-    padding: 13px 12px;
-    border-bottom: 1px solid #25313d;
-    text-align: left;
-    font-size: 13px;
+th,td{
+padding:13px 12px;
+border-bottom:1px solid #25313d;
+text-align:left;
+font-size:13px
 }
 
-th {
-    color: #9eabb8;
-    font-weight: 600;
+th{
+color:#9eabb8;
+font-weight:600
 }
 
-td {
-    color: #dce3ea;
+td{
+color:#dce3ea
 }
 
-
-/* =========================
-   BUTTONS
-========================= */
-
-.primary-button {
-    border: none;
-    background: #ffffff;
-    color: #10151c;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-weight: 700;
+.primary-button{
+padding:10px 15px;
+border-radius:8px
 }
 
-.secondary-button {
-    border: 1px solid #344352;
-    background: transparent;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
+.danger-button{
+border:1px solid #6b3038;
+background:#291519;
+color:#ffb9bf;
+padding:8px 12px;
+border-radius:7px
 }
 
-.danger-button {
-    border: 1px solid #6b3038;
-    background: #291519;
-    color: #ffb9bf;
-    padding: 8px 12px;
-    border-radius: 7px;
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+font-size:11px;
+font-weight:700
 }
 
-.primary-button:hover {
-    background: #e5e5e5;
+.badge-admin{
+background:#273443;
+color:#dbe7f2
 }
 
-.secondary-button:hover {
-    background: #1a2530;
+.badge-employee,
+.badge-active{
+background:#202c25;
+color:#b9dfc5
 }
 
-
-/* =========================
-   BADGES
-========================= */
-
-.badge {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
+.form-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px
 }
 
-.badge-admin {
-    background: #273443;
-    color: #dbe7f2;
+.full-width{
+grid-column:1/-1
 }
 
-.badge-employee {
-    background: #202c25;
-    color: #b9dfc5;
+.resource-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px
 }
 
-.badge-active {
-    background: #202c25;
-    color: #b9dfc5;
+.resource-card{
+border:1px solid #293644;
+background:#0d141c;
+border-radius:12px;
+padding:17px
 }
 
-
-/* =========================
-   FORM GRID
-========================= */
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+.resource-card h4{
+margin-bottom:7px
 }
 
-.full-width {
-    grid-column: 1 / -1;
+.resource-card p{
+color:#8996a4;
+font-size:13px;
+line-height:1.5
 }
 
-
-/* =========================
-   RESOURCE CARDS
-========================= */
-
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.resource-actions{
+margin-top:15px
 }
 
-.resource-card {
-    border: 1px solid #293644;
-    background: #0d141c;
-    border-radius: 12px;
-    padding: 17px;
+.announcement{
+border-left:3px solid #8996a4;
+background:#0d141c;
+padding:15px;
+margin-bottom:12px;
+border-radius:0 9px 9px 0
 }
 
-.resource-card h4 {
-    margin-bottom: 7px;
+.announcement h4{
+margin-bottom:6px
 }
 
-.resource-card p {
-    color: #8996a4;
-    font-size: 13px;
-    line-height: 1.5;
+.announcement p{
+color:#9aa7b4;
+font-size:13px;
+line-height:1.5
 }
 
-.resource-card .resource-actions {
-    margin-top: 15px;
+/* STUDENT DASHBOARD */
+
+.student-toolbar{
+display:flex;
+gap:10px;
+margin-bottom:18px
 }
 
-
-/* =========================
-   ANNOUNCEMENTS
-========================= */
-
-.announcement {
-    border-left: 3px solid #8996a4;
-    background: #0d141c;
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 0 9px 9px 0;
+.search-box{
+flex:1;
+display:flex;
+align-items:center;
+border:1px solid #303d4c;
+border-radius:9px;
+background:#0b1118;
+padding:0 12px
 }
 
-.announcement h4 {
-    margin-bottom: 6px;
+.search-box input{
+width:100%;
+border:0;
+outline:0;
+background:transparent;
+color:#fff;
+padding:12px
 }
 
-.announcement p {
-    color: #9aa7b4;
-    font-size: 13px;
-    line-height: 1.5;
+.student-toolbar select{
+min-width:145px;
+border:1px solid #303d4c;
+border-radius:9px;
+background:#0b1118;
+color:#fff;
+padding:10px
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
-.mobile-menu {
-    display: none;
-    border: 1px solid #344352;
-    background: transparent;
-    color: #ffffff;
-    padding: 8px 11px;
-    border-radius: 7px;
+.student-name{
+font-weight:700
 }
 
-@media (max-width: 900px) {
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .resource-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+.student-email{
+color:#9eabb8
 }
 
-@media (max-width: 700px) {
+.empty-students{
+text-align:center;
+color:#748292;
+padding:35px!important
+}
 
-    .topbar {
-        padding: 0 14px;
-    }
+.mobile-menu{
+display:none
+}
 
-    .mobile-menu {
-        display: block;
-    }
+.modal-overlay{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+z-index:100;
+align-items:center;
+justify-content:center;
+padding:18px
+}
 
-    .brand-text span {
-        display: none;
-    }
+.modal-overlay.show{
+display:flex
+}
 
-    .sidebar {
-        position: fixed;
-        left: -250px;
-        top: 70px;
-        bottom: 0;
-        z-index: 40;
-        transition: left 0.2s ease;
-    }
+.modal{
+width:100%;
+max-width:500px;
+max-height:90vh;
+overflow-y:auto;
+background:#111821;
+border:1px solid #2b3948;
+border-radius:15px;
+padding:22px
+}
 
-    .sidebar.open {
-        left: 0;
-    }
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px
+}
 
-    .main-content {
-        padding: 18px 14px;
-    }
+.modal-close{
+border:0;
+background:transparent;
+color:#9aa7b4;
+font-size:24px
+}
 
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
+#toast{
+position:fixed;
+right:18px;
+bottom:18px;
+z-index:200;
+display:none;
+max-width:320px;
+background:#fff;
+color:#10151c;
+padding:13px 17px;
+border-radius:9px;
+font-size:13px;
+font-weight:600;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
+}
 
-    .resource-grid {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:900px){
 
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+.stats-grid{
+grid-template-columns:repeat(2,1fr)
+}
 
-    .full-width {
-        grid-column: auto;
-    }
-
-    .stat-card {
-        padding: 15px;
-    }
-
-    .stat-card .stat-number {
-        font-size: 24px;
-    }
+.resource-grid{
+grid-template-columns:repeat(2,1fr)
+}
 
 }
 
-@media (max-width: 430px) {
+@media(max-width:700px){
 
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
+.topbar{
+padding:0 14px
+}
 
-    .login-card {
-        padding: 25px 19px;
-    }
+.mobile-menu{
+display:block
+}
+
+.brand-text span{
+display:none
+}
+
+.sidebar{
+position:fixed;
+left:-250px;
+top:70px;
+bottom:0;
+z-index:40;
+transition:left .2s
+}
+
+.sidebar.open{
+left:0
+}
+
+.main-content{
+padding:18px 14px
+}
+
+.resource-grid{
+grid-template-columns:1fr
+}
+
+.form-grid{
+grid-template-columns:1fr
+}
+
+.full-width{
+grid-column:auto
+}
+
+.student-toolbar{
+flex-direction:column
+}
+
+.student-toolbar select{
+width:100%
+}
 
 }
 
+@media(max-width:430px){
 
-/* =========================
-   MODAL
-========================= */
-
-.modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.72);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
+.stats-grid{
+grid-template-columns:1fr
 }
 
-.modal-overlay.show {
-    display: flex;
+.login-card{
+padding:25px 19px
 }
 
-.modal {
-    width: 100%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background: #111821;
-    border: 1px solid #2b3948;
-    border-radius: 15px;
-    padding: 22px;
 }
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.modal-close {
-    border: none;
-    background: transparent;
-    color: #9aa7b4;
-    font-size: 24px;
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-#toast {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 200;
-    display: none;
-    max-width: 320px;
-    background: #ffffff;
-    color: #10151c;
-    padding: 13px 17px;
-    border-radius: 9px;
-    font-size: 13px;
-    font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
 </style>
 </head>
-<body>
 
-<!-- =========================
-     LOGIN PAGE
-========================= -->
+<body>
 
 <div id="loginPage">
 
-    <div class="login-card">
+<div class="login-card">
 
-        <div class="logo-box">
+<div class="logo-box">
 
-            <div class="logo-circle">
-                VE
-            </div>
+<div class="logo-circle">VE</div>
 
-            <h1>VANTARA</h1>
+<h1>VANTARA</h1>
 
-            <p>Admin & Employee Portal</p>
+<p>Admin & Employee Portal</p>
 
-        </div>
+</div>
 
-        <form onsubmit="event.preventDefault(); login();">
+<form onsubmit="event.preventDefault();login()">
 
-            <div class="form-group">
+<div class="form-group">
 
-                <label for="username">
-                    Username
-                </label>
+<label>Username</label>
 
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Enter username"
-                    autocomplete="username"
-                    required
-                >
+<input
+type="text"
+id="username"
+placeholder="Enter username"
+autocomplete="username"
+required
+>
 
-            </div>
+</div>
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter password"
+autocomplete="current-password"
+required
+>
+
+</div>
+
+<button
+class="login-button"
+id="loginButton"
+type="submit"
+>
+Sign In
+</button>
+
+</form>
+
+<div id="loginError" class="login-error"></div>
+
+<div class="login-footer">
+VANTARA Education • Internal Portal
+</div>
+
+</div>
+
+</div>
+<div id="portalPage">
+
+<header class="topbar">
+
+<div class="brand">
+
+<button
+class="mobile-menu"
+onclick="toggleSidebar()"
+>
+☰
+</button>
+
+<div class="brand-icon">VE</div>
+
+<div class="brand-text">
+
+<strong>VANTARA Admin Portal</strong>
+
+<span>Education Management System</span>
+
+</div>
+
+</div>
+
+<button
+class="logout-button"
+onclick="logout()"
+>
+Logout
+</button>
+
+</header>
 
 
-            <div class="form-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                    autocomplete="current-password"
-                    required
-                >
-
-            </div>
+<div class="portal-layout">
 
 
-            <button
-                type="submit"
-                class="login-button"
-                id="loginButton"
-            >
-                Sign In
-            </button>
+<aside class="sidebar" id="sidebar">
 
-        </form>
+<div class="nav-title">Main</div>
+
+<button
+class="nav-button active"
+onclick="openSection('dashboard',this)"
+>
+📊 Dashboard
+</button>
+
+<button
+class="nav-button"
+onclick="openSection('students',this)"
+>
+👨‍🎓 Students
+</button>
+
+<button
+class="nav-button"
+onclick="openSection('employees',this)"
+>
+👥 Employees
+</button>
+
+<div class="nav-title">Management</div>
+
+<button
+class="nav-button"
+onclick="openSection('resources',this)"
+>
+📚 Resources
+</button>
+
+<button
+class="nav-button"
+onclick="openSection('announcements',this)"
+>
+📢 Announcements
+</button>
+
+<button
+class="nav-button"
+onclick="openSection('settings',this)"
+>
+⚙️ Settings
+</button>
+
+<div class="nav-title">System</div>
+
+<button
+class="nav-button"
+onclick="openSection('system',this)"
+>
+🛠️ System
+</button>
+
+</aside>
 
 
-        <div
-            id="loginError"
-            class="login-error"
-        ></div>
+<main class="main-content">
 
 
-        <div class="login-footer">
-            VANTARA Education • Internal Portal
-        </div>
+<!-- DASHBOARD -->
 
-    </div>
+<section
+id="dashboard"
+class="section active"
+>
+
+<div class="page-header">
+
+<h2>Dashboard</h2>
+
+<p>
+Welcome to the VANTARA administration portal.
+</p>
+
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+
+<div class="stat-title">
+Registered Students
+</div>
+
+<div
+class="stat-number"
+id="studentCount"
+>
+0
+</div>
+
+<div class="stat-small">
+Student accounts
+</div>
 
 </div>
 
 
-
-<!-- =========================
-     PORTAL PAGE
-========================= -->
-
-<div id="portalPage">
-
-
-    <!-- TOP BAR -->
-
-    <header class="topbar">
-
-        <div class="brand">
-
-            <button
-                class="mobile-menu"
-                onclick="toggleSidebar()"
-                aria-label="Open menu"
-            >
-                ☰
-            </button>
-
-            <div class="brand-icon">
-                VE
-            </div>
-
-            <div class="brand-text">
-
-                <strong>
-                    VANTARA Admin Portal
-                </strong>
-
-                <span>
-                    Education Management System
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="logout-button"
-            onclick="logout()"
-        >
-            Logout
-        </button>
-
-    </header>
-
-
-
-    <!-- PORTAL LAYOUT -->
-
-    <div class="portal-layout">
-
-
-        <!-- SIDEBAR -->
-
-        <aside
-            class="sidebar"
-            id="sidebar"
-        >
-
-            <div class="nav-title">
-                Main
-            </div>
-
-
-            <button
-                class="nav-button active"
-                onclick="openSection('dashboard', this)"
-            >
-                📊 Dashboard
-            </button>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('students', this)"
-            >
-                👨‍🎓 Students
-            </button>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('employees', this)"
-            >
-                👥 Employees
-            </button>
-
-
-            <div class="nav-title">
-                Management
-            </div>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('resources', this)"
-            >
-                📚 Resources
-            </button>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('announcements', this)"
-            >
-                📢 Announcements
-            </button>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('settings', this)"
-            >
-                ⚙️ Settings
-            </button>
-
-
-            <div class="nav-title">
-                System
-            </div>
-
-
-            <button
-                class="nav-button"
-                onclick="openSection('system', this)"
-            >
-                🛠️ System
-            </button>
-
-        </aside>
-
-
-
-        <!-- MAIN CONTENT -->
-
-        <main class="main-content">
-
-
-            <!-- =========================
-                 DASHBOARD
-            ========================= -->
-
-            <section
-                id="dashboard"
-                class="section active"
-            >
-
-                <div class="page-header">
-
-                    <h2>
-                        Dashboard
-                    </h2>
-
-                    <p>
-                        Welcome to the VANTARA administration portal.
-                    </p>
-
-                </div>
-
-
-                <div class="stats-grid">
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-title">
-                            Registered Students
-                        </div>
-
-                        <div
-                            class="stat-number"
-                            id="studentCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-small">
-                            Student accounts
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-title">
-                            Employees
-                        </div>
-
-                        <div
-                            class="stat-number"
-                            id="employeeCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-small">
-                            Admin & employees
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-title">
-                            Resources
-                        </div>
-
-                        <div
-                            class="stat-number"
-                            id="resourceCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-small">
-                            Educational resources
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-title">
-                            Announcements
-                        </div>
-
-                        <div
-                            class="stat-number"
-                            id="announcementCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-small">
-                            Published notices
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <h3>
-                                Portal Overview
-                            </h3>
-
-                            <p>
-                                VANTARA Education internal management system
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <p style="
-                        color:#9aa7b4;
-                        line-height:1.7;
-                        font-size:14px;
-                    ">
-
-                        This portal is designed for authorized VANTARA
-                        administrators and employees to manage students,
-                        educational resources, announcements and internal
-                        operations.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <h3>
-                                Quick Actions
-                            </h3>
-
-                            <p>
-                                Common administration tasks
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div style="
-                        display:flex;
-                        flex-wrap:wrap;
-                        gap:10px;
-                    ">
-
-                        <button
-                            class="primary-button"
-                            onclick="openSectionByName('students')"
-                        >
-                            View Students
-                        </button>
-
-
-                        <button
-                            class="secondary-button"
-                            onclick="openSectionByName('employees')"
-                        >
-                            Manage Employees
-                        </button>
-
-
-                        <button
-                            class="secondary-button"
-                            onclick="openSectionByName('resources')"
-                        >
-                            Manage Resources
-                        </button>
-
-
-                        <button
-                            class="secondary-button"
-                            onclick="openSectionByName('announcements')"
-                        >
-                            Announcements
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 STUDENTS
-            ========================= -->
-
-            <section
-                id="students"
-                class="section"
-            >
-
-                <div class="page-header">
-
-                    <h2>
-                        Students
-                    </h2>
-
-                    <p>
-                        Registered student information.
-                    </p>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <h3>
-                                Student Accounts
-                            </h3>
-
-                            <p>
-                                Student registration records will appear here.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="table-wrapper">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Name
-                                    </th>
-
-                                    <th>
-                                        Email
-                                    </th>
-
-                                    <th>
-                                        Class
-                                    </th>
-
-                                    <th>
-                                        Status
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="studentTableBody">
-
-                                <tr>
-
-                                    <td
-                                        colspan="4"
-                                        style="
-                                            text-align:center;
-                                            color:#748292;
-                                            padding:30px;
-                                        "
-                                    >
-
-                                        No student records available yet.
-
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-<!-- =========================
-     EMPLOYEES
-========================= -->
-
-<section
-    id="employees"
-    class="section"
+<div class="stat-card">
+
+<div class="stat-title">
+Employees
+</div>
+
+<div
+class="stat-number"
+id="employeeCount"
 >
+0
+</div>
 
-    <div class="page-header">
+<div class="stat-small">
+Admin & employees
+</div>
 
-        <h2>
-            Employees
-        </h2>
-
-        <p>
-            Manage VANTARA administrators and employees.
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="panel">
+<div class="stat-card">
 
-        <div class="panel-header">
+<div class="stat-title">
+Resources
+</div>
 
-            <div>
+<div
+class="stat-number"
+id="resourceCount"
+>
+0
+</div>
 
-                <h3>
-                    Employee Management
-                </h3>
+<div class="stat-small">
+Educational resources
+</div>
 
-                <p>
-                    Employee accounts and roles.
-                </p>
-
-            </div>
-
-
-            <button
-                class="primary-button"
-                onclick="openModal('employeeModal')"
-            >
-                + Add Employee
-            </button>
-
-        </div>
+</div>
 
 
-        <div class="table-wrapper">
+<div class="stat-card">
 
-            <table>
+<div class="stat-title">
+Announcements
+</div>
 
-                <thead>
+<div
+class="stat-number"
+id="announcementCount"
+>
+0
+</div>
 
-                    <tr>
+<div class="stat-small">
+Published notices
+</div>
 
-                        <th>
-                            Username
-                        </th>
+</div>
 
-                        <th>
-                            Name
-                        </th>
-
-                        <th>
-                            Role
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
+</div>
 
 
-                <tbody id="employeeTableBody">
+<div class="panel">
 
-                    <tr>
+<div class="panel-header">
 
-                        <td>
-                            vantaraadmin
-                        </td>
+<div>
 
-                        <td>
-                            VANTARA Administrator
-                        </td>
+<h3>Portal Overview</h3>
 
-                        <td>
-                            <span class="badge badge-admin">
-                                Admin
-                            </span>
-                        </td>
+<p>
+VANTARA Education internal management system
+</p>
 
-                        <td>
-                            <span class="badge badge-active">
-                                Active
-                            </span>
-                        </td>
+</div>
 
-                        <td>
-                            —
-                        </td>
+</div>
 
-                    </tr>
+<p style="
+color:#9aa7b4;
+line-height:1.7;
+font-size:14px;
+">
 
-                </tbody>
+This portal is designed for authorized VANTARA
+administrators and employees to manage students,
+educational resources, announcements and internal
+operations.
 
-            </table>
+</p>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="panel">
+
+<div class="panel-header">
+
+<div>
+
+<h3>Quick Actions</h3>
+
+<p>Common administration tasks</p>
+
+</div>
+
+</div>
+
+<div style="
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+">
+
+<button
+class="primary-button"
+onclick="openSectionByName('students')"
+>
+View Students
+</button>
+
+<button
+class="secondary-button"
+onclick="openSectionByName('employees')"
+>
+Manage Employees
+</button>
+
+<button
+class="secondary-button"
+onclick="openSectionByName('resources')"
+>
+Manage Resources
+</button>
+
+<button
+class="secondary-button"
+onclick="openSectionByName('announcements')"
+>
+Announcements
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
-
-<!-- =========================
-     RESOURCES
-========================= -->
+<!-- STUDENTS DASHBOARD -->
 
 <section
-    id="resources"
-    class="section"
+id="students"
+class="section"
 >
 
-    <div class="page-header">
+<div class="page-header">
 
-        <h2>
-            Resources
-        </h2>
+<h2>Students Dashboard</h2>
 
-        <p>
-            Manage VANTARA educational resources.
-        </p>
+<p>
+Manage and view registered VANTARA students.
+</p>
 
-    </div>
+</div>
 
 
-    <div class="panel">
+<div class="stats-grid">
 
-        <div class="panel-header">
+<div class="stat-card">
 
-            <div>
+<div class="stat-title">
+Total Students
+</div>
 
-                <h3>
-                    Educational Resources
-                </h3>
+<div
+class="stat-number"
+id="totalStudents"
+>
+0
+</div>
 
-                <p>
-                    Notes, PDFs, videos and study materials.
-                </p>
+<div class="stat-small">
+Registered students
+</div>
 
-            </div>
-
-
-            <button
-                class="primary-button"
-                onclick="openModal('resourceModal')"
-            >
-                + Add Resource
-            </button>
-
-        </div>
+</div>
 
 
-        <div
-            class="resource-grid"
-            id="resourceGrid"
-        >
+<div class="stat-card">
 
-            <div class="resource-card">
+<div class="stat-title">
+Registered Today
+</div>
 
-                <h4>
-                    VANTARA Study Resources
-                </h4>
+<div
+class="stat-number"
+id="studentsToday"
+>
+0
+</div>
 
-                <p>
-                    Educational content can be added and
-                    managed from this portal.
-                </p>
+<div class="stat-small">
+Today's registrations
+</div>
 
-                <div class="resource-actions">
+</div>
 
-                    <span class="badge badge-active">
-                        Active
-                    </span>
 
-                </div>
+<div class="stat-card">
 
-            </div>
+<div class="stat-title">
+Classes
+</div>
 
-        </div>
+<div
+class="stat-number"
+id="studentClasses"
+>
+0
+</div>
 
-    </div>
+<div class="stat-small">
+Classes represented
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-title">
+Active Students
+</div>
+
+<div
+class="stat-number"
+id="activeStudents"
+>
+0
+</div>
+
+<div class="stat-small">
+Currently active
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="panel-header">
+
+<div>
+
+<h3>Registered Students</h3>
+
+<p>
+Search and manage student registration records.
+</p>
+
+</div>
+
+<button
+class="primary-button"
+onclick="refreshStudents()"
+>
+↻ Refresh
+</button>
+
+</div>
+
+
+<div class="student-toolbar">
+
+<div class="search-box">
+
+🔍
+
+<input
+id="studentSearch"
+placeholder="Search by name or email..."
+oninput="filterStudents()"
+>
+
+</div>
+
+
+<select
+id="studentClassFilter"
+onchange="filterStudents()"
+>
+
+<option value="">
+All Classes
+</option>
+
+<option value="6">Class 6</option>
+<option value="7">Class 7</option>
+<option value="8">Class 8</option>
+<option value="9">Class 9</option>
+<option value="10">Class 10</option>
+<option value="11">Class 11</option>
+<option value="12">Class 12</option>
+
+</select>
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th>Student</th>
+<th>Email</th>
+<th>Class</th>
+<th>Registration Date</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentsTableBody">
+
+<tr>
+
+<td
+colspan="7"
+class="empty-students"
+>
+
+No students registered yet.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
 
 
-
-<!-- =========================
-     ANNOUNCEMENTS
-========================= -->
+<!-- EMPLOYEES -->
 
 <section
-    id="announcements"
-    class="section"
+id="employees"
+class="section"
 >
 
-    <div class="page-header">
+<div class="page-header">
 
-        <h2>
-            Announcements
-        </h2>
+<h2>Employees</h2>
 
-        <p>
-            Publish important VANTARA notices.
-        </p>
+<p>
+Manage VANTARA administrators and employees.
+</p>
 
-    </div>
+</div>
 
+<div class="panel">
 
-    <div class="panel">
+<div class="panel-header">
 
-        <div class="panel-header">
+<div>
 
-            <div>
+<h3>Employee Management</h3>
 
-                <h3>
-                    Announcements
-                </h3>
+<p>Employee accounts and roles.</p>
 
-                <p>
-                    Important updates for students and employees.
-                </p>
+</div>
 
-            </div>
+<button
+class="primary-button"
+onclick="openModal('employeeModal')"
+>
++ Add Employee
+</button>
 
-
-            <button
-                class="primary-button"
-                onclick="openModal('announcementModal')"
-            >
-                + New Announcement
-            </button>
-
-        </div>
+</div>
 
 
-        <div id="announcementList">
+<div class="table-wrapper">
 
-            <div class="announcement">
+<table>
 
-                <h4>
-                    Welcome to VANTARA Admin Portal
-                </h4>
+<thead>
 
-                <p>
-                    The internal VANTARA administration portal
-                    is now active.
-                </p>
+<tr>
+<th>Username</th>
+<th>Name</th>
+<th>Role</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
 
-            </div>
+</thead>
 
-        </div>
+<tbody id="employeeTableBody">
 
-    </div>
+<tr>
+
+<td>vantaraadmin</td>
+
+<td>VANTARA Administrator</td>
+
+<td>
+
+<span class="badge badge-admin">
+Admin
+</span>
+
+</td>
+
+<td>
+
+<span class="badge badge-active">
+Active
+</span>
+
+</td>
+
+<td>—</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
 
 
-
-<!-- =========================
-     SETTINGS
-========================= -->
+<!-- RESOURCES -->
 
 <section
-    id="settings"
-    class="section"
+id="resources"
+class="section"
 >
 
-    <div class="page-header">
+<div class="page-header">
 
-        <h2>
-            Settings
-        </h2>
+<h2>Resources</h2>
 
-        <p>
-            Portal configuration and account settings.
-        </p>
+<p>
+Manage VANTARA educational resources.
+</p>
 
-    </div>
+</div>
 
+<div class="panel">
 
-    <div class="panel">
+<div class="panel-header">
 
-        <div class="panel-header">
+<div>
 
-            <div>
+<h3>Educational Resources</h3>
 
-                <h3>
-                    Portal Information
-                </h3>
+<p>
+Notes, PDFs, videos and study materials.
+</p>
 
-                <p>
-                    Current VANTARA portal configuration.
-                </p>
+</div>
 
-            </div>
+<button
+class="primary-button"
+onclick="openModal('resourceModal')"
+>
++ Add Resource
+</button>
 
-        </div>
-
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Portal Name
-                </label>
-
-                <input
-                    type="text"
-                    value="VANTARA Admin Portal"
-                    readonly
-                >
-
-            </div>
+</div>
 
 
-            <div class="form-group">
+<div
+class="resource-grid"
+id="resourceGrid"
+>
 
-                <label>
-                    Version
-                </label>
+<div class="resource-card">
 
-                <input
-                    type="text"
-                    value="1.0.0"
-                    readonly
-                >
+<h4>
+VANTARA Study Resources
+</h4>
 
-            </div>
+<p>
+Educational content can be added and managed
+from this portal.
+</p>
 
+<div class="resource-actions">
 
-            <div class="form-group">
+<span class="badge badge-active">
+Active
+</span>
 
-                <label>
-                    Current User
-                </label>
+</div>
 
-                <input
-                    type="text"
-                    id="currentUsername"
-                    value=""
-                    readonly
-                >
+</div>
 
-            </div>
+</div>
 
-
-            <div class="form-group">
-
-                <label>
-                    Role
-                </label>
-
-                <input
-                    type="text"
-                    id="currentRole"
-                    value=""
-                    readonly
-                >
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="panel">
-
-        <div class="panel-header">
-
-            <div>
-
-                <h3>
-                    Security
-                </h3>
-
-                <p>
-                    Account security information.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <p style="
-            color:#9aa7b4;
-            line-height:1.7;
-            font-size:14px;
-        ">
-
-            Authentication is handled through the VANTARA
-            server API. Never share administrator passwords
-            publicly.
-
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
-
-<!-- =========================
-     SYSTEM
-========================= -->
+<!-- ANNOUNCEMENTS -->
 
 <section
-    id="system"
-    class="section"
+id="announcements"
+class="section"
 >
 
-    <div class="page-header">
+<div class="page-header">
 
-        <h2>
-            System
-        </h2>
+<h2>Announcements</h2>
 
-        <p>
-            VANTARA portal system information.
-        </p>
+<p>
+Publish important VANTARA notices.
+</p>
 
-    </div>
+</div>
 
+<div class="panel">
 
-    <div class="panel">
+<div class="panel-header">
 
-        <div class="panel-header">
+<div>
 
-            <div>
+<h3>Announcements</h3>
 
-                <h3>
-                    System Status
-                </h3>
+<p>
+Important updates for students and employees.
+</p>
 
-                <p>
-                    Backend connection information.
-                </p>
+</div>
 
-            </div>
+<button
+class="primary-button"
+onclick="openModal('announcementModal')"
+>
++ New Announcement
+</button>
 
-        </div>
-
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Portal
-                </label>
-
-                <input
-                    type="text"
-                    value="VANTARA Admin Portal"
-                    readonly
-                >
-
-            </div>
+</div>
 
 
-            <div class="form-group">
+<div id="announcementList">
 
-                <label>
-                    Version
-                </label>
+<div class="announcement">
 
-                <input
-                    type="text"
-                    value="1.0.0"
-                    readonly
-                >
+<h4>
+Welcome to VANTARA Admin Portal
+</h4>
 
-            </div>
+<p>
+The internal VANTARA administration portal
+is now active.
+</p>
 
+</div>
 
-            <div class="form-group">
+</div>
 
-                <label>
-                    Authentication API
-                </label>
+</div>
 
-                <input
-                    type="text"
-                    value="/api/login"
-                    readonly
-                >
-
-            </div>
+</section>
 
 
-            <div class="form-group">
+<!-- SETTINGS -->
 
-                <label>
-                    Status
-                </label>
+<section
+id="settings"
+class="section"
+>
 
-                <input
-                    type="text"
-                    value="Connected"
-                    readonly
-                >
+<div class="page-header">
 
-            </div>
+<h2>Settings</h2>
 
-        </div>
+<p>
+Portal configuration and account settings.
+</p>
 
-    </div>
+</div>
+
+<div class="panel">
+
+<div class="panel-header">
+
+<div>
+
+<h3>Portal Information</h3>
+
+<p>
+Current VANTARA portal configuration.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Portal Name</label>
+
+<input
+value="VANTARA Admin Portal"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Version</label>
+
+<input
+value="1.0.0"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Current User</label>
+
+<input
+id="currentUsername"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Role</label>
+
+<input
+id="currentRole"
+readonly
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="panel-header">
+
+<div>
+
+<h3>Security</h3>
+
+<p>
+Account security information.
+</p>
+
+</div>
+
+</div>
+
+<p style="
+color:#9aa7b4;
+line-height:1.7;
+font-size:14px;
+">
+
+Authentication is handled through the VANTARA
+server API. Never share administrator passwords
+publicly.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- SYSTEM -->
+
+<section
+id="system"
+class="section"
+>
+
+<div class="page-header">
+
+<h2>System</h2>
+
+<p>
+VANTARA portal system information.
+</p>
+
+</div>
+
+<div class="panel">
+
+<div class="panel-header">
+
+<div>
+
+<h3>System Status</h3>
+
+<p>
+Backend connection information.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Portal</label>
+
+<input
+value="VANTARA Admin Portal"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Version</label>
+
+<input
+value="1.0.0"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Authentication API</label>
+
+<input
+value="/api/login"
+readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Status</label>
+
+<input
+value="Connected"
+readonly
+>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1778,1203 +1640,1396 @@ td {
 </div>
 
 
-
-<!-- =========================
-     ADD EMPLOYEE MODAL
-========================= -->
+<!-- EMPLOYEE MODAL -->
 
 <div
-    class="modal-overlay"
-    id="employeeModal"
+class="modal-overlay"
+id="employeeModal"
 >
 
-    <div class="modal">
+<div class="modal">
 
-        <div class="modal-header">
+<div class="modal-header">
 
-            <h3>
-                Add Employee
-            </h3>
+<h3>Add Employee</h3>
 
-            <button
-                class="modal-close"
-                onclick="closeModal('employeeModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Name
-                </label>
-
-                <input
-                    type="text"
-                    id="employeeName"
-                    placeholder="Employee name"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Username
-                </label>
-
-                <input
-                    type="text"
-                    id="employeeUsername"
-                    placeholder="Username"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Role
-                </label>
-
-                <select id="employeeRole">
-
-                    <option value="employee">
-                        Employee
-                    </option>
-
-                    <option value="admin">
-                        Admin
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div style="
-            display:flex;
-            justify-content:flex-end;
-            gap:10px;
-            margin-top:20px;
-        ">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal('employeeModal')"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addEmployee()"
-            >
-                Add Employee
-            </button>
-
-        </div>
-
-    </div>
+<button
+class="modal-close"
+onclick="closeModal('employeeModal')"
+>
+×
+</button>
 
 </div>
 
 
+<div class="form-grid">
 
-<!-- =========================
-     ADD RESOURCE MODAL
-========================= -->
+<div class="form-group">
 
-<div
-    class="modal-overlay"
-    id="resourceModal"
+<label>Name</label>
+
+<input
+id="employeeName"
+placeholder="Employee name"
 >
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h3>
-                Add Resource
-            </h3>
-
-            <button
-                class="modal-close"
-                onclick="closeModal('resourceModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Resource Title
-            </label>
-
-            <input
-                type="text"
-                id="resourceTitle"
-                placeholder="Resource title"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="resourceDescription"
-                rows="4"
-                placeholder="Resource description"
-            ></textarea>
-
-        </div>
-
-
-        <div style="
-            display:flex;
-            justify-content:flex-end;
-            gap:10px;
-            margin-top:15px;
-        ">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal('resourceModal')"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addResource()"
-            >
-                Add Resource
-            </button>
-
-        </div>
-
-    </div>
 
 </div>
 
 
+<div class="form-group">
 
-<!-- =========================
-     ANNOUNCEMENT MODAL
-========================= -->
+<label>Username</label>
 
-<div
-    class="modal-overlay"
-    id="announcementModal"
+<input
+id="employeeUsername"
+placeholder="Username"
 >
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h3>
-                New Announcement
-            </h3>
-
-            <button
-                class="modal-close"
-                onclick="closeModal('announcementModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Title
-            </label>
-
-            <input
-                type="text"
-                id="announcementTitle"
-                placeholder="Announcement title"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Message
-            </label>
-
-            <textarea
-                id="announcementMessage"
-                rows="5"
-                placeholder="Write your announcement..."
-            ></textarea>
-
-        </div>
-
-
-        <div style="
-            display:flex;
-            justify-content:flex-end;
-            gap:10px;
-            margin-top:15px;
-        ">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal('announcementModal')"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addAnnouncement()"
-            >
-                Publish
-            </button>
-
-        </div>
-
-    </div>
 
 </div>
 
 
+<div class="form-group">
 
-<!-- =========================
-     TOAST
-========================= -->
+<label>Role</label>
+
+<select id="employeeRole">
+
+<option value="employee">
+Employee
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div style="
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:20px;
+">
+
+<button
+class="secondary-button"
+onclick="closeModal('employeeModal')"
+>
+Cancel
+</button>
+
+<button
+class="primary-button"
+onclick="addEmployee()"
+>
+Add Employee
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RESOURCE MODAL -->
+
+<div
+class="modal-overlay"
+id="resourceModal"
+>
+
+<div class="modal">
+
+<div class="modal-header">
+
+<h3>Add Resource</h3>
+
+<button
+class="modal-close"
+onclick="closeModal('resourceModal')"
+>
+×
+</button>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Resource Title</label>
+
+<input
+id="resourceTitle"
+placeholder="Resource title"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea
+id="resourceDescription"
+rows="4"
+placeholder="Resource description"
+></textarea>
+
+</div>
+
+
+<div style="
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:15px;
+">
+
+<button
+class="secondary-button"
+onclick="closeModal('resourceModal')"
+>
+Cancel
+</button>
+
+<button
+class="primary-button"
+onclick="addResource()"
+>
+Add Resource
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ANNOUNCEMENT MODAL -->
+
+<div
+class="modal-overlay"
+id="announcementModal"
+>
+
+<div class="modal">
+
+<div class="modal-header">
+
+<h3>New Announcement</h3>
+
+<button
+class="modal-close"
+onclick="closeModal('announcementModal')"
+>
+×
+</button>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Title</label>
+
+<input
+id="announcementTitle"
+placeholder="Announcement title"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Message</label>
+
+<textarea
+id="announcementMessage"
+rows="5"
+placeholder="Write your announcement..."
+></textarea>
+
+</div>
+
+
+<div style="
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:15px;
+">
+
+<button
+class="secondary-button"
+onclick="closeModal('announcementModal')"
+>
+Cancel
+</button>
+
+<button
+class="primary-button"
+onclick="addAnnouncement()"
+>
+Publish
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div id="toast"></div>
 <script>
+
+let students = [];
+
 
 /* =========================
    LOGIN
 ========================= */
 
-async function login() {
+async function login(){
 
-    const username =
-        document.getElementById("username").value.trim();
+const username =
+document.getElementById("username").value.trim();
 
-    const password =
-        document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-    const errorBox =
-        document.getElementById("loginError");
+const errorBox =
+document.getElementById("loginError");
 
-    const loginButton =
-        document.getElementById("loginButton");
+const btn =
+document.getElementById("loginButton");
 
+errorBox.style.display = "none";
 
-    errorBox.style.display = "none";
-    errorBox.textContent = "";
+if(!username || !password){
 
+errorBox.textContent =
+"Please enter username and password.";
 
-    if (!username || !password) {
+errorBox.style.display = "block";
 
-        errorBox.textContent =
-            "Please enter username and password.";
+return;
 
-        errorBox.style.display = "block";
-
-        return;
-    }
-
-
-    loginButton.disabled = true;
-    loginButton.textContent = "Signing In...";
-
-
-    try {
-
-        const response = await fetch("/api/login", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-
-        });
-
-
-        const data = await response.json();
-
-
-        if (response.ok && data.success) {
-
-            sessionStorage.setItem(
-                "vantaraLoggedIn",
-                "true"
-            );
-
-            sessionStorage.setItem(
-                "vantaraUser",
-                JSON.stringify(data.user)
-            );
-
-
-            document.getElementById(
-                "loginPage"
-            ).style.display = "none";
-
-
-            document.getElementById(
-                "portalPage"
-            ).style.display = "block";
-
-
-            loadUserInformation();
-
-            updateCounts();
-
-            showToast("Login successful.");
-
-        } else {
-
-            errorBox.textContent =
-                data.message ||
-                "Invalid login details.";
-
-            errorBox.style.display = "block";
-
-        }
-
-    } catch (error) {
-
-        console.error("Login error:", error);
-
-        errorBox.textContent =
-            "Unable to connect to the server. Please try again.";
-
-        errorBox.style.display = "block";
-
-    }
-
-
-    loginButton.disabled = false;
-    loginButton.textContent = "Sign In";
 }
 
+btn.disabled = true;
+btn.textContent = "Signing In...";
+
+try{
+
+const response =
+await fetch("/api/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+username:username,
+password:password
+})
+
+});
+
+const data =
+await response.json();
+
+if(response.ok && data.success){
+
+sessionStorage.setItem(
+"vantaraLoggedIn",
+"true"
+);
+
+sessionStorage.setItem(
+"vantaraUser",
+JSON.stringify(data.user)
+);
+
+showPortal();
+
+showToast("Login successful.");
+
+}else{
+
+errorBox.textContent =
+data.message ||
+"Invalid login details.";
+
+errorBox.style.display = "block";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+errorBox.textContent =
+"Unable to connect to the server. Please try again.";
+
+errorBox.style.display = "block";
+
+}
+
+btn.disabled = false;
+btn.textContent = "Sign In";
+
+}
+
+
+/* =========================
+   SHOW PORTAL
+========================= */
+
+function showPortal(){
+
+document.getElementById(
+"loginPage"
+).style.display = "none";
+
+document.getElementById(
+"portalPage"
+).style.display = "block";
+
+loadUserInformation();
+
+updateCounts();
+
+refreshStudents();
+
+}
 
 
 /* =========================
    LOGOUT
 ========================= */
 
-function logout() {
+function logout(){
 
-    sessionStorage.removeItem(
-        "vantaraLoggedIn"
-    );
+sessionStorage.removeItem(
+"vantaraLoggedIn"
+);
 
-    sessionStorage.removeItem(
-        "vantaraUser"
-    );
+sessionStorage.removeItem(
+"vantaraUser"
+);
 
+document.getElementById(
+"portalPage"
+).style.display = "none";
 
-    document.getElementById(
-        "portalPage"
-    ).style.display = "none";
+document.getElementById(
+"loginPage"
+).style.display = "flex";
 
+document.getElementById(
+"username"
+).value = "";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
+document.getElementById(
+"password"
+).value = "";
 
+showToast(
+"You have been logged out."
+);
 
-    document.getElementById(
-        "username"
-    ).value = "";
-
-
-    document.getElementById(
-        "password"
-    ).value = "";
-
-
-    document.getElementById(
-        "loginError"
-    ).style.display = "none";
-
-
-    showToast("You have been logged out.");
 }
-
 
 
 /* =========================
-   CHECK LOGIN SESSION
+   CHECK LOGIN
 ========================= */
 
-function checkLogin() {
+function checkLogin(){
 
-    const loggedIn =
-        sessionStorage.getItem(
-            "vantaraLoggedIn"
-        );
+if(
+sessionStorage.getItem(
+"vantaraLoggedIn"
+) === "true"
+){
 
+showPortal();
 
-    if (loggedIn === "true") {
+}else{
 
-        document.getElementById(
-            "loginPage"
-        ).style.display = "none";
+document.getElementById(
+"loginPage"
+).style.display = "flex";
 
-
-        document.getElementById(
-            "portalPage"
-        ).style.display = "block";
-
-
-        loadUserInformation();
-
-        updateCounts();
-
-    } else {
-
-        document.getElementById(
-            "loginPage"
-        ).style.display = "flex";
-
-
-        document.getElementById(
-            "portalPage"
-        ).style.display = "none";
-
-    }
+document.getElementById(
+"portalPage"
+).style.display = "none";
 
 }
 
+}
 
 
 /* =========================
-   LOAD USER INFORMATION
+   USER INFORMATION
 ========================= */
 
-function loadUserInformation() {
+function loadUserInformation(){
 
-    const storedUser =
-        sessionStorage.getItem(
-            "vantaraUser"
-        );
+try{
 
+const user =
+JSON.parse(
+sessionStorage.getItem(
+"vantaraUser"
+) || "{}"
+);
 
-    if (!storedUser) {
-        return;
-    }
+document.getElementById(
+"currentUsername"
+).value =
+user.username || "";
 
+document.getElementById(
+"currentRole"
+).value =
+user.role || "";
 
-    try {
+}catch(error){
 
-        const user =
-            JSON.parse(storedUser);
-
-
-        const usernameElement =
-            document.getElementById(
-                "currentUsername"
-            );
-
-
-        const roleElement =
-            document.getElementById(
-                "currentRole"
-            );
-
-
-        if (usernameElement) {
-
-            usernameElement.value =
-                user.username || "";
-
-        }
-
-
-        if (roleElement) {
-
-            roleElement.value =
-                user.role || "";
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load user information:",
-            error
-        );
-
-    }
+console.error(error);
 
 }
 
+}
 
 
 /* =========================
-   SECTION NAVIGATION
+   NAVIGATION
 ========================= */
 
-function openSection(
-    sectionId,
-    button
-) {
+function openSection(id,button){
 
-    const sections =
-        document.querySelectorAll(
-            ".section"
-        );
+document
+.querySelectorAll(".section")
+.forEach(
+section =>
+section.classList.remove("active")
+);
 
+document
+.getElementById(id)
+?.classList.add("active");
 
-    sections.forEach(function(section) {
+document
+.querySelectorAll(".nav-button")
+.forEach(
+navButton =>
+navButton.classList.remove("active")
+);
 
-        section.classList.remove("active");
+if(button){
 
-    });
+button.classList.add("active");
 
+}
 
-    const selectedSection =
-        document.getElementById(sectionId);
+closeMobileSidebar();
 
+if(id === "students"){
 
-    if (selectedSection) {
+refreshStudents();
 
-        selectedSection.classList.add("active");
-
-    }
-
-
-    const navButtons =
-        document.querySelectorAll(
-            ".nav-button"
-        );
-
-
-    navButtons.forEach(function(navButton) {
-
-        navButton.classList.remove("active");
-
-    });
-
-
-    if (button) {
-
-        button.classList.add("active");
-
-    }
-
-
-    closeMobileSidebar();
+}
 
 }
 
 
+function openSectionByName(id){
 
-/* =========================
-   OPEN SECTION BY NAME
-========================= */
+const button =
+[
+...document.querySelectorAll(".nav-button")
+]
+.find(
+button =>
+(
+button.getAttribute("onclick") || ""
+).includes("'" + id + "'")
+);
 
-function openSectionByName(
-    sectionId
-) {
-
-    const buttons =
-        document.querySelectorAll(
-            ".nav-button"
-        );
-
-
-    let matchingButton = null;
-
-
-    buttons.forEach(function(button) {
-
-        const onclickValue =
-            button.getAttribute("onclick") || "";
-
-
-        if (
-            onclickValue.includes(
-                "'" + sectionId + "'"
-            )
-        ) {
-
-            matchingButton = button;
-
-        }
-
-    });
-
-
-    openSection(
-        sectionId,
-        matchingButton
-    );
+openSection(id,button);
 
 }
-
 
 
 /* =========================
    MOBILE SIDEBAR
 ========================= */
 
-function toggleSidebar() {
+function toggleSidebar(){
 
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
-
-
-    sidebar.classList.toggle("open");
+document
+.getElementById("sidebar")
+.classList.toggle("open");
 
 }
 
 
-function closeMobileSidebar() {
+function closeMobileSidebar(){
 
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
-
-
-    sidebar.classList.remove("open");
+document
+.getElementById("sidebar")
+.classList.remove("open");
 
 }
-
 
 
 /* =========================
    MODALS
 ========================= */
 
-function openModal(modalId) {
+function openModal(id){
 
-    const modal =
-        document.getElementById(modalId);
-
-
-    if (modal) {
-
-        modal.classList.add("show");
-
-    }
+document
+.getElementById(id)
+?.classList.add("show");
 
 }
 
 
-function closeModal(modalId) {
+function closeModal(id){
 
-    const modal =
-        document.getElementById(modalId);
-
-
-    if (modal) {
-
-        modal.classList.remove("show");
-
-    }
+document
+.getElementById(id)
+?.classList.remove("show");
 
 }
-
 
 
 /* =========================
    TOAST
 ========================= */
 
-function showToast(message) {
+function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
+const toast =
+document.getElementById("toast");
 
+toast.textContent = message;
 
-    if (!toast) {
-        return;
-    }
+toast.style.display = "block";
 
+clearTimeout(
+window.vantaraToast
+);
 
-    toast.textContent = message;
+window.vantaraToast =
+setTimeout(
+function(){
 
-    toast.style.display = "block";
+toast.style.display = "none";
 
-
-    clearTimeout(
-        window.vantaraToastTimer
-    );
-
-
-    window.vantaraToastTimer =
-        setTimeout(function() {
-
-            toast.style.display = "none";
-
-        }, 3000);
+},
+3000
+);
 
 }
+
+
+/* =========================
+   STUDENT DATABASE
+========================= */
+
+async function refreshStudents(){
+
+try{
+
+const response =
+await fetch("/api/students");
+
+if(!response.ok){
+
+throw new Error(
+"Student API unavailable"
+);
+
+}
+
+const data =
+await response.json();
+
+students =
+Array.isArray(data.students)
+? data.students
+: [];
+
+}catch(error){
+
+console.log(
+"Student API is not connected yet."
+);
+
+students = [];
+
+}
+
+renderStudents(students);
+
+updateStudentStats();
+
+updateCounts();
+
+}
+
+
+/* =========================
+   RENDER STUDENTS
+========================= */
+
+function renderStudents(list){
+
+const body =
+document.getElementById(
+"studentsTableBody"
+);
+
+if(!list.length){
+
+body.innerHTML = `
+
+<tr>
+
+<td
+colspan="7"
+class="empty-students"
+>
+
+No students registered yet.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+body.innerHTML =
+list.map(
+(student,index) => `
+
+<tr>
+
+<td>
+${index + 1}
+</td>
+
+<td class="student-name">
+${escapeHTML(
+student.name || "—"
+)}
+</td>
+
+<td class="student-email">
+${escapeHTML(
+student.email || "—"
+)}
+</td>
+
+<td>
+Class ${escapeHTML(
+student.class || "—"
+)}
+</td>
+
+<td>
+${escapeHTML(
+student.registrationDate || "—"
+)}
+</td>
+
+<td>
+
+<span class="badge badge-active">
+Active
+</span>
+
+</td>
+
+<td>
+
+<button
+class="danger-button"
+onclick="deleteStudent('${escapeHTML(
+student.id || ""
+)}')"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`
+).join("");
+
+}
+
+
+/* =========================
+   SEARCH STUDENTS
+========================= */
+
+function filterStudents(){
+
+const search =
+document
+.getElementById(
+"studentSearch"
+)
+.value
+.toLowerCase()
+.trim();
+
+const selectedClass =
+document
+.getElementById(
+"studentClassFilter"
+)
+.value;
+
+const filtered =
+students.filter(
+student => {
+
+const name =
+String(
+student.name || ""
+).toLowerCase();
+
+const email =
+String(
+student.email || ""
+).toLowerCase();
+
+const studentClass =
+String(
+student.class || ""
+);
+
+return (
+
+(
+name.includes(search) ||
+email.includes(search)
+)
+
+&&
+
+(
+!selectedClass ||
+studentClass === selectedClass
+)
+
+);
+
+});
+
+renderStudents(filtered);
+
+}
+
+
+/* =========================
+   STUDENT STATISTICS
+========================= */
+
+function updateStudentStats(){
+
+document.getElementById(
+"totalStudents"
+).textContent =
+students.length;
+
+
+const today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+document.getElementById(
+"studentsToday"
+).textContent =
+
+students.filter(
+student =>
+String(
+student.registrationDate || ""
+).startsWith(today)
+).length;
+
+
+document.getElementById(
+"studentClasses"
+).textContent =
+
+new Set(
+students
+.map(
+student =>
+student.class
+)
+.filter(Boolean)
+).size;
+
+
+document.getElementById(
+"activeStudents"
+).textContent =
+students.length;
+
+}
+
+
+/* =========================
+   DELETE STUDENT
+========================= */
+
+async function deleteStudent(id){
+
+if(
+!id ||
+!confirm(
+"Are you sure you want to remove this student?"
+)
+){
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch(
+"/api/students",
+{
+
+method:"DELETE",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+id:id
+})
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Unable to delete student."
+);
+
+}
+
+
+showToast(
+"Student removed."
+);
+
+refreshStudents();
+
+
+}catch(error){
+
+alert(
+error.message ||
+"Unable to connect to the server."
+);
+
+}
+
+}
+
+
 /* =========================
    ADD EMPLOYEE
 ========================= */
 
-function addEmployee() {
+function addEmployee(){
 
-    const name =
-        document.getElementById(
-            "employeeName"
-        ).value.trim();
-
-    const username =
-        document.getElementById(
-            "employeeUsername"
-        ).value.trim();
-
-    const role =
-        document.getElementById(
-            "employeeRole"
-        ).value;
+const name =
+document.getElementById(
+"employeeName"
+)
+.value
+.trim();
 
 
-    if (!name || !username) {
-
-        showToast(
-            "Please enter employee name and username."
-        );
-
-        return;
-
-    }
+const username =
+document.getElementById(
+"employeeUsername"
+)
+.value
+.trim();
 
 
-    const tableBody =
-        document.getElementById(
-            "employeeTableBody"
-        );
+const role =
+document.getElementById(
+"employeeRole"
+)
+.value;
 
 
-    const row =
-        document.createElement("tr");
+if(!name || !username){
 
+showToast(
+"Please enter employee name and username."
+);
 
-    const roleBadge =
-        role === "admin"
-            ? '<span class="badge badge-admin">Admin</span>'
-            : '<span class="badge badge-employee">Employee</span>';
-
-
-    row.innerHTML = `
-
-        <td>
-            ${escapeHTML(username)}
-        </td>
-
-        <td>
-            ${escapeHTML(name)}
-        </td>
-
-        <td>
-            ${roleBadge}
-        </td>
-
-        <td>
-            <span class="badge badge-active">
-                Active
-            </span>
-        </td>
-
-        <td>
-            <button
-                class="danger-button"
-                onclick="this.closest('tr').remove(); updateCounts();"
-            >
-                Remove
-            </button>
-        </td>
-
-    `;
-
-
-    tableBody.appendChild(row);
-
-
-    document.getElementById(
-        "employeeName"
-    ).value = "";
-
-
-    document.getElementById(
-        "employeeUsername"
-    ).value = "";
-
-
-    document.getElementById(
-        "employeeRole"
-    ).value = "employee";
-
-
-    closeModal("employeeModal");
-
-    updateCounts();
-
-    showToast(
-        "Employee added successfully."
-    );
+return;
 
 }
 
+
+const row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td>
+${escapeHTML(username)}
+</td>
+
+<td>
+${escapeHTML(name)}
+</td>
+
+<td>
+
+<span class="badge ${
+role === "admin"
+? "badge-admin"
+: "badge-employee"
+}">
+
+${
+role === "admin"
+? "Admin"
+: "Employee"
+}
+
+</span>
+
+</td>
+
+<td>
+
+<span class="badge badge-active">
+Active
+</span>
+
+</td>
+
+<td>
+
+<button
+class="danger-button"
+onclick="
+this.closest('tr').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+</td>
+
+`;
+
+
+document
+.getElementById(
+"employeeTableBody"
+)
+.appendChild(row);
+
+
+document.getElementById(
+"employeeName"
+).value = "";
+
+
+document.getElementById(
+"employeeUsername"
+).value = "";
+
+
+closeModal(
+"employeeModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Employee added successfully."
+);
+
+}
 
 
 /* =========================
    ADD RESOURCE
 ========================= */
 
-function addResource() {
+function addResource(){
 
-    const title =
-        document.getElementById(
-            "resourceTitle"
-        ).value.trim();
-
-    const description =
-        document.getElementById(
-            "resourceDescription"
-        ).value.trim();
+const title =
+document.getElementById(
+"resourceTitle"
+)
+.value
+.trim();
 
 
-    if (!title) {
-
-        showToast(
-            "Please enter a resource title."
-        );
-
-        return;
-
-    }
+const description =
+document.getElementById(
+"resourceDescription"
+)
+.value
+.trim();
 
 
-    const resourceGrid =
-        document.getElementById(
-            "resourceGrid"
-        );
+if(!title){
 
+showToast(
+"Please enter a resource title."
+);
 
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "resource-card";
-
-
-    card.innerHTML = `
-
-        <h4>
-            ${escapeHTML(title)}
-        </h4>
-
-        <p>
-            ${escapeHTML(
-                description ||
-                "VANTARA educational resource."
-            )}
-        </p>
-
-        <div class="resource-actions">
-
-            <span class="badge badge-active">
-                Active
-            </span>
-
-            <button
-                class="danger-button"
-                style="margin-left:8px;"
-                onclick="this.closest('.resource-card').remove(); updateCounts();"
-            >
-                Remove
-            </button>
-
-        </div>
-
-    `;
-
-
-    resourceGrid.appendChild(card);
-
-
-    document.getElementById(
-        "resourceTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "resourceDescription"
-    ).value = "";
-
-
-    closeModal("resourceModal");
-
-    updateCounts();
-
-    showToast(
-        "Resource added successfully."
-    );
+return;
 
 }
 
+
+const card =
+document.createElement("div");
+
+
+card.className =
+"resource-card";
+
+
+card.innerHTML = `
+
+<h4>
+${escapeHTML(title)}
+</h4>
+
+<p>
+${escapeHTML(
+description ||
+"VANTARA educational resource."
+)}
+</p>
+
+<div class="resource-actions">
+
+<span class="badge badge-active">
+Active
+</span>
+
+<button
+class="danger-button"
+onclick="
+this.closest('.resource-card').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+</div>
+
+`;
+
+
+document
+.getElementById(
+"resourceGrid"
+)
+.appendChild(card);
+
+
+document.getElementById(
+"resourceTitle"
+).value = "";
+
+
+document.getElementById(
+"resourceDescription"
+).value = "";
+
+
+closeModal(
+"resourceModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Resource added successfully."
+);
+
+}
 
 
 /* =========================
    ADD ANNOUNCEMENT
 ========================= */
 
-function addAnnouncement() {
+function addAnnouncement(){
 
-    const title =
-        document.getElementById(
-            "announcementTitle"
-        ).value.trim();
-
-    const message =
-        document.getElementById(
-            "announcementMessage"
-        ).value.trim();
+const title =
+document.getElementById(
+"announcementTitle"
+)
+.value
+.trim();
 
 
-    if (!title || !message) {
-
-        showToast(
-            "Please enter title and message."
-        );
-
-        return;
-
-    }
+const message =
+document.getElementById(
+"announcementMessage"
+)
+.value
+.trim();
 
 
-    const announcementList =
-        document.getElementById(
-            "announcementList"
-        );
+if(!title || !message){
 
+showToast(
+"Please enter title and message."
+);
 
-    const announcement =
-        document.createElement("div");
-
-
-    announcement.className =
-        "announcement";
-
-
-    announcement.innerHTML = `
-
-        <h4>
-            ${escapeHTML(title)}
-        </h4>
-
-        <p>
-            ${escapeHTML(message)}
-        </p>
-
-        <button
-            class="danger-button"
-            style="margin-top:10px;"
-            onclick="this.closest('.announcement').remove(); updateCounts();"
-        >
-            Remove
-        </button>
-
-    `;
-
-
-    announcementList.prepend(
-        announcement
-    );
-
-
-    document.getElementById(
-        "announcementTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "announcementMessage"
-    ).value = "";
-
-
-    closeModal(
-        "announcementModal"
-    );
-
-
-    updateCounts();
-
-
-    showToast(
-        "Announcement published successfully."
-    );
+return;
 
 }
 
+
+const announcement =
+document.createElement("div");
+
+
+announcement.className =
+"announcement";
+
+
+announcement.innerHTML = `
+
+<h4>
+${escapeHTML(title)}
+</h4>
+
+<p>
+${escapeHTML(message)}
+</p>
+
+<button
+class="danger-button"
+style="margin-top:10px"
+onclick="
+this.closest('.announcement').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+`;
+
+
+document
+.getElementById(
+"announcementList"
+)
+.prepend(announcement);
+
+
+document.getElementById(
+"announcementTitle"
+).value = "";
+
+
+document.getElementById(
+"announcementMessage"
+).value = "";
+
+
+closeModal(
+"announcementModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Announcement published successfully."
+);
+
+}
 
 
 /* =========================
-   UPDATE DASHBOARD COUNTS
+   DASHBOARD COUNTS
 ========================= */
 
-function updateCounts() {
+function updateCounts(){
 
-    const studentCount =
-        document.getElementById(
-            "studentTableBody"
-        );
-
-
-    const employeeTable =
-        document.getElementById(
-            "employeeTableBody"
-        );
+document.getElementById(
+"studentCount"
+).textContent =
+students.length;
 
 
-    const resourceGrid =
-        document.getElementById(
-            "resourceGrid"
-        );
+document.getElementById(
+"employeeCount"
+).textContent =
+
+document
+.getElementById(
+"employeeTableBody"
+)
+?.querySelectorAll("tr")
+.length || 0;
 
 
-    const announcementList =
-        document.getElementById(
-            "announcementList"
-        );
+document.getElementById(
+"resourceCount"
+).textContent =
+
+document
+.getElementById(
+"resourceGrid"
+)
+?.querySelectorAll(
+".resource-card"
+)
+.length || 0;
 
 
-    const studentNumber =
-        studentCount
-            ? studentCount.querySelectorAll(
-                "tr"
-            ).length
-            : 0;
+document.getElementById(
+"announcementCount"
+).textContent =
 
-
-    const employeeNumber =
-        employeeTable
-            ? employeeTable.querySelectorAll(
-                "tr"
-            ).length
-            : 0;
-
-
-    const resourceNumber =
-        resourceGrid
-            ? resourceGrid.querySelectorAll(
-                ".resource-card"
-            ).length
-            : 0;
-
-
-    const announcementNumber =
-        announcementList
-            ? announcementList.querySelectorAll(
-                ".announcement"
-            ).length
-            : 0;
-
-
-    document.getElementById(
-        "studentCount"
-    ).textContent =
-        studentNumber;
-
-
-    document.getElementById(
-        "employeeCount"
-    ).textContent =
-        employeeNumber;
-
-
-    document.getElementById(
-        "resourceCount"
-    ).textContent =
-        resourceNumber;
-
-
-    document.getElementById(
-        "announcementCount"
-    ).textContent =
-        announcementNumber;
+document
+.getElementById(
+"announcementList"
+)
+?.querySelectorAll(
+".announcement"
+)
+.length || 0;
 
 }
-
 
 
 /* =========================
    HTML SECURITY
 ========================= */
 
-function escapeHTML(value) {
+function escapeHTML(value){
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
 
-
 /* =========================
-   CLOSE MODALS WHEN
-   CLICKING OUTSIDE
+   CLOSE MODAL ON BACKGROUND
 ========================= */
 
 document.addEventListener(
-    "click",
-    function(event) {
+"click",
+function(event){
 
-        if (
-            event.target.classList.contains(
-                "modal-overlay"
-            )
-        ) {
+if(
+event.target.classList.contains(
+"modal-overlay"
+)
+){
 
-            event.target.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
+event.target.classList.remove(
+"show"
 );
 
+}
+
+}
+);
 
 
 /* =========================
@@ -2982,14 +3037,1162 @@ document.addEventListener(
 ========================= */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+"DOMContentLoaded",
+checkLogin
+);
 
-        checkLogin();
+</script>
 
-        updateCounts();
+</body>
+</html>
+<script>
 
-    }
+let students = [];
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+const username =
+document.getElementById("username").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const errorBox =
+document.getElementById("loginError");
+
+const btn =
+document.getElementById("loginButton");
+
+errorBox.style.display = "none";
+
+if(!username || !password){
+
+errorBox.textContent =
+"Please enter username and password.";
+
+errorBox.style.display = "block";
+
+return;
+
+}
+
+btn.disabled = true;
+btn.textContent = "Signing In...";
+
+try{
+
+const response =
+await fetch("/api/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+username:username,
+password:password
+})
+
+});
+
+const data =
+await response.json();
+
+if(response.ok && data.success){
+
+sessionStorage.setItem(
+"vantaraLoggedIn",
+"true"
+);
+
+sessionStorage.setItem(
+"vantaraUser",
+JSON.stringify(data.user)
+);
+
+showPortal();
+
+showToast("Login successful.");
+
+}else{
+
+errorBox.textContent =
+data.message ||
+"Invalid login details.";
+
+errorBox.style.display = "block";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+errorBox.textContent =
+"Unable to connect to the server. Please try again.";
+
+errorBox.style.display = "block";
+
+}
+
+btn.disabled = false;
+btn.textContent = "Sign In";
+
+}
+
+
+/* =========================
+   SHOW PORTAL
+========================= */
+
+function showPortal(){
+
+document.getElementById(
+"loginPage"
+).style.display = "none";
+
+document.getElementById(
+"portalPage"
+).style.display = "block";
+
+loadUserInformation();
+
+updateCounts();
+
+refreshStudents();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+sessionStorage.removeItem(
+"vantaraLoggedIn"
+);
+
+sessionStorage.removeItem(
+"vantaraUser"
+);
+
+document.getElementById(
+"portalPage"
+).style.display = "none";
+
+document.getElementById(
+"loginPage"
+).style.display = "flex";
+
+document.getElementById(
+"username"
+).value = "";
+
+document.getElementById(
+"password"
+).value = "";
+
+showToast(
+"You have been logged out."
+);
+
+}
+
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+function checkLogin(){
+
+if(
+sessionStorage.getItem(
+"vantaraLoggedIn"
+) === "true"
+){
+
+showPortal();
+
+}else{
+
+document.getElementById(
+"loginPage"
+).style.display = "flex";
+
+document.getElementById(
+"portalPage"
+).style.display = "none";
+
+}
+
+}
+
+
+/* =========================
+   USER INFORMATION
+========================= */
+
+function loadUserInformation(){
+
+try{
+
+const user =
+JSON.parse(
+sessionStorage.getItem(
+"vantaraUser"
+) || "{}"
+);
+
+document.getElementById(
+"currentUsername"
+).value =
+user.username || "";
+
+document.getElementById(
+"currentRole"
+).value =
+user.role || "";
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function openSection(id,button){
+
+document
+.querySelectorAll(".section")
+.forEach(
+section =>
+section.classList.remove("active")
+);
+
+document
+.getElementById(id)
+?.classList.add("active");
+
+document
+.querySelectorAll(".nav-button")
+.forEach(
+navButton =>
+navButton.classList.remove("active")
+);
+
+if(button){
+
+button.classList.add("active");
+
+}
+
+closeMobileSidebar();
+
+if(id === "students"){
+
+refreshStudents();
+
+}
+
+}
+
+
+function openSectionByName(id){
+
+const button =
+[
+...document.querySelectorAll(".nav-button")
+]
+.find(
+button =>
+(
+button.getAttribute("onclick") || ""
+).includes("'" + id + "'")
+);
+
+openSection(id,button);
+
+}
+
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+function toggleSidebar(){
+
+document
+.getElementById("sidebar")
+.classList.toggle("open");
+
+}
+
+
+function closeMobileSidebar(){
+
+document
+.getElementById("sidebar")
+.classList.remove("open");
+
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+function openModal(id){
+
+document
+.getElementById(id)
+?.classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+document
+.getElementById(id)
+?.classList.remove("show");
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+const toast =
+document.getElementById("toast");
+
+toast.textContent = message;
+
+toast.style.display = "block";
+
+clearTimeout(
+window.vantaraToast
+);
+
+window.vantaraToast =
+setTimeout(
+function(){
+
+toast.style.display = "none";
+
+},
+3000
+);
+
+}
+
+
+/* =========================
+   STUDENT DATABASE
+========================= */
+
+async function refreshStudents(){
+
+try{
+
+const response =
+await fetch("/api/students");
+
+if(!response.ok){
+
+throw new Error(
+"Student API unavailable"
+);
+
+}
+
+const data =
+await response.json();
+
+students =
+Array.isArray(data.students)
+? data.students
+: [];
+
+}catch(error){
+
+console.log(
+"Student API is not connected yet."
+);
+
+students = [];
+
+}
+
+renderStudents(students);
+
+updateStudentStats();
+
+updateCounts();
+
+}
+
+
+/* =========================
+   RENDER STUDENTS
+========================= */
+
+function renderStudents(list){
+
+const body =
+document.getElementById(
+"studentsTableBody"
+);
+
+if(!list.length){
+
+body.innerHTML = `
+
+<tr>
+
+<td
+colspan="7"
+class="empty-students"
+>
+
+No students registered yet.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+body.innerHTML =
+list.map(
+(student,index) => `
+
+<tr>
+
+<td>
+${index + 1}
+</td>
+
+<td class="student-name">
+${escapeHTML(
+student.name || "—"
+)}
+</td>
+
+<td class="student-email">
+${escapeHTML(
+student.email || "—"
+)}
+</td>
+
+<td>
+Class ${escapeHTML(
+student.class || "—"
+)}
+</td>
+
+<td>
+${escapeHTML(
+student.registrationDate || "—"
+)}
+</td>
+
+<td>
+
+<span class="badge badge-active">
+Active
+</span>
+
+</td>
+
+<td>
+
+<button
+class="danger-button"
+onclick="deleteStudent('${escapeHTML(
+student.id || ""
+)}')"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`
+).join("");
+
+}
+
+
+/* =========================
+   SEARCH STUDENTS
+========================= */
+
+function filterStudents(){
+
+const search =
+document
+.getElementById(
+"studentSearch"
+)
+.value
+.toLowerCase()
+.trim();
+
+const selectedClass =
+document
+.getElementById(
+"studentClassFilter"
+)
+.value;
+
+const filtered =
+students.filter(
+student => {
+
+const name =
+String(
+student.name || ""
+).toLowerCase();
+
+const email =
+String(
+student.email || ""
+).toLowerCase();
+
+const studentClass =
+String(
+student.class || ""
+);
+
+return (
+
+(
+name.includes(search) ||
+email.includes(search)
+)
+
+&&
+
+(
+!selectedClass ||
+studentClass === selectedClass
+)
+
+);
+
+});
+
+renderStudents(filtered);
+
+}
+
+
+/* =========================
+   STUDENT STATISTICS
+========================= */
+
+function updateStudentStats(){
+
+document.getElementById(
+"totalStudents"
+).textContent =
+students.length;
+
+
+const today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+document.getElementById(
+"studentsToday"
+).textContent =
+
+students.filter(
+student =>
+String(
+student.registrationDate || ""
+).startsWith(today)
+).length;
+
+
+document.getElementById(
+"studentClasses"
+).textContent =
+
+new Set(
+students
+.map(
+student =>
+student.class
+)
+.filter(Boolean)
+).size;
+
+
+document.getElementById(
+"activeStudents"
+).textContent =
+students.length;
+
+}
+
+
+/* =========================
+   DELETE STUDENT
+========================= */
+
+async function deleteStudent(id){
+
+if(
+!id ||
+!confirm(
+"Are you sure you want to remove this student?"
+)
+){
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch(
+"/api/students",
+{
+
+method:"DELETE",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+id:id
+})
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Unable to delete student."
+);
+
+}
+
+
+showToast(
+"Student removed."
+);
+
+refreshStudents();
+
+
+}catch(error){
+
+alert(
+error.message ||
+"Unable to connect to the server."
+);
+
+}
+
+}
+
+
+/* =========================
+   ADD EMPLOYEE
+========================= */
+
+function addEmployee(){
+
+const name =
+document.getElementById(
+"employeeName"
+)
+.value
+.trim();
+
+
+const username =
+document.getElementById(
+"employeeUsername"
+)
+.value
+.trim();
+
+
+const role =
+document.getElementById(
+"employeeRole"
+)
+.value;
+
+
+if(!name || !username){
+
+showToast(
+"Please enter employee name and username."
+);
+
+return;
+
+}
+
+
+const row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td>
+${escapeHTML(username)}
+</td>
+
+<td>
+${escapeHTML(name)}
+</td>
+
+<td>
+
+<span class="badge ${
+role === "admin"
+? "badge-admin"
+: "badge-employee"
+}">
+
+${
+role === "admin"
+? "Admin"
+: "Employee"
+}
+
+</span>
+
+</td>
+
+<td>
+
+<span class="badge badge-active">
+Active
+</span>
+
+</td>
+
+<td>
+
+<button
+class="danger-button"
+onclick="
+this.closest('tr').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+</td>
+
+`;
+
+
+document
+.getElementById(
+"employeeTableBody"
+)
+.appendChild(row);
+
+
+document.getElementById(
+"employeeName"
+).value = "";
+
+
+document.getElementById(
+"employeeUsername"
+).value = "";
+
+
+closeModal(
+"employeeModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Employee added successfully."
+);
+
+}
+
+
+/* =========================
+   ADD RESOURCE
+========================= */
+
+function addResource(){
+
+const title =
+document.getElementById(
+"resourceTitle"
+)
+.value
+.trim();
+
+
+const description =
+document.getElementById(
+"resourceDescription"
+)
+.value
+.trim();
+
+
+if(!title){
+
+showToast(
+"Please enter a resource title."
+);
+
+return;
+
+}
+
+
+const card =
+document.createElement("div");
+
+
+card.className =
+"resource-card";
+
+
+card.innerHTML = `
+
+<h4>
+${escapeHTML(title)}
+</h4>
+
+<p>
+${escapeHTML(
+description ||
+"VANTARA educational resource."
+)}
+</p>
+
+<div class="resource-actions">
+
+<span class="badge badge-active">
+Active
+</span>
+
+<button
+class="danger-button"
+onclick="
+this.closest('.resource-card').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+</div>
+
+`;
+
+
+document
+.getElementById(
+"resourceGrid"
+)
+.appendChild(card);
+
+
+document.getElementById(
+"resourceTitle"
+).value = "";
+
+
+document.getElementById(
+"resourceDescription"
+).value = "";
+
+
+closeModal(
+"resourceModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Resource added successfully."
+);
+
+}
+
+
+/* =========================
+   ADD ANNOUNCEMENT
+========================= */
+
+function addAnnouncement(){
+
+const title =
+document.getElementById(
+"announcementTitle"
+)
+.value
+.trim();
+
+
+const message =
+document.getElementById(
+"announcementMessage"
+)
+.value
+.trim();
+
+
+if(!title || !message){
+
+showToast(
+"Please enter title and message."
+);
+
+return;
+
+}
+
+
+const announcement =
+document.createElement("div");
+
+
+announcement.className =
+"announcement";
+
+
+announcement.innerHTML = `
+
+<h4>
+${escapeHTML(title)}
+</h4>
+
+<p>
+${escapeHTML(message)}
+</p>
+
+<button
+class="danger-button"
+style="margin-top:10px"
+onclick="
+this.closest('.announcement').remove();
+updateCounts()
+"
+>
+Remove
+</button>
+
+`;
+
+
+document
+.getElementById(
+"announcementList"
+)
+.prepend(announcement);
+
+
+document.getElementById(
+"announcementTitle"
+).value = "";
+
+
+document.getElementById(
+"announcementMessage"
+).value = "";
+
+
+closeModal(
+"announcementModal"
+);
+
+
+updateCounts();
+
+
+showToast(
+"Announcement published successfully."
+);
+
+}
+
+
+/* =========================
+   DASHBOARD COUNTS
+========================= */
+
+function updateCounts(){
+
+document.getElementById(
+"studentCount"
+).textContent =
+students.length;
+
+
+document.getElementById(
+"employeeCount"
+).textContent =
+
+document
+.getElementById(
+"employeeTableBody"
+)
+?.querySelectorAll("tr")
+.length || 0;
+
+
+document.getElementById(
+"resourceCount"
+).textContent =
+
+document
+.getElementById(
+"resourceGrid"
+)
+?.querySelectorAll(
+".resource-card"
+)
+.length || 0;
+
+
+document.getElementById(
+"announcementCount"
+).textContent =
+
+document
+.getElementById(
+"announcementList"
+)
+?.querySelectorAll(
+".announcement"
+)
+.length || 0;
+
+}
+
+
+/* =========================
+   HTML SECURITY
+========================= */
+
+function escapeHTML(value){
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* =========================
+   CLOSE MODAL ON BACKGROUND
+========================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+if(
+event.target.classList.contains(
+"modal-overlay"
+)
+){
+
+event.target.classList.remove(
+"show"
+);
+
+}
+
+}
+);
+
+
+/* =========================
+   START PORTAL
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+checkLogin
 );
 
 </script>
