@@ -16,6 +16,7 @@ export default async function handler(request, response) {
     });
   }
 
+  // Read credentials from Vercel Environment Variables
   const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
@@ -23,6 +24,7 @@ export default async function handler(request, response) {
     username === ADMIN_USERNAME &&
     password === ADMIN_PASSWORD
   ) {
+
     return response.status(200).json({
       success: true,
       message: "Login successful",
@@ -31,10 +33,12 @@ export default async function handler(request, response) {
         role: "admin"
       }
     });
+
   }
 
   return response.status(401).json({
     success: false,
     message: "Invalid login details"
   });
+
 }
