@@ -1,4201 +1,7892 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VANTARA Admin Portal</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>VANTARA EDUCATION</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 
-body{
-font-family:Arial,Helvetica,sans-serif;
-background:#0b0f14;
-color:#fff;
-min-height:100vh
-}
+/* =========================
+   BASIC RESET
+========================= */
 
-button,input,select,textarea{
-font-family:inherit
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-button{
-cursor:pointer
+html {
+    scroll-behavior: smooth;
 }
 
-#loginPage{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:radial-gradient(circle at top,#182332 0%,#0b0f14 55%)
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: #f5f9ff;
+    min-height: 100vh;
 }
 
-.login-card{
-width:100%;
-max-width:420px;
-background:#111821;
-border:1px solid #263342;
-border-radius:20px;
-padding:32px 25px;
-box-shadow:0 20px 60px rgba(0,0,0,.45)
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-.logo-box{
-text-align:center;
-margin-bottom:25px
+button {
+    cursor: pointer;
 }
 
-.logo-circle,
-.brand-icon{
-border-radius:50%;
-background:#fff;
-color:#111821;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:800
-}
 
-.logo-circle{
-width:75px;
-height:75px;
-margin:0 auto 14px;
-font-size:25px
-}
+/* =========================
+   WELCOME SCREEN
+========================= */
 
-.logo-box h1{
-font-size:27px;
-letter-spacing:1px
-}
+#welcomeScreen {
 
-.logo-box p{
-color:#9ba8b7;
-margin-top:7px;
-font-size:14px
-}
+    position: fixed;
+    inset: 0;
 
-.form-group{
-margin-bottom:17px
-}
+    background:
+        radial-gradient(
+            circle at top,
+            #12345a 0%,
+            #07111f 45%,
+            #030811 100%
+        );
 
-.form-group label{
-display:block;
-margin-bottom:7px;
-color:#dce4ec;
-font-size:14px;
-font-weight:600
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-width:100%;
-padding:13px 14px;
-border:1px solid #303d4c;
-border-radius:10px;
-background:#0b1118;
-color:#fff;
-outline:none;
-font-size:15px
-}
+    z-index: 9999;
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-border-color:#6f849a
+    padding: 20px;
 }
 
-.login-button,
-.primary-button{
-border:none;
-background:#fff;
-color:#10151c;
-font-weight:700
-}
+.welcome-box {
 
-.login-button{
-width:100%;
-border-radius:10px;
-padding:14px;
-font-size:16px;
-margin-top:5px
-}
+    width: 100%;
+    max-width: 520px;
 
-.login-button:disabled{
-opacity:.6;
-cursor:not-allowed
-}
+    background: rgba(10, 25, 43, 0.96);
 
-.login-error{
-display:none;
-margin-top:15px;
-padding:11px;
-border-radius:8px;
-background:#35171b;
-border:1px solid #71333b;
-color:#ffb8bf;
-font-size:14px;
-text-align:center
-}
+    border: 1px solid #1d4f7d;
 
-.login-footer{
-text-align:center;
-color:#6f7c89;
-font-size:12px;
-margin-top:22px
-}
+    border-radius: 24px;
 
-#portalPage{
-display:none;
-min-height:100vh
-}
+    padding: 40px 28px;
 
-.topbar{
-height:70px;
-background:#111821;
-border-bottom:1px solid #263342;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 22px;
-position:sticky;
-top:0;
-z-index:50
-}
+    text-align: center;
 
-.brand{
-display:flex;
-align-items:center;
-gap:12px
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45);
 }
 
-.brand-icon{
-width:42px;
-height:42px
-}
+.welcome-logo {
 
-.brand-text strong{
-display:block;
-font-size:17px
-}
+    width: 82px;
+    height: 82px;
 
-.brand-text span{
-display:block;
-color:#8795a4;
-font-size:11px;
-margin-top:2px
-}
+    margin: 0 auto 20px;
 
-.logout-button,
-.secondary-button,
-.mobile-menu{
-border:1px solid #354454;
-background:transparent;
-color:#fff;
-padding:9px 14px;
-border-radius:8px
-}
+    border-radius: 22px;
 
-.logout-button:hover,
-.secondary-button:hover{
-background:#1b2530
-}
+    background:
+        linear-gradient(
+            135deg,
+            #1685ff,
+            #6b5cff
+        );
 
-.portal-layout{
-display:flex;
-min-height:calc(100vh - 70px)
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.sidebar{
-width:235px;
-background:#0e141b;
-border-right:1px solid #263342;
-padding:18px 12px;
-flex-shrink:0
-}
+    font-size: 34px;
+    font-weight: bold;
 
-.nav-title{
-color:#657484;
-font-size:11px;
-text-transform:uppercase;
-letter-spacing:1px;
-padding:10px 12px
+    box-shadow:
+        0 10px 30px rgba(22,133,255,0.35);
 }
 
-.nav-button{
-width:100%;
-border:none;
-background:transparent;
-color:#aeb9c5;
-text-align:left;
-padding:12px;
-border-radius:8px;
-margin-bottom:4px;
-font-size:14px
-}
+.welcome-box h1 {
 
-.nav-button:hover,
-.nav-button.active{
-background:#1a2530;
-color:#fff
-}
+    font-size: 34px;
 
-.main-content{
-flex:1;
-padding:25px;
-min-width:0
-}
+    margin-bottom: 10px;
 
-.section{
-display:none
+    letter-spacing: 1px;
 }
 
-.section.active{
-display:block
+.welcome-box h1 span {
+    color: #4da3ff;
 }
 
-.page-header{
-margin-bottom:25px
-}
+.welcome-box h2 {
 
-.page-header h2{
-font-size:25px;
-margin-bottom:6px
-}
+    font-size: 18px;
 
-.page-header p{
-color:#8996a4;
-font-size:14px
-}
+    font-weight: normal;
 
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-bottom:25px
-}
+    color: #b7c9dc;
 
-.stat-card{
-background:#111821;
-border:1px solid #263342;
-border-radius:14px;
-padding:20px
+    margin-bottom: 14px;
 }
 
-.stat-title{
-color:#8996a4;
-font-size:13px;
-margin-bottom:10px
-}
+.welcome-box p {
 
-.stat-number{
-font-size:30px;
-font-weight:700
-}
+    color: #9fb3c8;
 
-.stat-small{
-color:#657484;
-font-size:11px;
-margin-top:5px
-}
+    line-height: 1.6;
 
-.panel{
-background:#111821;
-border:1px solid #263342;
-border-radius:14px;
-padding:20px;
-margin-bottom:20px
+    margin-bottom: 25px;
 }
 
-.panel-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-margin-bottom:17px
-}
+.welcome-input {
 
-.panel-header h3{
-font-size:17px
-}
+    width: 100%;
 
-.panel-header p{
-color:#7f8d9b;
-font-size:12px
-}
+    padding: 14px 16px;
 
-.table-wrapper{
-width:100%;
-overflow-x:auto
-}
+    border-radius: 12px;
 
-table{
-width:100%;
-border-collapse:collapse;
-min-width:650px
-}
+    border: 1px solid #2a5278;
 
-th,td{
-padding:13px 12px;
-border-bottom:1px solid #25313d;
-text-align:left;
-font-size:13px
-}
+    background: #0a1b2d;
 
-th{
-color:#9eabb8;
-font-weight:600
-}
+    color: white;
 
-td{
-color:#dce3ea
-}
+    outline: none;
 
-.primary-button{
-padding:10px 15px;
-border-radius:8px
-}
+    margin-bottom: 12px;
 
-.danger-button{
-border:1px solid #6b3038;
-background:#291519;
-color:#ffb9bf;
-padding:8px 12px;
-border-radius:7px
+    font-size: 15px;
 }
 
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:11px;
-font-weight:700
+.welcome-input:focus {
+    border-color: #3d9cff;
 }
 
-.badge-admin{
-background:#273443;
-color:#dbe7f2
-}
 
-.badge-employee,
-.badge-active{
-background:#202c25;
-color:#b9dfc5
-}
+/* =========================
+   BUTTONS
+========================= */
 
-.form-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px
-}
+.primary-button {
 
-.full-width{
-grid-column:1/-1
-}
+    width: 100%;
 
-.resource-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px
-}
+    padding: 14px 18px;
 
-.resource-card{
-border:1px solid #293644;
-background:#0d141c;
-border-radius:12px;
-padding:17px
-}
+    border: none;
 
-.resource-card h4{
-margin-bottom:7px
-}
+    border-radius: 12px;
 
-.resource-card p{
-color:#8996a4;
-font-size:13px;
-line-height:1.5
-}
+    background:
+        linear-gradient(
+            135deg,
+            #1685ff,
+            #5b5cff
+        );
 
-.resource-actions{
-margin-top:15px
-}
+    color: white;
 
-.announcement{
-border-left:3px solid #8996a4;
-background:#0d141c;
-padding:15px;
-margin-bottom:12px;
-border-radius:0 9px 9px 0
-}
+    font-size: 15px;
 
-.announcement h4{
-margin-bottom:6px
-}
+    font-weight: bold;
 
-.announcement p{
-color:#9aa7b4;
-font-size:13px;
-line-height:1.5
+    transition: 0.2s;
 }
 
-/* STUDENT DASHBOARD */
+.primary-button:hover {
 
-.student-toolbar{
-display:flex;
-gap:10px;
-margin-bottom:18px
-}
+    transform: translateY(-2px);
 
-.search-box{
-flex:1;
-display:flex;
-align-items:center;
-border:1px solid #303d4c;
-border-radius:9px;
-background:#0b1118;
-padding:0 12px
+    opacity: 0.95;
 }
 
-.search-box input{
-width:100%;
-border:0;
-outline:0;
-background:transparent;
-color:#fff;
-padding:12px
-}
+.secondary-button {
 
-.student-toolbar select{
-min-width:145px;
-border:1px solid #303d4c;
-border-radius:9px;
-background:#0b1118;
-color:#fff;
-padding:10px
-}
+    width: 100%;
 
-.student-name{
-font-weight:700
-}
+    margin-top: 10px;
 
-.student-email{
-color:#9eabb8
-}
+    padding: 13px 18px;
 
-.empty-students{
-text-align:center;
-color:#748292;
-padding:35px!important
-}
+    border-radius: 12px;
 
-.mobile-menu{
-display:none
-}
+    border: 1px solid #315779;
 
-.modal-overlay{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.72);
-z-index:100;
-align-items:center;
-justify-content:center;
-padding:18px
-}
+    background: transparent;
 
-.modal-overlay.show{
-display:flex
-}
+    color: #b8cbe0;
 
-.modal{
-width:100%;
-max-width:500px;
-max-height:90vh;
-overflow-y:auto;
-background:#111821;
-border:1px solid #2b3948;
-border-radius:15px;
-padding:22px
+    font-size: 14px;
 }
 
-.modal-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px
+.secondary-button:hover {
+    background: #10263d;
 }
 
-.modal-close{
-border:0;
-background:transparent;
-color:#9aa7b4;
-font-size:24px
-}
+.welcome-note {
 
-#toast{
-position:fixed;
-right:18px;
-bottom:18px;
-z-index:200;
-display:none;
-max-width:320px;
-background:#fff;
-color:#10151c;
-padding:13px 17px;
-border-radius:9px;
-font-size:13px;
-font-weight:600;
-box-shadow:0 10px 30px rgba(0,0,0,.4)
-}
+    font-size: 12px !important;
 
-@media(max-width:900px){
+    color: #71879d !important;
 
-.stats-grid{
-grid-template-columns:repeat(2,1fr)
-}
+    margin-top: 15px !important;
 
-.resource-grid{
-grid-template-columns:repeat(2,1fr)
+    margin-bottom: 0 !important;
 }
 
-}
 
-@media(max-width:700px){
+/* =========================
+   MAIN SITE
+========================= */
 
-.topbar{
-padding:0 14px
+#mainSite {
+    display: none;
 }
 
-.mobile-menu{
-display:block
-}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(5, 16, 29, 0.96);
 
-.brand-text span{
-display:none
+    border-bottom:
+        1px solid #183653;
+
+    backdrop-filter: blur(12px);
 }
+
+.nav-container {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 14px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
 
-.sidebar{
-position:fixed;
-left:-250px;
-top:70px;
-bottom:0;
-z-index:40;
-transition:left .2s
+    gap: 20px;
 }
 
-.sidebar.open{
-left:0
+.logo {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: white;
+
+    white-space: nowrap;
+
+    cursor: pointer;
 }
 
-.main-content{
-padding:18px 14px
+.logo span {
+    color: #4da3ff;
 }
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-menu {
 
-.resource-grid{
-grid-template-columns:1fr
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
 }
+
+.nav-btn {
+
+    background: transparent;
+
+    border: none;
+
+    color: #a9bfd4;
 
-.form-grid{
-grid-template-columns:1fr
+    padding: 9px 11px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    transition: 0.2s;
 }
+
+.nav-btn:hover {
 
-.full-width{
-grid-column:auto
+    background: #102943;
+
+    color: white;
 }
+
+.nav-btn.active {
 
-.student-toolbar{
-flex-direction:column
+    background: #123b62;
+
+    color: #5eaeff;
 }
+
 
-.student-toolbar select{
-width:100%
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+.page {
+
+    display: none;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 45px 22px 70px;
 }
 
+.page.active {
+    display: block;
 }
 
-@media(max-width:430px){
 
-.stats-grid{
-grid-template-columns:1fr
-}
+/* =========================
+   MOBILE HEADER
+========================= */
+
+@media (max-width: 850px) {
+
+    .nav-container {
 
-.login-card{
-padding:25px 19px
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .nav-menu {
+
+        width: 100%;
+
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+
+        padding-bottom: 4px;
+    }
+
+    .nav-btn {
+        white-space: nowrap;
+    }
 }
 
+
+/* =========================
+   MOBILE WELCOME
+========================= */
+
+@media (max-width: 500px) {
+
+    .welcome-box {
+
+        padding: 30px 20px;
+    }
+
+    .welcome-box h1 {
+
+        font-size: 28px;
+    }
+
+    .page {
+
+        padding: 35px 15px 55px;
+    }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<div id="loginPage">
 
-<div class="login-card">
+<!-- =====================================================
+     WELCOME SCREEN
+===================================================== -->
 
-<div class="logo-box">
+<div id="welcomeScreen">
 
-<div class="logo-circle">VE</div>
+    <div class="welcome-box">
 
-<h1>VANTARA</h1>
+        <div class="welcome-logo">
+            V
+        </div>
 
-<p>Admin & Employee Portal</p>
+        <h1>
+            Welcome to
+            <span>VANTARA</span>
+        </h1>
 
-</div>
+        <h2>
+            VANTARA EDUCATION
+        </h2>
 
-<form onsubmit="event.preventDefault();login()">
+        <p>
+            A student-focused learning platform
+            to learn, explore, practise and
+            develop useful skills.
+        </p>
 
-<div class="form-group">
+        <input
+            type="email"
+            id="welcomeEmail"
+            class="welcome-input"
+            placeholder="Enter your email (optional)"
+        >
 
-<label>Username</label>
+        <button
+            class="primary-button"
+            onclick="continueToVantara()"
+        >
+            Continue to VANTARA
+        </button>
 
-<input
-type="text"
-id="username"
-placeholder="Enter username"
-autocomplete="username"
-required
->
+        <button
+            class="secondary-button"
+            onclick="skipWelcome()"
+        >
+            Skip for now
+        </button>
 
-</div>
+        <p class="welcome-note">
+            Your email is only used when you
+            choose to join VANTARA.
+        </p>
 
-<div class="form-group">
-
-<label>Password</label>
-
-<input
-type="password"
-id="password"
-placeholder="Enter password"
-autocomplete="current-password"
-required
->
-
-</div>
-
-<button
-class="login-button"
-id="loginButton"
-type="submit"
->
-Sign In
-</button>
-
-</form>
-
-<div id="loginError" class="login-error"></div>
-
-<div class="login-footer">
-VANTARA Education • Internal Portal
-</div>
+    </div>
 
 </div>
 
-</div>
-<div id="portalPage">
 
-<header class="topbar">
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
 
-<div class="brand">
+<div id="mainSite">
 
-<button
-class="mobile-menu"
-onclick="toggleSidebar()"
->
-☰
-</button>
 
-<div class="brand-icon">VE</div>
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<div class="brand-text">
+<header>
 
-<strong>VANTARA Admin Portal</strong>
+    <div class="nav-container">
 
-<span>Education Management System</span>
+        <div
+            class="logo"
+            onclick="showPage('home')"
+        >
+            VANTARA <span>EDUCATION</span>
+        </div>
 
-</div>
 
-</div>
+        <nav class="nav-menu">
 
-<button
-class="logout-button"
-onclick="logout()"
->
-Logout
-</button>
+            <button
+                class="nav-btn active"
+                onclick="showPage('home')"
+            >
+                Home
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('learning')"
+            >
+                Learning Hub
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('classes')"
+            >
+                Classes
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('ai')"
+            >
+                AI Learning
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('practice')"
+            >
+                Practice
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('skills')"
+            >
+                Skill Labs
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('resources')"
+            >
+                Resources
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showPage('join')"
+            >
+                Join VANTARA
+            </button>
+
+        </nav>
+
+    </div>
 
 </header>
 
 
-<div class="portal-layout">
-
-
-<aside class="sidebar" id="sidebar">
-
-<div class="nav-title">Main</div>
-
-<button
-class="nav-button active"
-onclick="openSection('dashboard',this)"
->
-📊 Dashboard
-</button>
-
-<button
-class="nav-button"
-onclick="openSection('students',this)"
->
-👨‍🎓 Students
-</button>
-
-<button
-class="nav-button"
-onclick="openSection('employees',this)"
->
-👥 Employees
-</button>
-
-<div class="nav-title">Management</div>
-
-<button
-class="nav-button"
-onclick="openSection('resources',this)"
->
-📚 Resources
-</button>
-
-<button
-class="nav-button"
-onclick="openSection('announcements',this)"
->
-📢 Announcements
-</button>
-
-<button
-class="nav-button"
-onclick="openSection('settings',this)"
->
-⚙️ Settings
-</button>
-
-<div class="nav-title">System</div>
-
-<button
-class="nav-button"
-onclick="openSection('system',this)"
->
-🛠️ System
-</button>
-
-</aside>
-
-
-<main class="main-content">
-
-
-<!-- DASHBOARD -->
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
 
 <section
-id="dashboard"
-class="section active"
+    id="home"
+    class="page active"
 >
 
-<div class="page-header">
+    <div class="hero">
 
-<h2>Dashboard</h2>
+        <div class="hero-content">
 
-<p>
-Welcome to the VANTARA administration portal.
-</p>
+            <div class="hero-tag">
+                LEARN • EXPLORE • CREATE
+            </div>
 
-</div>
+            <h1>
+                Learn beyond the
+                <span>classroom.</span>
+            </h1>
 
-<div class="stats-grid">
+            <p>
+                Welcome to VANTARA EDUCATION —
+                a student-focused learning platform
+                for Classes 6–12, digital skills,
+                practice, projects and more.
+            </p>
 
-<div class="stat-card">
+            <div class="hero-buttons">
 
-<div class="stat-title">
-Registered Students
-</div>
+                <button
+                    class="hero-button"
+                    onclick="showPage('learning')"
+                >
+                    Explore Learning Hub
+                </button>
 
-<div
-class="stat-number"
-id="studentCount"
->
-0
-</div>
+                <button
+                    class="hero-button secondary"
+                    onclick="showPage('classes')"
+                >
+                    Explore Classes
+                </button>
 
-<div class="stat-small">
-Student accounts
-</div>
+            </div>
 
-</div>
-
-
-<div class="stat-card">
-
-<div class="stat-title">
-Employees
-</div>
-
-<div
-class="stat-number"
-id="employeeCount"
->
-0
-</div>
-
-<div class="stat-small">
-Admin & employees
-</div>
-
-</div>
+        </div>
 
 
-<div class="stat-card">
+        <div class="hero-visual">
 
-<div class="stat-title">
-Resources
-</div>
+            <div class="hero-visual-inner">
+                V
+            </div>
 
-<div
-class="stat-number"
-id="resourceCount"
->
-0
-</div>
+        </div>
 
-<div class="stat-small">
-Educational resources
-</div>
-
-</div>
+    </div>
 
 
-<div class="stat-card">
+    <!-- HOME FEATURES -->
 
-<div class="stat-title">
-Announcements
-</div>
+    <div class="page-title">
 
-<div
-class="stat-number"
-id="announcementCount"
->
-0
-</div>
+        <h2>
+            What can you do at VANTARA?
+        </h2>
 
-<div class="stat-small">
-Published notices
-</div>
+        <p>
+            Explore different areas of learning
+            and build your knowledge step by step.
+        </p>
 
-</div>
-
-</div>
+    </div>
 
 
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>Portal Overview</h3>
-
-<p>
-VANTARA Education internal management system
-</p>
-
-</div>
-
-</div>
-
-<p style="
-color:#9aa7b4;
-line-height:1.7;
-font-size:14px;
-">
-
-This portal is designed for authorized VANTARA
-administrators and employees to manage students,
-educational resources, announcements and internal
-operations.
-
-</p>
-
-</div>
+    <div class="card-grid">
 
 
-<div class="panel">
+        <div
+            class="card"
+            onclick="showPage('learning')"
+        >
 
-<div class="panel-header">
+            <div class="card-icon">
+                📚
+            </div>
 
-<div>
+            <h3>
+                Learning Hub
+            </h3>
 
-<h3>Quick Actions</h3>
+            <p>
+                Explore structured learning
+                content and concepts.
+            </p>
 
-<p>Common administration tasks</p>
+        </div>
 
-</div>
 
-</div>
+        <div
+            class="card"
+            onclick="showPage('classes')"
+        >
 
-<div style="
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-">
+            <div class="card-icon">
+                🎓
+            </div>
 
-<button
-class="primary-button"
-onclick="openSectionByName('students')"
->
-View Students
-</button>
+            <h3>
+                Classes 6–12
+            </h3>
 
-<button
-class="secondary-button"
-onclick="openSectionByName('employees')"
->
-Manage Employees
-</button>
+            <p>
+                Explore subjects and learning
+                resources according to your class.
+            </p>
 
-<button
-class="secondary-button"
-onclick="openSectionByName('resources')"
->
-Manage Resources
-</button>
+        </div>
 
-<button
-class="secondary-button"
-onclick="openSectionByName('announcements')"
->
-Announcements
-</button>
 
-</div>
+        <div
+            class="card"
+            onclick="showPage('ai')"
+        >
 
-</div>
+            <div class="card-icon">
+                🤖
+            </div>
+
+            <h3>
+                AI Learning
+            </h3>
+
+            <p>
+                Learn about Artificial Intelligence
+                and modern digital tools.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('practice')"
+        >
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Practice Zone
+            </h3>
+
+            <p>
+                Improve your understanding through
+                questions and practice activities.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('skills')"
+        >
+
+            <div class="card-icon">
+                🛠️
+            </div>
+
+            <h3>
+                Skill Labs
+            </h3>
+
+            <p>
+                Develop useful skills beyond
+                traditional academics.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('resources')"
+        >
+
+            <div class="card-icon">
+                📖
+            </div>
+
+            <h3>
+                Resource Library
+            </h3>
+
+            <p>
+                Find notes, resources and
+                useful learning materials.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- STUDENTS DASHBOARD -->
+
+<!-- =====================================================
+     LEARNING HUB PAGE
+===================================================== -->
 
 <section
-id="students"
-class="section"
+    id="learning"
+    class="page"
 >
 
-<div class="page-header">
 
-<h2>Students Dashboard</h2>
+    <div class="page-title">
 
-<p>
-Manage and view registered VANTARA students.
-</p>
+        <h2>
+            Learning Hub
+        </h2>
 
-</div>
+        <p>
+            Build strong concepts through
+            structured and student-friendly learning.
+        </p>
 
+    </div>
 
-<div class="stats-grid">
 
-<div class="stat-card">
+    <div class="card-grid">
 
-<div class="stat-title">
-Total Students
-</div>
 
-<div
-class="stat-number"
-id="totalStudents"
->
-0
-</div>
+        <!-- SCHOOL LEARNING -->
 
-<div class="stat-small">
-Registered students
-</div>
+        <div
+            class="card"
+            onclick="showPage('classes')"
+        >
 
-</div>
+            <div class="card-icon">
+                📘
+            </div>
 
+            <h3>
+                School Learning
+            </h3>
 
-<div class="stat-card">
+            <p>
+                Explore academic learning
+                for Classes 6–12.
+            </p>
 
-<div class="stat-title">
-Registered Today
-</div>
+        </div>
 
-<div
-class="stat-number"
-id="studentsToday"
->
-0
-</div>
 
-<div class="stat-small">
-Today's registrations
-</div>
+        <!-- CONCEPT EXPLORER -->
 
-</div>
+        <div
+            class="card"
+            onclick="comingSoon('Concept Explorer')"
+        >
 
+            <div class="card-icon">
+                🔍
+            </div>
 
-<div class="stat-card">
+            <h3>
+                Concept Explorer
+            </h3>
 
-<div class="stat-title">
-Classes
-</div>
+            <p>
+                Understand difficult concepts
+                through simple explanations.
+            </p>
 
-<div
-class="stat-number"
-id="studentClasses"
->
-0
-</div>
+        </div>
 
-<div class="stat-small">
-Classes represented
-</div>
 
-</div>
+        <!-- LEARNING PATHS -->
 
+        <div
+            class="card"
+            onclick="comingSoon('Learning Paths')"
+        >
 
-<div class="stat-card">
+            <div class="card-icon">
+                🧭
+            </div>
 
-<div class="stat-title">
-Active Students
-</div>
+            <h3>
+                Learning Paths
+            </h3>
 
-<div
-class="stat-number"
-id="activeStudents"
->
-0
-</div>
+            <p>
+                Follow organised learning
+                journeys step by step.
+            </p>
 
-<div class="stat-small">
-Currently active
-</div>
+        </div>
 
-</div>
 
-</div>
+        <!-- PROJECT LEARNING -->
 
+        <div
+            class="card"
+            onclick="comingSoon('Project Learning')"
+        >
 
-<div class="panel">
+            <div class="card-icon">
+                💡
+            </div>
 
-<div class="panel-header">
+            <h3>
+                Project Learning
+            </h3>
 
-<div>
+            <p>
+                Turn knowledge into practical
+                projects and ideas.
+            </p>
 
-<h3>Registered Students</h3>
+        </div>
 
-<p>
-Search and manage student registration records.
-</p>
 
-</div>
+        <!-- AI LEARNING -->
 
-<button
-class="primary-button"
-onclick="refreshStudents()"
->
-↻ Refresh
-</button>
+        <div
+            class="card"
+            onclick="showPage('ai')"
+        >
 
-</div>
+            <div class="card-icon">
+                🤖
+            </div>
 
+            <h3>
+                AI & Digital Learning
+            </h3>
 
-<div class="student-toolbar">
+            <p>
+                Discover AI, technology and
+                useful digital skills.
+            </p>
 
-<div class="search-box">
+        </div>
 
-🔍
 
-<input
-id="studentSearch"
-placeholder="Search by name or email..."
-oninput="filterStudents()"
->
+        <!-- SKILL LABS -->
 
-</div>
+        <div
+            class="card"
+            onclick="showPage('skills')"
+        >
 
+            <div class="card-icon">
+                🛠️
+            </div>
 
-<select
-id="studentClassFilter"
-onchange="filterStudents()"
->
+            <h3>
+                Skill Labs
+            </h3>
 
-<option value="">
-All Classes
-</option>
+            <p>
+                Learn practical skills that
+                can help you create and build.
+            </p>
 
-<option value="6">Class 6</option>
-<option value="7">Class 7</option>
-<option value="8">Class 8</option>
-<option value="9">Class 9</option>
-<option value="10">Class 10</option>
-<option value="11">Class 11</option>
-<option value="12">Class 12</option>
+        </div>
 
-</select>
+    </div>
 
-</div>
 
+    <!-- LEARNING MESSAGE -->
 
-<div class="table-wrapper">
+    <div class="notice-box">
 
-<table>
+        <h3>
+            Learning at VANTARA
+        </h3>
 
-<thead>
+        <p>
+            Our aim is not only to help students
+            remember information, but also to
+            understand concepts, ask questions,
+            solve problems and apply knowledge.
+        </p>
 
-<tr>
-
-<th>#</th>
-<th>Student</th>
-<th>Email</th>
-<th>Class</th>
-<th>Registration Date</th>
-<th>Status</th>
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="studentsTableBody">
-
-<tr>
-
-<td
-colspan="7"
-class="empty-students"
->
-
-No students registered yet.
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- EMPLOYEES -->
+
+<!-- =====================================================
+     COMMON HERO BUTTON STYLE
+===================================================== -->
+
+<style>
+
+.hero {
+
+    min-height: 480px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 40px;
+
+    padding: 45px 0;
+}
+
+.hero-content {
+    max-width: 720px;
+}
+
+.hero-tag {
+
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    background: #102d4a;
+
+    border: 1px solid #1e5686;
+
+    border-radius: 30px;
+
+    color: #65b3ff;
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+
+    font-size: clamp(38px, 6vw, 70px);
+
+    line-height: 1.05;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #4da3ff;
+}
+
+.hero p {
+
+    color: #a9bdd0;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    max-width: 680px;
+
+    margin-bottom: 28px;
+}
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.hero-button {
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    font-weight: bold;
+
+    color: white;
+
+    background: #1685ff;
+}
+
+.hero-button.secondary {
+
+    background: #10263d;
+
+    border: 1px solid #2c5377;
+}
+
+.hero-visual {
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #164e80 0%,
+            #0b2945 40%,
+            #07111f 72%
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 0 80px rgba(22,133,255,0.15);
+}
+
+.hero-visual-inner {
+
+    width: 210px;
+    height: 210px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1685ff,
+            #574fff
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 55px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 20px 50px rgba(22,133,255,0.25);
+}
+
+
+/* =========================
+   PAGE TITLES
+========================= */
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.page-title h2 {
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
+}
+
+.page-title p {
+
+    color: #8fa7bd;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CARD GRID
+========================= */
+
+.card-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+}
+
+.card {
+
+    background: #0b1b2c;
+
+    border: 1px solid #183a59;
+
+    border-radius: 16px;
+
+    padding: 23px;
+
+    transition: 0.25s;
+
+    cursor: pointer;
+}
+
+.card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #2877b7;
+
+    background: #0d2238;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 14px;
+}
+
+.card h3 {
+
+    font-size: 18px;
+
+    margin-bottom: 9px;
+}
+
+.card p {
+
+    color: #91a8bd;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   NOTICE BOX
+========================= */
+
+.notice-box {
+
+    max-width: 750px;
+
+    margin: 35px auto 10px;
+
+    text-align: center;
+
+    padding: 35px 25px;
+
+    background: #0b1d30;
+
+    border: 1px solid #1c486b;
+
+    border-radius: 18px;
+}
+
+.notice-box h3 {
+
+    font-size: 24px;
+
+    margin-bottom: 12px;
+}
+
+.notice-box p {
+
+    color: #94a9bd;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   HERO MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .hero {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .hero-visual {
+
+        width: 250px;
+        height: 250px;
+
+        align-self: center;
+    }
+
+    .hero-visual-inner {
+
+        width: 155px;
+        height: 155px;
+
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+}
+
+</style>
+
+
+<!-- =====================================================
+     CLASSES 6–12 PAGE
+===================================================== -->
 
 <section
-id="employees"
-class="section"
+    id="classes"
+    class="page"
 >
 
-<div class="page-header">
+    <div class="page-title">
 
-<h2>Employees</h2>
+        <h2>
+            Classes 6–12
+        </h2>
 
-<p>
-Manage VANTARA administrators and employees.
-</p>
+        <p>
+            Select your class to explore
+            available subjects and learning content.
+        </p>
 
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>Employee Management</h3>
-
-<p>Employee accounts and roles.</p>
-
-</div>
-
-<button
-class="primary-button"
-onclick="openModal('employeeModal')"
->
-+ Add Employee
-</button>
-
-</div>
+    </div>
 
 
-<div class="table-wrapper">
+    <div class="class-grid">
 
-<table>
 
-<thead>
+        <!-- CLASS 6 -->
 
-<tr>
-<th>Username</th>
-<th>Name</th>
-<th>Role</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
+        <div
+            class="class-card"
+            onclick="selectClass(6)"
+        >
 
-</thead>
+            <div class="class-number">
+                6
+            </div>
 
-<tbody id="employeeTableBody">
+            <p>
+                Class 6
+            </p>
 
-<tr>
+        </div>
 
-<td>vantaraadmin</td>
 
-<td>VANTARA Administrator</td>
+        <!-- CLASS 7 -->
 
-<td>
+        <div
+            class="class-card"
+            onclick="selectClass(7)"
+        >
 
-<span class="badge badge-admin">
-Admin
-</span>
+            <div class="class-number">
+                7
+            </div>
 
-</td>
+            <p>
+                Class 7
+            </p>
 
-<td>
+        </div>
 
-<span class="badge badge-active">
-Active
-</span>
 
-</td>
+        <!-- CLASS 8 -->
 
-<td>—</td>
+        <div
+            class="class-card"
+            onclick="selectClass(8)"
+        >
 
-</tr>
+            <div class="class-number">
+                8
+            </div>
 
-</tbody>
+            <p>
+                Class 8
+            </p>
 
-</table>
+        </div>
 
-</div>
 
-</div>
+        <!-- CLASS 9 -->
+
+        <div
+            class="class-card"
+            onclick="selectClass(9)"
+        >
+
+            <div class="class-number">
+                9
+            </div>
+
+            <p>
+                Class 9
+            </p>
+
+        </div>
+
+
+        <!-- CLASS 10 -->
+
+        <div
+            class="class-card"
+            onclick="selectClass(10)"
+        >
+
+            <div class="class-number">
+                10
+            </div>
+
+            <p>
+                Class 10
+            </p>
+
+        </div>
+
+
+        <!-- CLASS 11 -->
+
+        <div
+            class="class-card"
+            onclick="selectClass(11)"
+        >
+
+            <div class="class-number">
+                11
+            </div>
+
+            <p>
+                Class 11
+            </p>
+
+        </div>
+
+
+        <!-- CLASS 12 -->
+
+        <div
+            class="class-card"
+            onclick="selectClass(12)"
+        >
+
+            <div class="class-number">
+                12
+            </div>
+
+            <p>
+                Class 12
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="notice-box">
+
+        <h3>
+            Choose Your Class
+        </h3>
+
+        <p>
+            Select your class above to explore
+            the subjects and resources available
+            for your learning journey.
+        </p>
+
+    </div>
 
 </section>
 
 
-<!-- RESOURCES -->
+
+<!-- =====================================================
+     SUBJECTS PAGE
+===================================================== -->
 
 <section
-id="resources"
-class="section"
+    id="subjects"
+    class="page"
 >
 
-<div class="page-header">
+    <div class="page-title">
 
-<h2>Resources</h2>
+        <h2 id="selectedClassTitle">
+            Subjects
+        </h2>
 
-<p>
-Manage VANTARA educational resources.
-</p>
+        <p>
+            Select a subject to explore its
+            learning content.
+        </p>
 
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>Educational Resources</h3>
-
-<p>
-Notes, PDFs, videos and study materials.
-</p>
-
-</div>
-
-<button
-class="primary-button"
-onclick="openModal('resourceModal')"
->
-+ Add Resource
-</button>
-
-</div>
+    </div>
 
 
-<div
-class="resource-grid"
-id="resourceGrid"
->
+    <div class="subject-grid">
 
-<div class="resource-card">
 
-<h4>
-VANTARA Study Resources
-</h4>
+        <!-- MATHEMATICS -->
 
-<p>
-Educational content can be added and managed
-from this portal.
-</p>
+        <div
+            class="subject-card"
+            onclick="comingSoon('Mathematics')"
+        >
 
-<div class="resource-actions">
+            <div class="subject-icon">
+                📐
+            </div>
 
-<span class="badge badge-active">
-Active
-</span>
+            <h3>
+                Mathematics
+            </h3>
 
-</div>
+            <p>
+                Numbers, algebra, geometry,
+                data and problem solving.
+            </p>
 
-</div>
+        </div>
 
-</div>
 
-</div>
+        <!-- SCIENCE -->
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Science')"
+        >
+
+            <div class="subject-icon">
+                🔬
+            </div>
+
+            <h3>
+                Science
+            </h3>
+
+            <p>
+                Explore scientific concepts,
+                experiments and applications.
+            </p>
+
+        </div>
+
+
+        <!-- ENGLISH -->
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('English')"
+        >
+
+            <div class="subject-icon">
+                📖
+            </div>
+
+            <h3>
+                English
+            </h3>
+
+            <p>
+                Improve language, grammar,
+                reading and communication.
+            </p>
+
+        </div>
+
+
+        <!-- SOCIAL SCIENCE -->
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Social Science')"
+        >
+
+            <div class="subject-icon">
+                🌍
+            </div>
+
+            <h3>
+                Social Science
+            </h3>
+
+            <p>
+                Explore history, geography,
+                civics and economics.
+            </p>
+
+        </div>
+
+
+        <!-- COMPUTER -->
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Computer')"
+        >
+
+            <div class="subject-icon">
+                💻
+            </div>
+
+            <h3>
+                Computer
+            </h3>
+
+            <p>
+                Learn computing, technology
+                and digital concepts.
+            </p>
+
+        </div>
+
+
+        <!-- HINDI -->
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Hindi')"
+        >
+
+            <div class="subject-icon">
+                📝
+            </div>
+
+            <h3>
+                Hindi
+            </h3>
+
+            <p>
+                Literature, grammar and
+                language development.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="back-area"
+        style="
+            margin-top:30px;
+            text-align:center;
+        "
+    >
+
+        <button
+            class="hero-button secondary"
+            onclick="showPage('classes')"
+        >
+            ← Back to Classes
+        </button>
+
+    </div>
 
 </section>
 
 
-<!-- ANNOUNCEMENTS -->
+
+<!-- =====================================================
+     CLASS / SUBJECT STYLING
+===================================================== -->
+
+<style>
+
+/* =========================
+   CLASS GRID
+========================= */
+
+.class-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(150px, 1fr));
+
+    gap: 15px;
+}
+
+
+/* =========================
+   CLASS CARD
+========================= */
+
+.class-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d243b,
+            #091827
+        );
+
+    border: 1px solid #1d4668;
+
+    border-radius: 15px;
+
+    padding: 25px 15px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.class-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #3695df;
+
+    background:
+        linear-gradient(
+            145deg,
+            #102d49,
+            #0b1d31
+        );
+}
+
+.class-card .class-number {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #54aaff;
+
+    margin-bottom: 8px;
+}
+
+.class-card p {
+
+    color: #94aac0;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   SUBJECT GRID
+========================= */
+
+.subject-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================
+   SUBJECT CARD
+========================= */
+
+.subject-card {
+
+    padding: 22px;
+
+    border-radius: 14px;
+
+    border: 1px solid #1b4261;
+
+    background: #0a1a2b;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.subject-card:hover {
+
+    background: #0d243b;
+
+    border-color: #3c91d0;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.18);
+}
+
+.subject-icon {
+
+    font-size: 28px;
+
+    margin-bottom: 12px;
+}
+
+.subject-card h3 {
+
+    margin-bottom: 7px;
+
+    font-size: 18px;
+}
+
+.subject-card p {
+
+    color: #849db4;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .class-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .subject-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+</style>
+
+
+<!--
+=========================================================
+<!-- =====================================================
+     AI LEARNING PAGE
+===================================================== -->
 
 <section
-id="announcements"
-class="section"
+    id="ai"
+    class="page"
 >
 
-<div class="page-header">
+    <div class="page-title">
 
-<h2>Announcements</h2>
+        <h2>
+            AI & Digital Learning
+        </h2>
 
-<p>
-Publish important VANTARA notices.
-</p>
+        <p>
+            Explore Artificial Intelligence,
+            technology and useful digital skills.
+        </p>
 
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>Announcements</h3>
-
-<p>
-Important updates for students and employees.
-</p>
-
-</div>
-
-<button
-class="primary-button"
-onclick="openModal('announcementModal')"
->
-+ New Announcement
-</button>
-
-</div>
+    </div>
 
 
-<div id="announcementList">
+    <div class="card-grid">
 
-<div class="announcement">
 
-<h4>
-Welcome to VANTARA Admin Portal
-</h4>
+        <!-- AI BASICS -->
 
-<p>
-The internal VANTARA administration portal
-is now active.
-</p>
+        <div
+            class="card"
+            onclick="comingSoon('AI Basics')"
+        >
 
-</div>
+            <div class="card-icon">
+                🤖
+            </div>
 
-</div>
+            <h3>
+                AI Basics
+            </h3>
 
-</div>
+            <p>
+                Understand the basic ideas
+                behind Artificial Intelligence.
+            </p>
+
+        </div>
+
+
+        <!-- MACHINE LEARNING -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Machine Learning')"
+        >
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                Discover how computers can
+                learn patterns from data.
+            </p>
+
+        </div>
+
+
+        <!-- GENERATIVE AI -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Generative AI')"
+        >
+
+            <div class="card-icon">
+                ✨
+            </div>
+
+            <h3>
+                Generative AI
+            </h3>
+
+            <p>
+                Learn how modern AI systems
+                can generate text, images and more.
+            </p>
+
+        </div>
+
+
+        <!-- AI TOOLS -->
+
+        <div
+            class="card"
+            onclick="comingSoon('AI Learning Tools')"
+        >
+
+            <div class="card-icon">
+                🧰
+            </div>
+
+            <h3>
+                AI Learning Tools
+            </h3>
+
+            <p>
+                Explore useful AI tools for
+                learning and productivity.
+            </p>
+
+        </div>
+
+
+        <!-- DIGITAL SAFETY -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Digital Safety')"
+        >
+
+            <div class="card-icon">
+                🔐
+            </div>
+
+            <h3>
+                Digital Safety
+            </h3>
+
+            <p>
+                Learn safe and responsible
+                use of digital technology.
+            </p>
+
+        </div>
+
+
+        <!-- AI PROJECTS -->
+
+        <div
+            class="card"
+            onclick="comingSoon('AI Projects')"
+        >
+
+            <div class="card-icon">
+                🚀
+            </div>
+
+            <h3>
+                AI Projects
+            </h3>
+
+            <p>
+                Turn your ideas into simple
+                technology and AI projects.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI MESSAGE -->
+
+    <div class="notice-box">
+
+        <h3>
+            Learn AI. Use AI. Understand AI.
+        </h3>
+
+        <p>
+            VANTARA aims to help students
+            understand technology instead of
+            simply using it. Learn the ideas,
+            experiment with them and use them
+            responsibly.
+        </p>
+
+    </div>
 
 </section>
 
 
-<!-- SETTINGS -->
+
+<!-- =====================================================
+     DIGITAL SKILLS PAGE
+===================================================== -->
 
 <section
-id="settings"
-class="section"
+    id="digitalSkills"
+    class="page"
 >
 
-<div class="page-header">
+    <div class="page-title">
 
-<h2>Settings</h2>
+        <h2>
+            Digital Skills
+        </h2>
 
-<p>
-Portal configuration and account settings.
-</p>
+        <p>
+            Build practical skills for the
+            modern digital world.
+        </p>
 
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>Portal Information</h3>
-
-<p>
-Current VANTARA portal configuration.
-</p>
-
-</div>
-
-</div>
+    </div>
 
 
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Portal Name</label>
-
-<input
-value="VANTARA Admin Portal"
-readonly
->
-
-</div>
+    <div class="card-grid">
 
 
-<div class="form-group">
+        <!-- COMPUTER BASICS -->
 
-<label>Version</label>
+        <div
+            class="card"
+            onclick="comingSoon('Computer Basics')"
+        >
 
-<input
-value="1.0.0"
-readonly
->
+            <div class="card-icon">
+                💻
+            </div>
 
-</div>
+            <h3>
+                Computer Basics
+            </h3>
 
+            <p>
+                Understand computers,
+                files, software and hardware.
+            </p>
 
-<div class="form-group">
-
-<label>Current User</label>
-
-<input
-id="currentUsername"
-readonly
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Role</label>
-
-<input
-id="currentRole"
-readonly
->
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-<div class="panel">
+        <!-- INTERNET -->
 
-<div class="panel-header">
+        <div
+            class="card"
+            onclick="comingSoon('Internet Skills')"
+        >
 
-<div>
+            <div class="card-icon">
+                🌐
+            </div>
 
-<h3>Security</h3>
+            <h3>
+                Internet Skills
+            </h3>
 
-<p>
-Account security information.
-</p>
+            <p>
+                Learn how to search,
+                research and use the internet.
+            </p>
 
-</div>
+        </div>
 
-</div>
 
-<p style="
-color:#9aa7b4;
-line-height:1.7;
-font-size:14px;
-">
+        <!-- CODING -->
 
-Authentication is handled through the VANTARA
-server API. Never share administrator passwords
-publicly.
+        <div
+            class="card"
+            onclick="comingSoon('Coding')"
+        >
 
-</p>
+            <div class="card-icon">
+                👨‍💻
+            </div>
 
-</div>
+            <h3>
+                Coding
+            </h3>
+
+            <p>
+                Start learning programming
+                through practical examples.
+            </p>
+
+        </div>
+
+
+        <!-- WEB DEVELOPMENT -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Web Development')"
+        >
+
+            <div class="card-icon">
+                🌎
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Learn how websites are
+                designed and developed.
+            </p>
+
+        </div>
+
+
+        <!-- PRESENTATION -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Presentation Skills')"
+        >
+
+            <div class="card-icon">
+                🎤
+            </div>
+
+            <h3>
+                Presentation Skills
+            </h3>
+
+            <p>
+                Improve your ability to
+                explain and present ideas.
+            </p>
+
+        </div>
+
+
+        <!-- DIGITAL CREATIVITY -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Digital Creativity')"
+        >
+
+            <div class="card-icon">
+                🎨
+            </div>
+
+            <h3>
+                Digital Creativity
+            </h3>
+
+            <p>
+                Explore creative ways to
+                communicate ideas digitally.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- SYSTEM -->
+
+<!-- =====================================================
+     AI LEARNING TOOL CARD
+===================================================== -->
 
 <section
-id="system"
-class="section"
+    id="aiTools"
+    class="page"
 >
 
-<div class="page-header">
+    <div class="page-title">
 
-<h2>System</h2>
+        <h2>
+            AI Learning Tools
+        </h2>
 
-<p>
-VANTARA portal system information.
-</p>
+        <p>
+            Useful tools and activities for
+            learning with Artificial Intelligence.
+        </p>
 
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div>
-
-<h3>System Status</h3>
-
-<p>
-Backend connection information.
-</p>
-
-</div>
-
-</div>
+    </div>
 
 
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Portal</label>
-
-<input
-value="VANTARA Admin Portal"
-readonly
->
-
-</div>
+    <div class="card-grid">
 
 
-<div class="form-group">
+        <div
+            class="card"
+            onclick="comingSoon('AI Study Assistant')"
+        >
 
-<label>Version</label>
+            <div class="card-icon">
+                📚
+            </div>
 
-<input
-value="1.0.0"
-readonly
->
+            <h3>
+                AI Study Assistant
+            </h3>
 
-</div>
+            <p>
+                Get help understanding concepts
+                and organising your learning.
+            </p>
 
-
-<div class="form-group">
-
-<label>Authentication API</label>
-
-<input
-value="/api/login"
-readonly
->
-
-</div>
+        </div>
 
 
-<div class="form-group">
+        <div
+            class="card"
+            onclick="comingSoon('AI Idea Generator')"
+        >
 
-<label>Status</label>
+            <div class="card-icon">
+                💡
+            </div>
 
-<input
-value="Connected"
-readonly
->
+            <h3>
+                AI Idea Generator
+            </h3>
 
-</div>
+            <p>
+                Explore ideas for projects,
+                activities and learning.
+            </p>
 
-</div>
+        </div>
 
-</div>
+
+        <div
+            class="card"
+            onclick="comingSoon('AI Question Generator')"
+        >
+
+            <div class="card-icon">
+                ❓
+            </div>
+
+            <h3>
+                AI Question Generator
+            </h3>
+
+            <p>
+                Generate practice questions
+                for different learning topics.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="comingSoon('AI Explainer')"
+        >
+
+            <div class="card-icon">
+                🔎
+            </div>
+
+            <h3>
+                AI Explainer
+            </h3>
+
+            <p>
+                Explore difficult ideas through
+                simpler explanations.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="notice-box">
+
+        <h3>
+            More AI Tools Coming Soon
+        </h3>
+
+        <p>
+            VANTARA will gradually introduce
+            useful learning tools as they become
+            ready.
+        </p>
+
+    </div>
 
 </section>
 
-</main>
-
-</div>
-
-</div>
 
 
-<!-- EMPLOYEE MODAL -->
+<!-- =====================================================
+     AI / DIGITAL SKILLS STYLING
+===================================================== -->
 
-<div
-class="modal-overlay"
-id="employeeModal"
+<style>
+
+#ai .card,
+#digitalSkills .card,
+#aiTools .card {
+
+    min-height: 190px;
+
+}
+
+#ai .card-icon,
+#digitalSkills .card-icon,
+#aiTools .card-icon {
+
+    font-size: 32px;
+
+}
+
+#ai .card h3,
+#digitalSkills .card h3,
+#aiTools .card h3 {
+
+    color: #f2f7fc;
+
+}
+
+#ai .card p,
+#digitalSkills .card p,
+#aiTools .card p {
+
+    max-width: 420px;
+
+}
+
+
+/* AI NOTICE */
+
+#ai .notice-box {
+
+    margin-top: 35px;
+
+    border-color: #235b87;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    #ai .card,
+    #digitalSkills .card,
+    #aiTools .card {
+
+        min-height: auto;
+
+    }
+
+}
+
+</style>
+
+
+<!-- =====================================================
+     PRACTICE ZONE
+===================================================== -->
+
+<section
+    id="practice"
+    class="page"
 >
 
-<div class="modal">
+    <div class="page-title">
 
-<div class="modal-header">
+        <h2>
+            Practice Zone
+        </h2>
 
-<h3>Add Employee</h3>
+        <p>
+            Practise what you learn and
+            strengthen your understanding.
+        </p>
 
-<button
-class="modal-close"
-onclick="closeModal('employeeModal')"
->
-×
-</button>
+    </div>
 
-</div>
 
+    <div class="card-grid">
 
-<div class="form-grid">
 
-<div class="form-group">
+        <!-- DAILY PRACTICE -->
 
-<label>Name</label>
+        <div
+            class="card"
+            onclick="comingSoon('Daily Practice')"
+        >
 
-<input
-id="employeeName"
-placeholder="Employee name"
->
+            <div class="card-icon">
+                📝
+            </div>
 
-</div>
+            <h3>
+                Daily Practice
+            </h3>
 
+            <p>
+                Practise a few questions regularly
+                to improve your understanding.
+            </p>
 
-<div class="form-group">
+        </div>
 
-<label>Username</label>
 
-<input
-id="employeeUsername"
-placeholder="Username"
->
+        <!-- SUBJECT PRACTICE -->
 
-</div>
+        <div
+            class="card"
+            onclick="comingSoon('Subject Practice')"
+        >
 
+            <div class="card-icon">
+                📚
+            </div>
 
-<div class="form-group">
+            <h3>
+                Subject Practice
+            </h3>
 
-<label>Role</label>
+            <p>
+                Practise questions from
+                different school subjects.
+            </p>
 
-<select id="employeeRole">
+        </div>
 
-<option value="employee">
-Employee
-</option>
 
-<option value="admin">
-Admin
-</option>
+        <!-- CONCEPT CHECK -->
 
-</select>
+        <div
+            class="card"
+            onclick="comingSoon('Concept Check')"
+        >
 
-</div>
+            <div class="card-icon">
+                🔍
+            </div>
 
-</div>
+            <h3>
+                Concept Check
+            </h3>
 
+            <p>
+                Check whether you really
+                understand a concept.
+            </p>
 
-<div style="
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:20px;
-">
+        </div>
 
-<button
-class="secondary-button"
-onclick="closeModal('employeeModal')"
->
-Cancel
-</button>
 
-<button
-class="primary-button"
-onclick="addEmployee()"
->
-Add Employee
-</button>
+        <!-- QUICK QUIZ -->
 
-</div>
+        <div
+            class="card"
+            onclick="comingSoon('Quick Quiz')"
+        >
 
-</div>
+            <div class="card-icon">
+                ⚡
+            </div>
 
-</div>
+            <h3>
+                Quick Quiz
+            </h3>
 
+            <p>
+                Test your knowledge with
+                short quizzes.
+            </p>
 
-<!-- RESOURCE MODAL -->
+        </div>
 
-<div
-class="modal-overlay"
-id="resourceModal"
->
 
-<div class="modal">
+        <!-- REVISION -->
 
-<div class="modal-header">
+        <div
+            class="card"
+            onclick="comingSoon('Revision Zone')"
+        >
 
-<h3>Add Resource</h3>
+            <div class="card-icon">
+                🔄
+            </div>
 
-<button
-class="modal-close"
-onclick="closeModal('resourceModal')"
->
-×
-</button>
+            <h3>
+                Revision Zone
+            </h3>
 
-</div>
+            <p>
+                Revise important concepts
+                before your exams.
+            </p>
 
+        </div>
 
-<div class="form-group">
 
-<label>Resource Title</label>
+        <!-- PROBLEM SOLVING -->
 
-<input
-id="resourceTitle"
-placeholder="Resource title"
->
+        <div
+            class="card"
+            onclick="comingSoon('Problem Solving')"
+        >
 
-</div>
+            <div class="card-icon">
+                🧩
+            </div>
 
+            <h3>
+                Problem Solving
+            </h3>
 
-<div class="form-group">
+            <p>
+                Develop logical thinking and
+                problem-solving skills.
+            </p>
 
-<label>Description</label>
+        </div>
 
-<textarea
-id="resourceDescription"
-rows="4"
-placeholder="Resource description"
-></textarea>
+    </div>
 
-</div>
 
+    <!-- PRACTICE MESSAGE -->
 
-<div style="
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:15px;
-">
+    <div class="notice-box">
 
-<button
-class="secondary-button"
-onclick="closeModal('resourceModal')"
->
-Cancel
-</button>
+        <h3>
+            Practise. Understand. Improve.
+        </h3>
 
-<button
-class="primary-button"
-onclick="addResource()"
->
-Add Resource
-</button>
+        <p>
+            Practice is an important part of
+            learning. Use the Practice Zone to
+            identify what you understand and
+            what you need to practise more.
+        </p>
 
-</div>
+    </div>
 
-</div>
+</section>
 
-</div>
 
 
-<!-- ANNOUNCEMENT MODAL -->
+<!-- =====================================================
+     CHALLENGE ARENA
+===================================================== -->
 
-<div
-class="modal-overlay"
-id="announcementModal"
->
-
-<div class="modal">
-
-<div class="modal-header">
-
-<h3>New Announcement</h3>
-
-<button
-class="modal-close"
-onclick="closeModal('announcementModal')"
->
-×
-</button>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Title</label>
-
-<input
-id="announcementTitle"
-placeholder="Announcement title"
+<section
+    id="challenge"
+    class="page"
 >
 
-</div>
+    <div class="page-title">
+
+        <h2>
+            Challenge Arena
+        </h2>
+
+        <p>
+            Challenge yourself with interesting
+            problems and learning activities.
+        </p>
+
+    </div>
 
 
-<div class="form-group">
-
-<label>Message</label>
-
-<textarea
-id="announcementMessage"
-rows="5"
-placeholder="Write your announcement..."
-></textarea>
-
-</div>
+    <div class="card-grid">
 
 
-<div style="
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:15px;
-">
+        <!-- LOGIC -->
 
-<button
-class="secondary-button"
-onclick="closeModal('announcementModal')"
+        <div
+            class="card"
+            onclick="comingSoon('Logic Challenges')"
+        >
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Logic Challenges
+            </h3>
+
+            <p>
+                Explore puzzles that develop
+                logical thinking.
+            </p>
+
+        </div>
+
+
+        <!-- MATH -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Math Challenges')"
+        >
+
+            <div class="card-icon">
+                🔢
+            </div>
+
+            <h3>
+                Math Challenges
+            </h3>
+
+            <p>
+                Solve interesting mathematical
+                problems and puzzles.
+            </p>
+
+        </div>
+
+
+        <!-- SCIENCE -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Science Challenges')"
+        >
+
+            <div class="card-icon">
+                🔬
+            </div>
+
+            <h3>
+                Science Challenges
+            </h3>
+
+            <p>
+                Think scientifically and
+                explore interesting questions.
+            </p>
+
+        </div>
+
+
+        <!-- CREATIVITY -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Creative Challenges')"
+        >
+
+            <div class="card-icon">
+                🎨
+            </div>
+
+            <h3>
+                Creative Challenges
+            </h3>
+
+            <p>
+                Use creativity to develop
+                new ideas and solutions.
+            </p>
+
+        </div>
+
+
+        <!-- RESEARCH -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Research Challenges')"
+        >
+
+            <div class="card-icon">
+                🔎
+            </div>
+
+            <h3>
+                Research Challenges
+            </h3>
+
+            <p>
+                Ask questions, investigate
+                and discover information.
+            </p>
+
+        </div>
+
+
+        <!-- PROJECT -->
+
+        <div
+            class="card"
+            onclick="comingSoon('Project Challenges')"
+        >
+
+            <div class="card-icon">
+                🚀
+            </div>
+
+            <h3>
+                Project Challenges
+            </h3>
+
+            <p>
+                Turn an idea into a practical
+                project or experiment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="notice-box">
+
+        <h3>
+            Your Next Challenge
+        </h3>
+
+        <p>
+            New challenges and activities
+            will be added regularly as
+            VANTARA grows.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRACTICE CATEGORIES
+===================================================== -->
+
+<section
+    id="practiceCategories"
+    class="page"
 >
-Cancel
-</button>
 
-<button
-class="primary-button"
-onclick="addAnnouncement()"
->
-Publish
-</button>
+    <div class="page-title">
 
-</div>
+        <h2>
+            Practice Categories
+        </h2>
 
-</div>
+        <p>
+            Choose an area you want to
+            practise.
+        </p>
 
-</div>
+    </div>
 
 
-<div id="toast"></div>
+    <div class="subject-grid">
+
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Mathematics Practice')"
+        >
+
+            <div class="subject-icon">
+                🔢
+            </div>
+
+            <h3>
+                Mathematics
+            </h3>
+
+            <p>
+                Numerical problems,
+                reasoning and applications.
+            </p>
+
+        </div>
+
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('Science Practice')"
+        >
+
+            <div class="subject-icon">
+                🧪
+            </div>
+
+            <h3>
+                Science
+            </h3>
+
+            <p>
+                Concept-based questions
+                and scientific reasoning.
+            </p>
+
+        </div>
+
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('English Practice')"
+        >
+
+            <div class="subject-icon">
+                📖
+            </div>
+
+            <h3>
+                English
+            </h3>
+
+            <p>
+                Grammar, vocabulary,
+                reading and writing.
+            </p>
+
+        </div>
+
+
+        <div
+            class="subject-card"
+            onclick="comingSoon('General Knowledge Practice')"
+        >
+
+            <div class="subject-icon">
+                🌍
+            </div>
+
+            <h3>
+                General Knowledge
+            </h3>
+
+            <p>
+                Explore useful facts,
+                ideas and current topics.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRACTICE STYLING
+===================================================== -->
+
+<style>
+
+#practice .card,
+#challenge .card {
+
+    min-height: 190px;
+
+}
+
+#practice .card-icon,
+#challenge .card-icon {
+
+    font-size: 32px;
+
+}
+
+#practiceCategories .subject-card {
+
+    min-height: 180px;
+
+}
+
+#practice .notice-box,
+#challenge .notice-box {
+
+    margin-top: 35px;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    #practice .card,
+    #challenge .card {
+
+        min-height: auto;
+
+    }
+
+    #practiceCategories .subject-card {
+
+        min-height: auto;
+
+    }
+
+}
+
+</style>
+
+
+SKILL LABS
+========================= -->
+
+<section class="page" id="skills">
+
+    <div class="page-title">
+        <h1>Skill Labs</h1>
+        <p>Build practical skills that help you learn, create and grow.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="info-card"
+             onclick="comingSoon('Coding & Programming')">
+            <div class="card-icon">💻</div>
+            <h3>Coding & Programming</h3>
+            <p>Learn coding concepts and develop logical thinking.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="showPage('communication')">
+            <div class="card-icon">🗣️</div>
+            <h3>Communication</h3>
+            <p>Improve speaking, writing and communication skills.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Research Skills')">
+            <div class="card-icon">🔎</div>
+            <h3>Research Skills</h3>
+            <p>Learn how to find, understand and organize information.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Critical Thinking')">
+            <div class="card-icon">🧠</div>
+            <h3>Critical Thinking</h3>
+            <p>Develop logical thinking and better decision-making skills.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Creativity')">
+            <div class="card-icon">🎨</div>
+            <h3>Creativity</h3>
+            <p>Explore ideas, imagination and creative problem solving.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Problem Solving')">
+            <div class="card-icon">🧩</div>
+            <h3>Problem Solving</h3>
+            <p>Learn how to approach problems step by step.</p>
+        </div>
+
+    </div>
+
+    <div class="learning-notice">
+        <strong>Skill Development</strong>
+        <p>
+            VANTARA focuses on skills that can be useful both inside
+            and outside the classroom.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COMMUNICATION LAB
+========================= -->
+
+<section class="page" id="communication">
+
+    <div class="page-title">
+        <h1>Communication Lab</h1>
+        <p>Develop confidence in speaking, writing and presenting ideas.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="info-card"
+             onclick="comingSoon('Speaking')">
+            <div class="card-icon">🎤</div>
+            <h3>Speaking</h3>
+            <p>Improve confidence, clarity and everyday speaking skills.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Writing')">
+            <div class="card-icon">✍️</div>
+            <h3>Writing</h3>
+            <p>Learn how to express your ideas clearly through writing.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Presentation')">
+            <div class="card-icon">📊</div>
+            <h3>Presentation</h3>
+            <p>Learn how to create and deliver effective presentations.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Discussion')">
+            <div class="card-icon">💬</div>
+            <h3>Discussion</h3>
+            <p>Develop listening, discussion and idea-sharing skills.</p>
+        </div>
+
+    </div>
+
+    <div class="learning-notice">
+        <strong>Communication Matters</strong>
+        <p>
+            Good communication helps you explain your ideas,
+            work with others and present your learning confidently.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     IDEA-TO-PROJECT
+========================= -->
+
+<section class="page" id="projects">
+
+    <div class="page-title">
+        <h1>Idea-to-Project</h1>
+        <p>Turn your ideas into meaningful projects.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="info-card"
+             onclick="comingSoon('Idea Generator')">
+            <div class="card-icon">💡</div>
+            <h3>Idea Generator</h3>
+            <p>Explore interesting ideas for projects and activities.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Project Planner')">
+            <div class="card-icon">📋</div>
+            <h3>Project Planner</h3>
+            <p>Plan your project goals, steps, resources and timeline.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Research & Build')">
+            <div class="card-icon">🔬</div>
+            <h3>Research & Build</h3>
+            <p>Research your idea and turn it into a working project.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Showcase')">
+            <div class="card-icon">🏆</div>
+            <h3>Showcase</h3>
+            <p>Present and share your completed projects.</p>
+        </div>
+
+    </div>
+
+    <div class="learning-notice">
+        <strong>From Idea to Action</strong>
+        <p>
+            Great ideas become useful when we research, plan,
+            build, test and improve them.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CAREER EXPLORER
+========================= -->
+
+<section class="page" id="career">
+
+    <div class="page-title">
+        <h1>Career Explorer</h1>
+        <p>Explore different fields and understand future possibilities.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="info-card"
+             onclick="comingSoon('Career Discovery')">
+            <div class="card-icon">🧭</div>
+            <h3>Career Discovery</h3>
+            <p>Discover different careers and what they involve.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Subject-to-Career')">
+            <div class="card-icon">📚</div>
+            <h3>Subject-to-Career</h3>
+            <p>Explore how school subjects connect with career fields.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Skills & Careers')">
+            <div class="card-icon">🛠️</div>
+            <h3>Skills & Careers</h3>
+            <p>Understand the skills needed for different careers.</p>
+        </div>
+
+        <div class="info-card"
+             onclick="comingSoon('Future Fields')">
+            <div class="card-icon">🚀</div>
+            <h3>Future Fields</h3>
+            <p>Explore emerging fields and changing career opportunities.</p>
+        </div>
+
+    </div>
+
+    <div class="learning-notice">
+        <strong>Explore Your Future</strong>
+        <p>
+            Career exploration is about understanding possibilities,
+            discovering interests and developing useful skills.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PART 6 CSS
+========================= -->
+
+<style>
+
+.page-title {
+    margin-bottom: 28px;
+}
+
+.page-title h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.page-title p {
+    color: #aebbd0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* Skill / Communication / Project / Career Cards */
+
+#skills .info-card,
+#communication .info-card,
+#projects .info-card,
+#career .info-card {
+    min-height: 190px;
+    cursor: pointer;
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+#skills .info-card:hover,
+#communication .info-card:hover,
+#projects .info-card:hover,
+#career .info-card:hover {
+    transform: translateY(-5px);
+    border-color: #3d73c9;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #162b4d;
+
+    font-size: 27px;
+
+    margin-bottom: 18px;
+}
+
+
+#skills .info-card h3,
+#communication .info-card h3,
+#projects .info-card h3,
+#career .info-card h3 {
+    margin-bottom: 9px;
+    color: #ffffff;
+}
+
+
+#skills .info-card p,
+#communication .info-card p,
+#projects .info-card p,
+#career .info-card p {
+    color: #aebbd0;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* Notice */
+
+#skills .learning-notice,
+#communication .learning-notice,
+#projects .learning-notice,
+#career .learning-notice {
+    margin-top: 30px;
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: #101f38;
+    border: 1px solid #203b62;
+}
+
+#skills .learning-notice strong,
+#communication .learning-notice strong,
+#projects .learning-notice strong,
+#career .learning-notice strong {
+    color: #ffffff;
+    font-size: 17px;
+}
+
+#skills .learning-notice p,
+#communication .learning-notice p,
+#projects .learning-notice p,
+#career .learning-notice p {
+    margin-top: 8px;
+    color: #aebbd0;
+    line-height: 1.6;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .page-title p {
+        font-size: 14px;
+    }
+
+    #skills .info-card,
+    #communication .info-card,
+    #projects .info-card,
+    #career .info-card {
+        min-height: 165px;
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+    }
+
+}
+
+</style>
+
+<!-- =========================
+     RESOURCE LIBRARY
+========================= -->
+
+<section class="page" id="resources">
+
+    <div class="page-title">
+        <h1>Resource Library</h1>
+        <p>Find notes, study resources, guides and useful learning material.</p>
+    </div>
+
+    <div class="resource-toolbar">
+
+        <div class="resource-search">
+            <input
+                type="text"
+                id="resourceSearch"
+                placeholder="Search resources..."
+                oninput="filterResources()"
+            >
+        </div>
+
+        <div class="resource-filter">
+            <select id="resourceCategory" onchange="filterResources()">
+                <option value="all">All Resources</option>
+                <option value="notes">Notes</option>
+                <option value="practice">Practice</option>
+                <option value="guides">Guides</option>
+                <option value="projects">Projects</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <div class="resource-grid" id="resourceGrid">
+
+        <div class="resource-card"
+             data-category="notes"
+             data-title="Study Notes">
+
+            <div class="resource-icon">📘</div>
+
+            <div>
+                <span class="resource-tag">Notes</span>
+
+                <h3>Study Notes</h3>
+
+                <p>
+                    Subject-wise notes and learning material
+                    for students.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Study Notes')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="resource-card"
+             data-category="practice"
+             data-title="Practice Sheets">
+
+            <div class="resource-icon">📝</div>
+
+            <div>
+                <span class="resource-tag">Practice</span>
+
+                <h3>Practice Sheets</h3>
+
+                <p>
+                    Practice questions and worksheets
+                    for better preparation.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Practice Sheets')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="resource-card"
+             data-category="guides"
+             data-title="Learning Guides">
+
+            <div class="resource-icon">📚</div>
+
+            <div>
+                <span class="resource-tag">Guides</span>
+
+                <h3>Learning Guides</h3>
+
+                <p>
+                    Simple guides to help students learn
+                    topics step by step.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Learning Guides')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="resource-card"
+             data-category="projects"
+             data-title="Project Resources">
+
+            <div class="resource-icon">🔬</div>
+
+            <div>
+                <span class="resource-tag">Projects</span>
+
+                <h3>Project Resources</h3>
+
+                <p>
+                    Resources and references for student
+                    projects and activities.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Project Resources')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="resource-card"
+             data-category="notes"
+             data-title="Revision Material">
+
+            <div class="resource-icon">📖</div>
+
+            <div>
+                <span class="resource-tag">Notes</span>
+
+                <h3>Revision Material</h3>
+
+                <p>
+                    Quick revision material for important
+                    concepts and topics.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Revision Material')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="resource-card"
+             data-category="guides"
+             data-title="Student Guides">
+
+            <div class="resource-icon">🧭</div>
+
+            <div>
+                <span class="resource-tag">Guides</span>
+
+                <h3>Student Guides</h3>
+
+                <p>
+                    Helpful guides for learning, projects
+                    and digital skills.
+                </p>
+
+                <button
+                    class="resource-button"
+                    onclick="comingSoon('Student Guides')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="resourceEmpty"
+        class="resource-empty"
+        style="display:none;">
+        No resources found.
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>Resource Library</strong>
+
+        <p>
+            More resources will be added regularly to help
+            students learn and practice.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     GLOBAL SEARCH
+========================= -->
+
+<section class="page" id="search">
+
+    <div class="page-title">
+
+        <h1>Global Search</h1>
+
+        <p>
+            Search across VANTARA learning sections,
+            resources and activities.
+        </p>
+
+    </div>
+
+
+    <div class="global-search-box">
+
+        <input
+            type="text"
+            id="globalSearchInput"
+            placeholder="Search VANTARA..."
+            oninput="globalSearch()"
+        >
+
+        <button
+            class="search-button"
+            onclick="globalSearch()">
+            Search
+        </button>
+
+    </div>
+
+
+    <div
+        id="globalSearchResults"
+        class="global-results">
+
+        <div class="search-placeholder">
+
+            <div class="search-placeholder-icon">
+                🔎
+            </div>
+
+            <h3>Search VANTARA</h3>
+
+            <p>
+                Search for classes, subjects, skills,
+                resources and learning areas.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ANNOUNCEMENTS
+========================= -->
+
+<section class="page" id="announcements">
+
+    <div class="page-title">
+
+        <h1>Announcements</h1>
+
+        <p>
+            Stay updated with important VANTARA news
+            and learning updates.
+        </p>
+
+    </div>
+
+
+    <div class="announcement-list">
+
+
+        <div class="announcement-card">
+
+            <div class="announcement-icon">
+                📢
+            </div>
+
+            <div class="announcement-content">
+
+                <span class="announcement-label">
+                    VANTARA UPDATE
+                </span>
+
+                <h3>
+                    New learning resources coming soon
+                </h3>
+
+                <p>
+                    New notes, practice material and
+                    learning resources will be added
+                    regularly.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="announcement-card">
+
+            <div class="announcement-icon">
+                🆕
+            </div>
+
+            <div class="announcement-content">
+
+                <span class="announcement-label">
+                    PLATFORM
+                </span>
+
+                <h3>
+                    VANTARA is continuously growing
+                </h3>
+
+                <p>
+                    New sections, activities and
+                    learning features will be introduced
+                    over time.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="announcement-card">
+
+            <div class="announcement-icon">
+                📚
+            </div>
+
+            <div class="announcement-content">
+
+                <span class="announcement-label">
+                    LEARNING
+                </span>
+
+                <h3>
+                    More student resources will be added
+                </h3>
+
+                <p>
+                    Keep checking the Resource Library
+                    for new learning material.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>Stay Updated</strong>
+
+        <p>
+            Students who join VANTARA can receive
+            important platform and learning updates
+            through email.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STAY UPDATED / JOIN
+========================= -->
+
+<section class="page" id="join">
+
+    <div class="page-title">
+
+        <h1>Stay Updated</h1>
+
+        <p>
+            Join VANTARA and receive important
+            learning and platform updates.
+        </p>
+
+    </div>
+
+
+    <div class="join-layout">
+
+
+        <div class="join-info">
+
+            <div class="join-icon">
+                ✨
+            </div>
+
+            <h2>
+                Stay connected with VANTARA
+            </h2>
+
+            <p>
+                Get updates about new resources,
+                learning features, announcements
+                and opportunities.
+            </p>
+
+            <div class="join-points">
+
+                <div>
+                    ✓ New learning resources
+                </div>
+
+                <div>
+                    ✓ Important announcements
+                </div>
+
+                <div>
+                    ✓ Platform updates
+                </div>
+
+                <div>
+                    ✓ New learning opportunities
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="join-form-card">
+
+            <form id="joinForm">
+
+                <label for="joinName">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="joinName"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="joinClass">
+                    Class
+                </label>
+
+                <select
+                    id="joinClass"
+                    name="className"
+                    required>
+
+                    <option value="">
+                        Select Class
+                    </option>
+
+                    <option value="6">
+                        Class 6
+                    </option>
+
+                    <option value="7">
+                        Class 7
+                    </option>
+
+                    <option value="8">
+                        Class 8
+                    </option>
+
+                    <option value="9">
+                        Class 9
+                    </option>
+
+                    <option value="10">
+                        Class 10
+                    </option>
+
+                    <option value="11">
+                        Class 11
+                    </option>
+
+                    <option value="12">
+                        Class 12
+                    </option>
+
+                </select>
+
+
+                <label for="joinEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="joinEmail"
+                    name="email"
+                    placeholder="Enter email address"
+                    required
+                >
+
+
+                <label class="consent-label">
+
+                    <input
+                        type="checkbox"
+                        id="joinConsent"
+                        required
+                    >
+
+                    <span>
+                        I agree to receive VANTARA
+                        learning and platform updates.
+                    </span>
+
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="join-submit">
+                    Join VANTARA
+                </button>
+
+
+                <div
+                    id="joinMessage"
+                    class="join-message">
+                </div>
+
+
+                <p class="privacy-note">
+                    Please use a parent/guardian email
+                    where appropriate. Your information
+                    will only be used for VANTARA
+                    communication.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PART 7 CSS
+========================= -->
+
+<style>
+
+/* =========================
+   RESOURCE LIBRARY
+========================= */
+
+.resource-toolbar {
+
+    display: flex;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.resource-search {
+
+    flex: 1;
+
+    min-width: 220px;
+}
+
+
+.resource-search input,
+.resource-filter select,
+.global-search-box input,
+.join-form-card input,
+.join-form-card select {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid #29486f;
+
+    background: #0c1930;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+.resource-search input:focus,
+.resource-filter select:focus,
+.global-search-box input:focus,
+.join-form-card input:focus,
+.join-form-card select:focus {
+
+    border-color: #4b82d1;
+
+}
+
+
+.resource-filter {
+
+    width: 190px;
+}
+
+
+.resource-filter select {
+
+    cursor: pointer;
+}
+
+
+.resource-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.resource-card {
+
+    display: flex;
+
+    gap: 17px;
+
+    padding: 21px;
+
+    border-radius: 17px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.resource-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #3d73c9;
+}
+
+
+.resource-icon {
+
+    min-width: 52px;
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 13px;
+
+    background: #162b4d;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.resource-tag {
+
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #182f51;
+
+    color: #7eaceb;
+
+    font-size: 11px;
+
+    margin-bottom: 8px;
+}
+
+
+.resource-card h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+}
+
+
+.resource-card p {
+
+    color: #aebbd0;
+
+    line-height: 1.5;
+
+    font-size: 13px;
+
+}
+
+
+.resource-button {
+
+    margin-top: 14px;
+
+    padding: 8px 14px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+.resource-button:hover {
+
+    background: #3472c7;
+}
+
+
+.resource-empty {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #9eacc1;
+
+    background: #0f203b;
+
+    border-radius: 14px;
+
+}
+
+
+
+/* =========================
+   GLOBAL SEARCH
+========================= */
+
+.global-search-box {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 28px;
+}
+
+
+.global-search-box input {
+
+    flex: 1;
+}
+
+
+.search-button {
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+.search-button:hover {
+
+    background: #3472c7;
+}
+
+
+.global-results {
+
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.search-placeholder {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    border-radius: 17px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.search-placeholder-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+
+.search-placeholder h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 8px;
+}
+
+
+.search-placeholder p {
+
+    color: #9eacc1;
+
+}
+
+
+.search-result {
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.search-result:hover {
+
+    border-color: #3d73c9;
+
+    transform: translateY(-2px);
+}
+
+
+.search-result h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 5px;
+}
+
+
+.search-result p {
+
+    color: #aebbd0;
+
+    font-size: 14px;
+
+}
+
+
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+
+.announcement-list {
+
+    display: grid;
+
+    gap: 16px;
+}
+
+
+.announcement-card {
+
+    display: flex;
+
+    gap: 18px;
+
+    padding: 21px;
+
+    border-radius: 16px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.announcement-icon {
+
+    min-width: 52px;
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 13px;
+
+    background: #162b4d;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.announcement-label {
+
+    font-size: 11px;
+
+    color: #73a7eb;
+
+    letter-spacing: 0.6px;
+}
+
+
+.announcement-content h3 {
+
+    margin: 6px 0 7px;
+
+    color: #ffffff;
+}
+
+
+.announcement-content p {
+
+    color: #aebbd0;
+
+    line-height: 1.55;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   JOIN / STAY UPDATED
+========================= */
+
+.join-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 25px;
+
+    align-items: stretch;
+}
+
+
+.join-info {
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #12294a,
+            #0c1b33
+        );
+
+    border: 1px solid #25476f;
+}
+
+
+.join-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 15px;
+
+    background: #19345a;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+
+.join-info h2 {
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    margin-bottom: 12px;
+}
+
+
+.join-info > p {
+
+    color: #aebbd0;
+
+    line-height: 1.7;
+
+    margin-bottom: 22px;
+}
+
+
+.join-points {
+
+    display: grid;
+
+    gap: 12px;
+
+    color: #d8e4f5;
+
+    font-size: 14px;
+}
+
+
+.join-form-card {
+
+    padding: 27px;
+
+    border-radius: 20px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.join-form-card form {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+.join-form-card label {
+
+    color: #dbe6f5;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+.consent-label {
+
+    display: flex !important;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    line-height: 1.5;
+
+    margin-top: 10px !important;
+}
+
+
+.consent-label input {
+
+    width: auto !important;
+
+    margin-top: 3px;
+}
+
+
+.join-submit {
+
+    margin-top: 8px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.join-submit:hover {
+
+    background: #3472c7;
+}
+
+
+.join-message {
+
+    min-height: 20px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+.privacy-note {
+
+    color: #7f91aa;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    margin-top: 5px;
+
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .resource-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .resource-filter {
+
+        width: 100%;
+
+    }
+
+
+    .global-search-box {
+
+        flex-direction: column;
+
+    }
+
+
+    .search-button {
+
+        padding: 12px;
+
+    }
+
+
+    .join-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .join-info h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    .announcement-card {
+
+        padding: 17px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .resource-card {
+
+        padding: 17px;
+
+    }
+
+
+    .resource-icon,
+    .announcement-icon {
+
+        min-width: 45px;
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 21px;
+
+    }
+
+
+    .join-info,
+    .join-form-card {
+
+        padding: 20px;
+
+    }
+
+}
+
+</style>
+!-- =========================
+     FACULTY / MENTORS
+========================= -->
+
+<section class="page" id="faculty">
+
+    <div class="page-title">
+
+        <h1>Faculty & Mentors</h1>
+
+        <p>
+            Meet the people who help make learning
+            more meaningful at VANTARA.
+        </p>
+
+    </div>
+
+
+    <div class="mentor-grid">
+
+
+        <div class="mentor-card">
+
+            <div class="mentor-avatar">
+                V
+            </div>
+
+            <div class="mentor-info">
+
+                <span class="mentor-role">
+                    VANTARA EDUCATION
+                </span>
+
+                <h3>
+                    Faculty & Mentors
+                </h3>
+
+                <p>
+                    VANTARA brings together educators,
+                    mentors and learning contributors
+                    to support students.
+                </p>
+
+                <button
+                    class="mentor-button"
+                    onclick="comingSoon('Faculty Information')">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="mentor-card">
+
+            <div class="mentor-avatar">
+                💡
+            </div>
+
+            <div class="mentor-info">
+
+                <span class="mentor-role">
+                    LEARNING
+                </span>
+
+                <h3>
+                    Subject Mentors
+                </h3>
+
+                <p>
+                    Learn from structured explanations,
+                    resources and subject-focused guidance.
+                </p>
+
+                <button
+                    class="mentor-button"
+                    onclick="comingSoon('Subject Mentors')">
+                    Explore
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="mentor-card">
+
+            <div class="mentor-avatar">
+                🧠
+            </div>
+
+            <div class="mentor-info">
+
+                <span class="mentor-role">
+                    SKILLS
+                </span>
+
+                <h3>
+                    Skill Mentors
+                </h3>
+
+                <p>
+                    Explore practical skills such as
+                    communication, research and problem solving.
+                </p>
+
+                <button
+                    class="mentor-button"
+                    onclick="comingSoon('Skill Mentors')">
+                    Explore
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>
+            Faculty & Mentors
+        </strong>
+
+        <p>
+            Detailed faculty profiles and mentor
+            information will be added as the platform grows.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     RESEARCH PROGRAM
+========================= -->
+
+<section class="page" id="research">
+
+    <div class="page-title">
+
+        <h1>Research Program</h1>
+
+        <p>
+            Explore questions, investigate ideas
+            and learn through research.
+        </p>
+
+    </div>
+
+
+    <div class="research-grid">
+
+
+        <div class="info-card"
+             onclick="comingSoon('Research Explorer')">
+
+            <div class="card-icon">
+                🔎
+            </div>
+
+            <h3>
+                Research Explorer
+            </h3>
+
+            <p>
+                Explore interesting questions and
+                research topics.
+            </p>
+
+        </div>
+
+
+        <div class="info-card"
+             onclick="comingSoon('Research Questions')">
+
+            <div class="card-icon">
+                ❓
+            </div>
+
+            <h3>
+                Research Questions
+            </h3>
+
+            <p>
+                Learn how to create meaningful
+                questions for investigation.
+            </p>
+
+        </div>
+
+
+        <div class="info-card"
+             onclick="comingSoon('Research Methods')">
+
+            <div class="card-icon">
+                🧪
+            </div>
+
+            <h3>
+                Research Methods
+            </h3>
+
+            <p>
+                Understand basic methods of
+                collecting and analyzing information.
+            </p>
+
+        </div>
+
+
+        <div class="info-card"
+             onclick="comingSoon('Research Projects')">
+
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>
+                Research Projects
+            </h3>
+
+            <p>
+                Apply research skills to meaningful
+                student projects.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="research-highlight">
+
+        <div class="research-highlight-icon">
+            🔬
+        </div>
+
+        <div>
+
+            <h3>
+                Learn by Investigating
+            </h3>
+
+            <p>
+                Research is not only about finding answers.
+                It is also about asking better questions,
+                examining evidence and building understanding.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STUDENT PROGRESS
+========================= -->
+
+<section class="page" id="progress">
+
+    <div class="page-title">
+
+        <h1>Student Progress</h1>
+
+        <p>
+            Track your learning journey and
+            understand your progress.
+        </p>
+
+    </div>
+
+
+    <div class="progress-overview">
+
+
+        <div class="progress-card">
+
+            <div class="progress-icon">
+                📚
+            </div>
+
+            <span>
+                Learning
+            </span>
+
+            <strong>
+                Getting Started
+            </strong>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <div class="progress-icon">
+                🧩
+            </div>
+
+            <span>
+                Practice
+            </span>
+
+            <strong>
+                Start Practicing
+            </strong>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <div class="progress-icon">
+                🛠️
+            </div>
+
+            <span>
+                Skills
+            </span>
+
+            <strong>
+                Build Your Skills
+            </strong>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <div class="progress-icon">
+                🚀
+            </div>
+
+            <span>
+                Projects
+            </span>
+
+            <strong>
+                Create Something
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="progress-main-card">
+
+        <div class="progress-main-header">
+
+            <div>
+
+                <span class="progress-small-label">
+                    YOUR LEARNING JOURNEY
+                </span>
+
+                <h2>
+                    Keep Learning. Keep Growing.
+                </h2>
+
+            </div>
+
+            <div class="progress-percent">
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                style="width: 0%;">
+            </div>
+
+        </div>
+
+
+        <p>
+            Your personalized progress tracking
+            system will be available as more
+            VANTARA learning features are added.
+        </p>
+
+
+        <button
+            class="progress-button"
+            onclick="comingSoon('Student Progress Dashboard')">
+            View Progress
+        </button>
+
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>
+            Progress is a Journey
+        </strong>
+
+        <p>
+            Focus on understanding, practicing and
+            improving rather than only looking at scores.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     LEARNING PATHS
+========================= -->
+
+<section class="page" id="learningPaths">
+
+    <div class="page-title">
+
+        <h1>Learning Paths</h1>
+
+        <p>
+            Follow structured paths to build
+            knowledge and skills step by step.
+        </p>
+
+    </div>
+
+
+    <div class="path-grid">
+
+
+        <div class="path-card">
+
+            <div class="path-number">
+                01
+            </div>
+
+            <div class="path-content">
+
+                <span>
+                    SCHOOL LEARNING
+                </span>
+
+                <h3>
+                    Strong Foundations
+                </h3>
+
+                <p>
+                    Build strong understanding of
+                    important school concepts.
+                </p>
+
+                <button
+                    onclick="comingSoon('Strong Foundations')">
+                    Explore Path
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-number">
+                02
+            </div>
+
+            <div class="path-content">
+
+                <span>
+                    SKILLS
+                </span>
+
+                <h3>
+                    Skill Builder
+                </h3>
+
+                <p>
+                    Develop communication, research,
+                    creativity and problem-solving skills.
+                </p>
+
+                <button
+                    onclick="comingSoon('Skill Builder')">
+                    Explore Path
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-number">
+                03
+            </div>
+
+            <div class="path-content">
+
+                <span>
+                    DIGITAL
+                </span>
+
+                <h3>
+                    Digital Explorer
+                </h3>
+
+                <p>
+                    Learn digital tools, coding and
+                    responsible technology use.
+                </p>
+
+                <button
+                    onclick="comingSoon('Digital Explorer')">
+                    Explore Path
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-number">
+                04
+            </div>
+
+            <div class="path-content">
+
+                <span>
+                    PROJECTS
+                </span>
+
+                <h3>
+                    Idea to Project
+                </h3>
+
+                <p>
+                    Turn your ideas into research,
+                    experiments and projects.
+                </p>
+
+                <button
+                    onclick="showPage('projects')">
+                    Start Path
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>
+            Choose Your Path
+        </strong>
+
+        <p>
+            Learning paths will gradually become
+            more personalized as VANTARA develops.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PART 8 CSS
+========================= -->
+
+<style>
+
+/* =========================
+   FACULTY / MENTORS
+========================= */
+
+.mentor-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.mentor-card {
+
+    display: flex;
+
+    gap: 20px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.mentor-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #3d73c9;
+}
+
+
+.mentor-avatar {
+
+    min-width: 65px;
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 18px;
+
+    background: #182f51;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+.mentor-role {
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #73a7eb;
+}
+
+
+.mentor-info h3 {
+
+    color: #ffffff;
+
+    margin: 6px 0 8px;
+}
+
+
+.mentor-info p {
+
+    color: #aebbd0;
+
+    line-height: 1.55;
+
+    font-size: 14px;
+}
+
+
+.mentor-button {
+
+    margin-top: 15px;
+
+    padding: 9px 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================
+   RESEARCH
+========================= */
+
+.research-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.research-highlight {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    border-radius: 17px;
+
+    background: #101f38;
+
+    border: 1px solid #29486f;
+}
+
+
+.research-highlight-icon {
+
+    min-width: 52px;
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 13px;
+
+    background: #182f51;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.research-highlight h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+}
+
+
+.research-highlight p {
+
+    color: #aebbd0;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   STUDENT PROGRESS
+========================= */
+
+.progress-overview {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+
+.progress-card {
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.progress-icon {
+
+    font-size: 25px;
+
+    margin-bottom: 14px;
+}
+
+
+.progress-card span {
+
+    display: block;
+
+    color: #8ea3bf;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+}
+
+
+.progress-card strong {
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+.progress-main-card {
+
+    padding: 28px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #12294a,
+            #0d1d35
+        );
+
+    border: 1px solid #29486f;
+}
+
+
+.progress-main-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.progress-small-label {
+
+    color: #73a7eb;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.progress-main-header h2 {
+
+    color: #ffffff;
+
+    margin-top: 7px;
+
+    font-size: 22px;
+}
+
+
+.progress-percent {
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 10px;
+
+    background: #09152a;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    background: #3472c7;
+
+    border-radius: 20px;
+}
+
+
+.progress-main-card > p {
+
+    color: #aebbd0;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.progress-button {
+
+    margin-top: 18px;
+
+    padding: 10px 17px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================
+   LEARNING PATHS
+========================= */
+
+.path-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.path-card {
+
+    display: flex;
+
+    gap: 18px;
+
+    padding: 23px;
+
+    border-radius: 18px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.path-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #3d73c9;
+}
+
+
+.path-number {
+
+    min-width: 55px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 15px;
+
+    background: #182f51;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #78a9e9;
+
+    font-weight: 700;
+}
+
+
+.path-content > span {
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #73a7eb;
+}
+
+
+.path-content h3 {
+
+    color: #ffffff;
+
+    margin: 6px 0 8px;
+}
+
+
+.path-content p {
+
+    color: #aebbd0;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+.path-content button {
+
+    margin-top: 14px;
+
+    padding: 9px 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .mentor-grid,
+    .research-grid,
+    .path-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .progress-overview {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .mentor-card {
+
+        flex-direction: column;
+
+    }
+
+
+    .mentor-avatar {
+
+        width: 55px;
+
+        min-width: 55px;
+
+        height: 55px;
+
+    }
+
+
+    .research-highlight {
+
+        flex-direction: column;
+
+    }
+
+
+    .progress-overview {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .progress-main-card {
+
+        padding: 21px;
+
+    }
+
+
+    .progress-main-header h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .path-card {
+
+        padding: 18px;
+
+    }
+
+
+    .path-number {
+
+        min-width: 45px;
+
+        width: 45px;
+
+        height: 45px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================
+     ABOUT VANTARA
+========================= -->
+
+<section class="page" id="about">
+
+    <div class="page-title">
+
+        <h1>About VANTARA</h1>
+
+        <p>
+            Learn. Explore. Create. Grow.
+        </p>
+
+    </div>
+
+
+    <div class="about-hero">
+
+        <div class="about-logo">
+            V
+        </div>
+
+        <div>
+
+            <span class="about-label">
+                VANTARA EDUCATION
+            </span>
+
+            <h2>
+                A learning platform for curious students.
+            </h2>
+
+            <p>
+                VANTARA EDUCATION is designed to bring
+                school learning, practical skills, digital
+                learning and project-based exploration
+                together in one place.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <div class="about-card">
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Learn
+            </h3>
+
+            <p>
+                Build strong concepts through structured
+                learning and useful resources.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="card-icon">
+                🔎
+            </div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <p>
+                Explore subjects, skills, ideas and
+                new areas of knowledge.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="card-icon">
+                💡
+            </div>
+
+            <h3>
+                Create
+            </h3>
+
+            <p>
+                Turn ideas into projects, activities
+                and meaningful work.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="card-icon">
+                🚀
+            </div>
+
+            <h3>
+                Grow
+            </h3>
+
+            <p>
+                Develop knowledge, confidence and
+                practical skills for the future.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="learning-notice">
+
+        <strong>
+            Our Approach
+        </strong>
+
+        <p>
+            VANTARA aims to encourage understanding,
+            curiosity, creativity, problem solving
+            and continuous learning.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="page" id="contact">
+
+    <div class="page-title">
+
+        <h1>Contact VANTARA</h1>
+
+        <p>
+            Have a question, suggestion or idea?
+            We'd love to hear from you.
+        </p>
+
+    </div>
+
+
+    <div class="contact-layout">
+
+
+        <div class="contact-info">
+
+            <div class="contact-box">
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+                <div>
+
+                    <h3>
+                        Questions
+                    </h3>
+
+                    <p>
+                        Contact us if you have questions
+                        about VANTARA.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <div class="contact-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <h3>
+                        Suggestions
+                    </h3>
+
+                    <p>
+                        Share ideas that can make
+                        VANTARA better for students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <div class="contact-icon">
+                    🤝
+                </div>
+
+                <div>
+
+                    <h3>
+                        Collaboration
+                    </h3>
+
+                    <p>
+                        Information about future
+                        collaborations will be available here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-form-card">
+
+            <form
+                id="contactForm"
+                onsubmit="submitContact(event)">
+
+                <label>
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    id="contactName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label>
+                    Your Email
+                </label>
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    id="contactMessage"
+                    placeholder="Write your message..."
+                    required>
+                </textarea>
+
+
+                <button
+                    type="submit"
+                    class="contact-submit">
+                    Send Message
+                </button>
+
+
+                <div
+                    id="contactStatus"
+                    class="contact-status">
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PRIVACY / STUDENT SAFETY
+========================= -->
+
+<section class="page" id="privacy">
+
+    <div class="page-title">
+
+        <h1>Privacy & Student Safety</h1>
+
+        <p>
+            We believe student information should
+            be handled responsibly.
+        </p>
+
+    </div>
+
+
+    <div class="privacy-grid">
+
+
+        <div class="privacy-card">
+
+            <div class="privacy-icon">
+                🔒
+            </div>
+
+            <h3>
+                Minimal Information
+            </h3>
+
+            <p>
+                VANTARA aims to collect only the
+                information needed for the relevant
+                service or communication.
+            </p>
+
+        </div>
+
+
+        <div class="privacy-card">
+
+            <div class="privacy-icon">
+                👨‍👩‍👧
+            </div>
+
+            <h3>
+                Parent / Guardian Support
+            </h3>
+
+            <p>
+                Students should use a parent or guardian
+                email where appropriate.
+            </p>
+
+        </div>
+
+
+        <div class="privacy-card">
+
+            <div class="privacy-icon">
+                📧
+            </div>
+
+            <h3>
+                Communication
+            </h3>
+
+            <p>
+                Email information may be used for
+                VANTARA learning and platform updates
+                when appropriate consent is provided.
+            </p>
+
+        </div>
+
+
+        <div class="privacy-card">
+
+            <div class="privacy-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Responsible Use
+            </h3>
+
+            <p>
+                Students should avoid sharing passwords,
+                sensitive personal information or other
+                private details online.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="privacy-note-large">
+
+        <strong>
+            Important
+        </strong>
+
+        <p>
+            VANTARA is an educational platform.
+            Students should involve a parent or guardian
+            whenever required, especially when sharing
+            contact information or using online services.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="vantara-footer">
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                V
+            </div>
+
+            <h2>
+                VANTARA EDUCATION
+            </h2>
+
+            <p>
+                Learn. Explore. Create. Grow.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Learn
+            </h3>
+
+            <button onclick="showPage('learning')">
+                Learning Hub
+            </button>
+
+            <button onclick="showPage('classes')">
+                Classes 6–12
+            </button>
+
+            <button onclick="showPage('ai')">
+                AI Learning
+            </button>
+
+            <button onclick="showPage('practice')">
+                Practice Zone
+            </button>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Explore
+            </h3>
+
+            <button onclick="showPage('skills')">
+                Skill Labs
+            </button>
+
+            <button onclick="showPage('projects')">
+                Idea-to-Project
+            </button>
+
+            <button onclick="showPage('research')">
+                Research Program
+            </button>
+
+            <button onclick="showPage('career')">
+                Career Explorer
+            </button>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                VANTARA
+            </h3>
+
+            <button onclick="showPage('about')">
+                About
+            </button>
+
+            <button onclick="showPage('announcements')">
+                Announcements
+            </button>
+
+            <button onclick="showPage('contact')">
+                Contact
+            </button>
+
+            <button onclick="showPage('privacy')">
+                Privacy & Safety
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 VANTARA EDUCATION
+        </span>
+
+        <span>
+            Built for learning and exploration.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     PART 9 CSS
+========================= -->
+
+<style>
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-hero {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #12294a,
+            #0c1b33
+        );
+
+    border: 1px solid #29486f;
+
+    margin-bottom: 25px;
+}
+
+
+.about-logo {
+
+    min-width: 85px;
+
+    width: 85px;
+
+    height: 85px;
+
+    border-radius: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    font-size: 43px;
+
+    font-weight: 800;
+}
+
+
+.about-label {
+
+    color: #73a7eb;
+
+    font-size: 11px;
+
+    letter-spacing: 1.2px;
+}
+
+
+.about-hero h2 {
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    margin: 8px 0 10px;
+}
+
+
+.about-hero p {
+
+    color: #aebbd0;
+
+    line-height: 1.7;
+
+    max-width: 750px;
+}
+
+
+.about-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 17px;
+}
+
+
+.about-card {
+
+    padding: 21px;
+
+    border-radius: 17px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+
+    transition: 0.25s ease;
+}
+
+
+.about-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #3d73c9;
+}
+
+
+.about-card h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+}
+
+
+.about-card p {
+
+    color: #aebbd0;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 25px;
+}
+
+
+.contact-info {
+
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.contact-box {
+
+    display: flex;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.contact-icon {
+
+    min-width: 48px;
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: #182f51;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+.contact-box h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 5px;
+}
+
+
+.contact-box p {
+
+    color: #aebbd0;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.contact-form-card {
+
+    padding: 25px;
+
+    border-radius: 19px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.contact-form-card form {
+
+    display: grid;
+
+    gap: 9px;
+}
+
+
+.contact-form-card label {
+
+    color: #dbe6f5;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+
+.contact-form-card input,
+.contact-form-card textarea {
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid #29486f;
+
+    background: #0c1930;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+
+.contact-form-card textarea {
+
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+
+    border-color: #4b82d1;
+}
+
+
+.contact-submit {
+
+    margin-top: 7px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #285da5;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.contact-submit:hover {
+
+    background: #3472c7;
+}
+
+
+.contact-status {
+
+    min-height: 20px;
+
+    text-align: center;
+
+    color: #9ebce3;
+
+    font-size: 13px;
+
+}
+
+
+
+/* =========================
+   PRIVACY
+========================= */
+
+.privacy-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 17px;
+}
+
+
+.privacy-card {
+
+    padding: 23px;
+
+    border-radius: 17px;
+
+    background: #0f203b;
+
+    border: 1px solid #203b62;
+}
+
+
+.privacy-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 13px;
+
+    background: #182f51;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+
+    margin-bottom: 15px;
+}
+
+
+.privacy-card h3 {
+
+    color: #ffffff;
+
+    margin-bottom: 8px;
+}
+
+
+.privacy-card p {
+
+    color: #aebbd0;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.privacy-note-large {
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    border-radius: 17px;
+
+    background: #101f38;
+
+    border: 1px solid #29486f;
+}
+
+
+.privacy-note-large strong {
+
+    color: #ffffff;
+}
+
+
+.privacy-note-large p {
+
+    color: #aebbd0;
+
+    margin-top: 8px;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.vantara-footer {
+
+    margin-top: 50px;
+
+    background: #081326;
+
+    border-top: 1px solid #1d3558;
+
+    padding: 45px 5% 20px;
+}
+
+
+.footer-main {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 35px;
+}
+
+
+.footer-brand {
+
+    padding-right: 30px;
+}
+
+
+.footer-logo {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: #285da5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    margin-bottom: 13px;
+}
+
+
+.footer-brand h2 {
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    margin-bottom: 7px;
+}
+
+
+.footer-brand p {
+
+    color: #8295af;
+
+    font-size: 13px;
+}
+
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+
+.footer-column h3 {
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+
+.footer-column button {
+
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    color: #899bb3;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    text-align: left;
+}
+
+
+.footer-column button:hover {
+
+    color: #ffffff;
+}
+
+
+.footer-bottom {
+
+    max-width: 1250px;
+
+    margin: 35px auto 0;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #182b47;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    color: #657992;
+
+    font-size: 11px;
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .about-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .contact-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .footer-main {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .about-hero {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 23px;
+
+    }
+
+
+    .about-hero h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    .about-grid,
+    .privacy-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .footer-main {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 25px;
+
+    }
+
+
+    .footer-brand {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .footer-main {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .footer-brand {
+
+        grid-column: auto;
+
+    }
+
+}
+
+</style>
+
+
+
+
+
 <script>
 
-let students = [];
+/* =====================================================
+   VANTARA PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId) {
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
 
 
-/* =========================
-   LOGIN
-========================= */
+    const selectedPage =
+        document.getElementById(pageId);
 
-async function login(){
 
-const username =
-document.getElementById("username").value.trim();
+    if (selectedPage) {
 
-const password =
-document.getElementById("password").value;
+        selectedPage.classList.add("active");
 
-const errorBox =
-document.getElementById("loginError");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-const btn =
-document.getElementById("loginButton");
-
-errorBox.style.display = "none";
-
-if(!username || !password){
-
-errorBox.textContent =
-"Please enter username and password.";
-
-errorBox.style.display = "block";
-
-return;
-
-}
-
-btn.disabled = true;
-btn.textContent = "Signing In...";
-
-try{
-
-const response =
-await fetch("/api/login",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-username:username,
-password:password
-})
-
-});
-
-const data =
-await response.json();
-
-if(response.ok && data.success){
-
-sessionStorage.setItem(
-"vantaraLoggedIn",
-"true"
-);
-
-sessionStorage.setItem(
-"vantaraUser",
-JSON.stringify(data.user)
-);
-
-showPortal();
-
-showToast("Login successful.");
-
-}else{
-
-errorBox.textContent =
-data.message ||
-"Invalid login details.";
-
-errorBox.style.display = "block";
-
-}
-
-}catch(error){
-
-console.error(error);
-
-errorBox.textContent =
-"Unable to connect to the server. Please try again.";
-
-errorBox.style.display = "block";
-
-}
-
-btn.disabled = false;
-btn.textContent = "Sign In";
+    }
 
 }
 
 
-/* =========================
-   SHOW PORTAL
-========================= */
+/* =====================================================
+   CLASS SELECTION
+===================================================== */
 
-function showPortal(){
+function selectClass(classNumber) {
 
-document.getElementById(
-"loginPage"
-).style.display = "none";
+    const title =
+        document.getElementById("selectedClassTitle");
 
-document.getElementById(
-"portalPage"
-).style.display = "block";
+    if (title) {
 
-loadUserInformation();
+        title.textContent =
+            "Class " + classNumber + " Subjects";
 
-updateCounts();
-
-refreshStudents();
-
-}
+    }
 
 
-/* =========================
-   LOGOUT
-========================= */
+    window.vantaraSelectedClass =
+        classNumber;
 
-function logout(){
 
-sessionStorage.removeItem(
-"vantaraLoggedIn"
-);
-
-sessionStorage.removeItem(
-"vantaraUser"
-);
-
-document.getElementById(
-"portalPage"
-).style.display = "none";
-
-document.getElementById(
-"loginPage"
-).style.display = "flex";
-
-document.getElementById(
-"username"
-).value = "";
-
-document.getElementById(
-"password"
-).value = "";
-
-showToast(
-"You have been logged out."
-);
+    showPage("subjects");
 
 }
 
 
-/* =========================
-   CHECK LOGIN
-========================= */
+/* =====================================================
+   COMING SOON MESSAGE
+===================================================== */
 
-function checkLogin(){
+function comingSoon(featureName) {
 
-if(
-sessionStorage.getItem(
-"vantaraLoggedIn"
-) === "true"
-){
-
-showPortal();
-
-}else{
-
-document.getElementById(
-"loginPage"
-).style.display = "flex";
-
-document.getElementById(
-"portalPage"
-).style.display = "none";
-
-}
+    alert(
+        featureName +
+        " is coming soon to VANTARA EDUCATION."
+    );
 
 }
 
 
-/* =========================
-   USER INFORMATION
-========================= */
+/* =====================================================
+   RESOURCE SEARCH
+===================================================== */
 
-function loadUserInformation(){
+function filterResources() {
 
-try{
+    const searchInput =
+        document.getElementById("resourceSearch");
 
-const user =
-JSON.parse(
-sessionStorage.getItem(
-"vantaraUser"
-) || "{}"
-);
+    const categoryInput =
+        document.getElementById("resourceCategory");
 
-document.getElementById(
-"currentUsername"
-).value =
-user.username || "";
+    const resourceGrid =
+        document.getElementById("resourceGrid");
 
-document.getElementById(
-"currentRole"
-).value =
-user.role || "";
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
+    const emptyMessage =
+        document.getElementById("resourceEmpty");
 
 
-/* =========================
-   NAVIGATION
-========================= */
-
-function openSection(id,button){
-
-document
-.querySelectorAll(".section")
-.forEach(
-section =>
-section.classList.remove("active")
-);
-
-document
-.getElementById(id)
-?.classList.add("active");
-
-document
-.querySelectorAll(".nav-button")
-.forEach(
-navButton =>
-navButton.classList.remove("active")
-);
-
-if(button){
-
-button.classList.add("active");
-
-}
-
-closeMobileSidebar();
-
-if(id === "students"){
-
-refreshStudents();
-
-}
-
-}
+    if (!searchInput || !categoryInput || !resourceGrid) {
+        return;
+    }
 
 
-function openSectionByName(id){
-
-const button =
-[
-...document.querySelectorAll(".nav-button")
-]
-.find(
-button =>
-(
-button.getAttribute("onclick") || ""
-).includes("'" + id + "'")
-);
-
-openSection(id,button);
-
-}
+    const searchText =
+        searchInput.value
+            .trim()
+            .toLowerCase();
 
 
-/* =========================
-   MOBILE SIDEBAR
-========================= */
+    const selectedCategory =
+        categoryInput.value;
 
-function toggleSidebar(){
 
-document
-.getElementById("sidebar")
-.classList.toggle("open");
+    const resources =
+        resourceGrid.querySelectorAll(".resource-card");
+
+
+    let visibleCount = 0;
+
+
+    resources.forEach(function(resource) {
+
+        const title =
+            (
+                resource.dataset.title || ""
+            ).toLowerCase();
+
+
+        const category =
+            resource.dataset.category || "";
+
+
+        const matchesSearch =
+            title.includes(searchText);
+
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+
+        if (
+            matchesSearch &&
+            matchesCategory
+        ) {
+
+            resource.style.display = "flex";
+
+            visibleCount++;
+
+        } else {
+
+            resource.style.display = "none";
+
+        }
+
+    });
+
+
+    if (emptyMessage) {
+
+        if (visibleCount === 0) {
+
+            emptyMessage.style.display = "block";
+
+        } else {
+
+            emptyMessage.style.display = "none";
+
+        }
+
+    }
 
 }
 
 
-function closeMobileSidebar(){
+/* =====================================================
+   GLOBAL SEARCH DATA
+===================================================== */
 
-document
-.getElementById("sidebar")
-.classList.remove("open");
+const vantaraSearchData = [
+
+    {
+        title: "Learning Hub",
+        description:
+            "School learning, concept exploration and learning paths.",
+        page: "learning"
+    },
+
+    {
+        title: "Classes 6–12",
+        description:
+            "Explore learning areas for Classes 6 to 12.",
+        page: "classes"
+    },
+
+    {
+        title: "AI Learning",
+        description:
+            "Learn AI basics, machine learning and digital safety.",
+        page: "ai"
+    },
+
+    {
+        title: "Practice Zone",
+        description:
+            "Practice concepts, revise topics and solve problems.",
+        page: "practice"
+    },
+
+    {
+        title: "Skill Labs",
+        description:
+            "Build coding, communication, research and problem-solving skills.",
+        page: "skills"
+    },
+
+    {
+        title: "Communication Lab",
+        description:
+            "Improve speaking, writing, presentation and discussion skills.",
+        page: "communication"
+    },
+
+    {
+        title: "Idea-to-Project",
+        description:
+            "Turn ideas into planned and meaningful projects.",
+        page: "projects"
+    },
+
+    {
+        title: "Career Explorer",
+        description:
+            "Explore careers, skills and future fields.",
+        page: "career"
+    },
+
+    {
+        title: "Research Program",
+        description:
+            "Explore questions, research methods and projects.",
+        page: "research"
+    },
+
+    {
+        title: "Student Progress",
+        description:
+            "Track your learning journey and progress.",
+        page: "progress"
+    },
+
+    {
+        title: "Learning Paths",
+        description:
+            "Follow structured paths for learning and skills.",
+        page: "learningPaths"
+    },
+
+    {
+        title: "Resource Library",
+        description:
+            "Find notes, practice material, guides and project resources.",
+        page: "resources"
+    },
+
+    {
+        title: "Announcements",
+        description:
+            "Stay updated with VANTARA news and platform updates.",
+        page: "announcements"
+    },
+
+    {
+        title: "Stay Updated",
+        description:
+            "Join VANTARA to receive important platform updates.",
+        page: "join"
+    },
+
+    {
+        title: "Faculty & Mentors",
+        description:
+            "Learn about VANTARA faculty and mentoring.",
+        page: "faculty"
+    },
+
+    {
+        title: "About VANTARA",
+        description:
+            "Learn more about VANTARA EDUCATION.",
+        page: "about"
+    },
+
+    {
+        title: "Contact VANTARA",
+        description:
+            "Contact VANTARA with questions, suggestions or ideas.",
+        page: "contact"
+    }
+
+];
+
+
+/* =====================================================
+   GLOBAL SEARCH FUNCTION
+===================================================== */
+
+function globalSearch() {
+
+    const input =
+        document.getElementById("globalSearchInput");
+
+
+    const resultsContainer =
+        document.getElementById("globalSearchResults");
+
+
+    if (!input || !resultsContainer) {
+        return;
+    }
+
+
+    const query =
+        input.value
+            .trim()
+            .toLowerCase();
+
+
+    if (!query) {
+
+        resultsContainer.innerHTML = `
+
+            <div class="search-placeholder">
+
+                <div class="search-placeholder-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Search VANTARA
+                </h3>
+
+                <p>
+                    Search for classes, subjects,
+                    skills, resources and learning areas.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const results =
+        vantaraSearchData.filter(function(item) {
+
+            return (
+
+                item.title
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                item.description
+                    .toLowerCase()
+                    .includes(query)
+
+            );
+
+        });
+
+
+    if (results.length === 0) {
+
+        resultsContainer.innerHTML = `
+
+            <div class="search-placeholder">
+
+                <div class="search-placeholder-icon">
+                    😕
+                </div>
+
+                <h3>
+                    No results found
+                </h3>
+
+                <p>
+                    Try searching with another keyword.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    resultsContainer.innerHTML =
+        results.map(function(item) {
+
+            return `
+
+                <div
+                    class="search-result"
+                    onclick="showPage('${item.page}')">
+
+                    <h3>
+                        ${item.title}
+                    </h3>
+
+                    <p>
+                        ${item.description}
+                    </p>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 }
 
 
-/* =========================
-   MODALS
-========================= */
+/* =====================================================
+   JOIN VANTARA → ADMIN PORTAL
+===================================================== */
 
-function openModal(id){
+const VANTARA_ADMIN_API =
+    "https://vantara-education-admin-gh1i.vercel.app/api/register";
 
-document
-.getElementById(id)
-?.classList.add("show");
+
+const joinForm =
+    document.getElementById("joinForm");
+
+
+if (joinForm) {
+
+    joinForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("joinName")
+                    .value
+                    .trim();
+
+
+            const className =
+                document.getElementById("joinClass")
+                    .value;
+
+
+            const email =
+                document.getElementById("joinEmail")
+                    .value
+                    .trim();
+
+
+            const consent =
+                document.getElementById("joinConsent")
+                    .checked;
+
+
+            const message =
+                document.getElementById("joinMessage");
+
+
+            if (!name || !className || !email) {
+
+                message.textContent =
+                    "Please fill all required fields.";
+
+                return;
+
+            }
+
+
+            if (!consent) {
+
+                message.textContent =
+                    "Please provide consent to continue.";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Submitting...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        VANTARA_ADMIN_API,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                className: className,
+
+                                email: email
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        "Registration failed"
+                    );
+
+                }
+
+
+                message.textContent =
+                    "Registration submitted successfully!";
+
+
+                message.style.color =
+                    "#78c69b";
+
+
+                joinForm.reset();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                message.textContent =
+                    "Unable to submit right now. Please try again later.";
+
+                message.style.color =
+                    "#e58b8b";
+
+            }
+
+        }
+    );
 
 }
 
 
-function closeModal(id){
+/* =====================================================
+   CONTACT FORM
+===================================================== */
 
-document
-.getElementById(id)
-?.classList.remove("show");
+function submitContact(event) {
 
-}
+    event.preventDefault();
 
 
-/* =========================
-   TOAST
-========================= */
+    const status =
+        document.getElementById("contactStatus");
 
-function showToast(message){
 
-const toast =
-document.getElementById("toast");
+    if (!status) {
+        return;
+    }
 
-toast.textContent = message;
 
-toast.style.display = "block";
+    status.textContent =
+        "Thank you! Contact functionality will be connected soon.";
 
-clearTimeout(
-window.vantaraToast
-);
+    status.style.color =
+        "#78c69b";
 
-window.vantaraToast =
-setTimeout(
-function(){
 
-toast.style.display = "none";
-
-},
-3000
-);
+    document.getElementById("contactForm").reset();
 
 }
 
 
-/* =========================
-   STUDENT DATABASE
-========================= */
+/* =====================================================
+   WELCOME SCREEN
+===================================================== */
 
-async function refreshStudents(){
+function continueToVantara() {
 
-try{
+    const welcome =
+        document.getElementById("welcomeScreen");
 
-const response =
-await fetch("/api/students");
 
-if(!response.ok){
+    const mainSite =
+        document.getElementById("mainSite");
 
-throw new Error(
-"Student API unavailable"
-);
 
-}
+    if (welcome) {
 
-const data =
-await response.json();
+        welcome.style.display = "none";
 
-students =
-Array.isArray(data.students)
-? data.students
-: [];
+    }
 
-}catch(error){
 
-console.log(
-"Student API is not connected yet."
-);
+    if (mainSite) {
 
-students = [];
+        mainSite.style.display = "block";
 
-}
+    }
 
-renderStudents(students);
 
-updateStudentStats();
-
-updateCounts();
+    showPage("home");
 
 }
 
 
-/* =========================
-   RENDER STUDENTS
-========================= */
+/* =====================================================
+   SKIP WELCOME
+===================================================== */
 
-function renderStudents(list){
+function skipWelcome() {
 
-const body =
-document.getElementById(
-"studentsTableBody"
-);
-
-if(!list.length){
-
-body.innerHTML = `
-
-<tr>
-
-<td
-colspan="7"
-class="empty-students"
->
-
-No students registered yet.
-
-</td>
-
-</tr>
-
-`;
-
-return;
+    continueToVantara();
 
 }
 
 
-body.innerHTML =
-list.map(
-(student,index) => `
-
-<tr>
-
-<td>
-${index + 1}
-</td>
-
-<td class="student-name">
-${escapeHTML(
-student.name || "—"
-)}
-</td>
-
-<td class="student-email">
-${escapeHTML(
-student.email || "—"
-)}
-</td>
-
-<td>
-Class ${escapeHTML(
-student.class || "—"
-)}
-</td>
-
-<td>
-${escapeHTML(
-student.registrationDate || "—"
-)}
-</td>
-
-<td>
-
-<span class="badge badge-active">
-Active
-</span>
-
-</td>
-
-<td>
-
-<button
-class="danger-button"
-onclick="deleteStudent('${escapeHTML(
-student.id || ""
-)}')"
->
-Delete
-</button>
-
-</td>
-
-</tr>
-
-`
-).join("");
-
-}
-
-
-/* =========================
-   SEARCH STUDENTS
-========================= */
-
-function filterStudents(){
-
-const search =
-document
-.getElementById(
-"studentSearch"
-)
-.value
-.toLowerCase()
-.trim();
-
-const selectedClass =
-document
-.getElementById(
-"studentClassFilter"
-)
-.value;
-
-const filtered =
-students.filter(
-student => {
-
-const name =
-String(
-student.name || ""
-).toLowerCase();
-
-const email =
-String(
-student.email || ""
-).toLowerCase();
-
-const studentClass =
-String(
-student.class || ""
-);
-
-return (
-
-(
-name.includes(search) ||
-email.includes(search)
-)
-
-&&
-
-(
-!selectedClass ||
-studentClass === selectedClass
-)
-
-);
-
-});
-
-renderStudents(filtered);
-
-}
-
-
-/* =========================
-   STUDENT STATISTICS
-========================= */
-
-function updateStudentStats(){
-
-document.getElementById(
-"totalStudents"
-).textContent =
-students.length;
-
-
-const today =
-new Date()
-.toISOString()
-.slice(0,10);
-
-
-document.getElementById(
-"studentsToday"
-).textContent =
-
-students.filter(
-student =>
-String(
-student.registrationDate || ""
-).startsWith(today)
-).length;
-
-
-document.getElementById(
-"studentClasses"
-).textContent =
-
-new Set(
-students
-.map(
-student =>
-student.class
-)
-.filter(Boolean)
-).size;
-
-
-document.getElementById(
-"activeStudents"
-).textContent =
-students.length;
-
-}
-
-
-/* =========================
-   DELETE STUDENT
-========================= */
-
-async function deleteStudent(id){
-
-if(
-!id ||
-!confirm(
-"Are you sure you want to remove this student?"
-)
-){
-
-return;
-
-}
-
-
-try{
-
-const response =
-await fetch(
-"/api/students",
-{
-
-method:"DELETE",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-id:id
-})
-
-}
-);
-
-
-const data =
-await response.json();
-
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Unable to delete student."
-);
-
-}
-
-
-showToast(
-"Student removed."
-);
-
-refreshStudents();
-
-
-}catch(error){
-
-alert(
-error.message ||
-"Unable to connect to the server."
-);
-
-}
-
-}
-
-
-/* =========================
-   ADD EMPLOYEE
-========================= */
-
-function addEmployee(){
-
-const name =
-document.getElementById(
-"employeeName"
-)
-.value
-.trim();
-
-
-const username =
-document.getElementById(
-"employeeUsername"
-)
-.value
-.trim();
-
-
-const role =
-document.getElementById(
-"employeeRole"
-)
-.value;
-
-
-if(!name || !username){
-
-showToast(
-"Please enter employee name and username."
-);
-
-return;
-
-}
-
-
-const row =
-document.createElement("tr");
-
-
-row.innerHTML = `
-
-<td>
-${escapeHTML(username)}
-</td>
-
-<td>
-${escapeHTML(name)}
-</td>
-
-<td>
-
-<span class="badge ${
-role === "admin"
-? "badge-admin"
-: "badge-employee"
-}">
-
-${
-role === "admin"
-? "Admin"
-: "Employee"
-}
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge badge-active">
-Active
-</span>
-
-</td>
-
-<td>
-
-<button
-class="danger-button"
-onclick="
-this.closest('tr').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-</td>
-
-`;
-
-
-document
-.getElementById(
-"employeeTableBody"
-)
-.appendChild(row);
-
-
-document.getElementById(
-"employeeName"
-).value = "";
-
-
-document.getElementById(
-"employeeUsername"
-).value = "";
-
-
-closeModal(
-"employeeModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Employee added successfully."
-);
-
-}
-
-
-/* =========================
-   ADD RESOURCE
-========================= */
-
-function addResource(){
-
-const title =
-document.getElementById(
-"resourceTitle"
-)
-.value
-.trim();
-
-
-const description =
-document.getElementById(
-"resourceDescription"
-)
-.value
-.trim();
-
-
-if(!title){
-
-showToast(
-"Please enter a resource title."
-);
-
-return;
-
-}
-
-
-const card =
-document.createElement("div");
-
-
-card.className =
-"resource-card";
-
-
-card.innerHTML = `
-
-<h4>
-${escapeHTML(title)}
-</h4>
-
-<p>
-${escapeHTML(
-description ||
-"VANTARA educational resource."
-)}
-</p>
-
-<div class="resource-actions">
-
-<span class="badge badge-active">
-Active
-</span>
-
-<button
-class="danger-button"
-onclick="
-this.closest('.resource-card').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-</div>
-
-`;
-
-
-document
-.getElementById(
-"resourceGrid"
-)
-.appendChild(card);
-
-
-document.getElementById(
-"resourceTitle"
-).value = "";
-
-
-document.getElementById(
-"resourceDescription"
-).value = "";
-
-
-closeModal(
-"resourceModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Resource added successfully."
-);
-
-}
-
-
-/* =========================
-   ADD ANNOUNCEMENT
-========================= */
-
-function addAnnouncement(){
-
-const title =
-document.getElementById(
-"announcementTitle"
-)
-.value
-.trim();
-
-
-const message =
-document.getElementById(
-"announcementMessage"
-)
-.value
-.trim();
-
-
-if(!title || !message){
-
-showToast(
-"Please enter title and message."
-);
-
-return;
-
-}
-
-
-const announcement =
-document.createElement("div");
-
-
-announcement.className =
-"announcement";
-
-
-announcement.innerHTML = `
-
-<h4>
-${escapeHTML(title)}
-</h4>
-
-<p>
-${escapeHTML(message)}
-</p>
-
-<button
-class="danger-button"
-style="margin-top:10px"
-onclick="
-this.closest('.announcement').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-`;
-
-
-document
-.getElementById(
-"announcementList"
-)
-.prepend(announcement);
-
-
-document.getElementById(
-"announcementTitle"
-).value = "";
-
-
-document.getElementById(
-"announcementMessage"
-).value = "";
-
-
-closeModal(
-"announcementModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Announcement published successfully."
-);
-
-}
-
-
-/* =========================
-   DASHBOARD COUNTS
-========================= */
-
-function updateCounts(){
-
-document.getElementById(
-"studentCount"
-).textContent =
-students.length;
-
-
-document.getElementById(
-"employeeCount"
-).textContent =
-
-document
-.getElementById(
-"employeeTableBody"
-)
-?.querySelectorAll("tr")
-.length || 0;
-
-
-document.getElementById(
-"resourceCount"
-).textContent =
-
-document
-.getElementById(
-"resourceGrid"
-)
-?.querySelectorAll(
-".resource-card"
-)
-.length || 0;
-
-
-document.getElementById(
-"announcementCount"
-).textContent =
-
-document
-.getElementById(
-"announcementList"
-)
-?.querySelectorAll(
-".announcement"
-)
-.length || 0;
-
-}
-
-
-/* =========================
-   HTML SECURITY
-========================= */
-
-function escapeHTML(value){
-
-return String(value)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-/* =========================
-   CLOSE MODAL ON BACKGROUND
-========================= */
+/* =====================================================
+   INITIAL PAGE SETUP
+===================================================== */
 
 document.addEventListener(
-"click",
-function(event){
+    "DOMContentLoaded",
+    function() {
 
-if(
-event.target.classList.contains(
-"modal-overlay"
-)
-){
+        /*
+         * Keep the welcome screen visible initially.
+         */
 
-event.target.classList.remove(
-"show"
+        const pages =
+            document.querySelectorAll(".page");
+
+
+        pages.forEach(function(page) {
+
+            page.classList.remove("active");
+
+        });
+
+
+        /*
+         * Resource search starts with all resources.
+         */
+
+        if (
+            document.getElementById("resourceSearch") &&
+            document.getElementById("resourceCategory")
+        ) {
+
+            filterResources();
+
+        }
+
+    }
 );
+
+
+/* =====================================================
+   MOBILE MENU SUPPORT
+===================================================== */
+
+function toggleMobileMenu() {
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    menu.classList.toggle("mobile-menu-open");
 
 }
 
-}
-);
 
-
-/* =========================
-   START PORTAL
-========================= */
+/* =====================================================
+   CLOSE MOBILE MENU AFTER NAVIGATION
+===================================================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-checkLogin
+    "click",
+    function(event) {
+
+        if (
+            event.target.closest &&
+            event.target.closest(
+                "#mobileMenu button"
+            )
+        ) {
+
+            const menu =
+                document.getElementById("mobileMenu");
+
+
+            if (menu) {
+
+                menu.classList.remove(
+                    "mobile-menu-open"
+                );
+
+            }
+
+        }
+
+    }
 );
 
 </script>
 
-</body>
-</html>
+
+
+<!-- =========================
+     PART 10 FINAL CSS
+========================= -->
+
+<style>
+
+/* =========================
+   FINAL BUTTON EFFECTS
+========================= */
+
+button {
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* =========================
+   JOIN MESSAGE
+========================= */
+
+#joinMessage {
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================
+   PAGE ACTIVE SYSTEM
+========================= */
+
+.page {
+
+    display: none;
+
+}
+
+
+.page.active {
+
+    display: block;
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+
+    display: none;
+
+}
+
+
+.mobile-menu.mobile-menu-open {
+
+    display: block;
+
+}
+
+
+/* =========================
+   FINAL MOBILE FIXES
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+
+        width: 100%;
+
+    }
+
+
+    .page-title {
+
+        margin-bottom: 22px;
+
+    }
+
+
+    .global-search-box input {
+
+        width: 100%;
+
+    }
+
+
+    .join-form-card input,
+    .join-form-card select {
+
+        font-size: 16px;
+
+    }
+
+
+    .contact-form-card input,
+    .contact-form-card textarea {
+
+        font-size: 16px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================
+     FINAL STARTUP
+========================= -->
+
 <script>
 
-let students = [];
+/*
+ * Make sure the website starts on Home
+ * after the welcome screen is completed.
+ */
 
+window.addEventListener(
+    "load",
+    function() {
 
-/* =========================
-   LOGIN
-========================= */
+        const mainSite =
+            document.getElementById("mainSite");
 
-async function login(){
 
-const username =
-document.getElementById("username").value.trim();
+        if (
+            mainSite &&
+            mainSite.style.display !== "none"
+        ) {
 
-const password =
-document.getElementById("password").value;
+            showPage("home");
 
-const errorBox =
-document.getElementById("loginError");
+        }
 
-const btn =
-document.getElementById("loginButton");
-
-errorBox.style.display = "none";
-
-if(!username || !password){
-
-errorBox.textContent =
-"Please enter username and password.";
-
-errorBox.style.display = "block";
-
-return;
-
-}
-
-btn.disabled = true;
-btn.textContent = "Signing In...";
-
-try{
-
-const response =
-await fetch("/api/login",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-username:username,
-password:password
-})
-
-});
-
-const data =
-await response.json();
-
-if(response.ok && data.success){
-
-sessionStorage.setItem(
-"vantaraLoggedIn",
-"true"
-);
-
-sessionStorage.setItem(
-"vantaraUser",
-JSON.stringify(data.user)
-);
-
-showPortal();
-
-showToast("Login successful.");
-
-}else{
-
-errorBox.textContent =
-data.message ||
-"Invalid login details.";
-
-errorBox.style.display = "block";
-
-}
-
-}catch(error){
-
-console.error(error);
-
-errorBox.textContent =
-"Unable to connect to the server. Please try again.";
-
-errorBox.style.display = "block";
-
-}
-
-btn.disabled = false;
-btn.textContent = "Sign In";
-
-}
-
-
-/* =========================
-   SHOW PORTAL
-========================= */
-
-function showPortal(){
-
-document.getElementById(
-"loginPage"
-).style.display = "none";
-
-document.getElementById(
-"portalPage"
-).style.display = "block";
-
-loadUserInformation();
-
-updateCounts();
-
-refreshStudents();
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout(){
-
-sessionStorage.removeItem(
-"vantaraLoggedIn"
-);
-
-sessionStorage.removeItem(
-"vantaraUser"
-);
-
-document.getElementById(
-"portalPage"
-).style.display = "none";
-
-document.getElementById(
-"loginPage"
-).style.display = "flex";
-
-document.getElementById(
-"username"
-).value = "";
-
-document.getElementById(
-"password"
-).value = "";
-
-showToast(
-"You have been logged out."
-);
-
-}
-
-
-/* =========================
-   CHECK LOGIN
-========================= */
-
-function checkLogin(){
-
-if(
-sessionStorage.getItem(
-"vantaraLoggedIn"
-) === "true"
-){
-
-showPortal();
-
-}else{
-
-document.getElementById(
-"loginPage"
-).style.display = "flex";
-
-document.getElementById(
-"portalPage"
-).style.display = "none";
-
-}
-
-}
-
-
-/* =========================
-   USER INFORMATION
-========================= */
-
-function loadUserInformation(){
-
-try{
-
-const user =
-JSON.parse(
-sessionStorage.getItem(
-"vantaraUser"
-) || "{}"
-);
-
-document.getElementById(
-"currentUsername"
-).value =
-user.username || "";
-
-document.getElementById(
-"currentRole"
-).value =
-user.role || "";
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function openSection(id,button){
-
-document
-.querySelectorAll(".section")
-.forEach(
-section =>
-section.classList.remove("active")
-);
-
-document
-.getElementById(id)
-?.classList.add("active");
-
-document
-.querySelectorAll(".nav-button")
-.forEach(
-navButton =>
-navButton.classList.remove("active")
-);
-
-if(button){
-
-button.classList.add("active");
-
-}
-
-closeMobileSidebar();
-
-if(id === "students"){
-
-refreshStudents();
-
-}
-
-}
-
-
-function openSectionByName(id){
-
-const button =
-[
-...document.querySelectorAll(".nav-button")
-]
-.find(
-button =>
-(
-button.getAttribute("onclick") || ""
-).includes("'" + id + "'")
-);
-
-openSection(id,button);
-
-}
-
-
-/* =========================
-   MOBILE SIDEBAR
-========================= */
-
-function toggleSidebar(){
-
-document
-.getElementById("sidebar")
-.classList.toggle("open");
-
-}
-
-
-function closeMobileSidebar(){
-
-document
-.getElementById("sidebar")
-.classList.remove("open");
-
-}
-
-
-/* =========================
-   MODALS
-========================= */
-
-function openModal(id){
-
-document
-.getElementById(id)
-?.classList.add("show");
-
-}
-
-
-function closeModal(id){
-
-document
-.getElementById(id)
-?.classList.remove("show");
-
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message){
-
-const toast =
-document.getElementById("toast");
-
-toast.textContent = message;
-
-toast.style.display = "block";
-
-clearTimeout(
-window.vantaraToast
-);
-
-window.vantaraToast =
-setTimeout(
-function(){
-
-toast.style.display = "none";
-
-},
-3000
-);
-
-}
-
-
-/* =========================
-   STUDENT DATABASE
-========================= */
-
-async function refreshStudents(){
-
-try{
-
-const response =
-await fetch("/api/students");
-
-if(!response.ok){
-
-throw new Error(
-"Student API unavailable"
-);
-
-}
-
-const data =
-await response.json();
-
-students =
-Array.isArray(data.students)
-? data.students
-: [];
-
-}catch(error){
-
-console.log(
-"Student API is not connected yet."
-);
-
-students = [];
-
-}
-
-renderStudents(students);
-
-updateStudentStats();
-
-updateCounts();
-
-}
-
-
-/* =========================
-   RENDER STUDENTS
-========================= */
-
-function renderStudents(list){
-
-const body =
-document.getElementById(
-"studentsTableBody"
-);
-
-if(!list.length){
-
-body.innerHTML = `
-
-<tr>
-
-<td
-colspan="7"
-class="empty-students"
->
-
-No students registered yet.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-body.innerHTML =
-list.map(
-(student,index) => `
-
-<tr>
-
-<td>
-${index + 1}
-</td>
-
-<td class="student-name">
-${escapeHTML(
-student.name || "—"
-)}
-</td>
-
-<td class="student-email">
-${escapeHTML(
-student.email || "—"
-)}
-</td>
-
-<td>
-Class ${escapeHTML(
-student.class || "—"
-)}
-</td>
-
-<td>
-${escapeHTML(
-student.registrationDate || "—"
-)}
-</td>
-
-<td>
-
-<span class="badge badge-active">
-Active
-</span>
-
-</td>
-
-<td>
-
-<button
-class="danger-button"
-onclick="deleteStudent('${escapeHTML(
-student.id || ""
-)}')"
->
-Delete
-</button>
-
-</td>
-
-</tr>
-
-`
-).join("");
-
-}
-
-
-/* =========================
-   SEARCH STUDENTS
-========================= */
-
-function filterStudents(){
-
-const search =
-document
-.getElementById(
-"studentSearch"
-)
-.value
-.toLowerCase()
-.trim();
-
-const selectedClass =
-document
-.getElementById(
-"studentClassFilter"
-)
-.value;
-
-const filtered =
-students.filter(
-student => {
-
-const name =
-String(
-student.name || ""
-).toLowerCase();
-
-const email =
-String(
-student.email || ""
-).toLowerCase();
-
-const studentClass =
-String(
-student.class || ""
-);
-
-return (
-
-(
-name.includes(search) ||
-email.includes(search)
-)
-
-&&
-
-(
-!selectedClass ||
-studentClass === selectedClass
-)
-
-);
-
-});
-
-renderStudents(filtered);
-
-}
-
-
-/* =========================
-   STUDENT STATISTICS
-========================= */
-
-function updateStudentStats(){
-
-document.getElementById(
-"totalStudents"
-).textContent =
-students.length;
-
-
-const today =
-new Date()
-.toISOString()
-.slice(0,10);
-
-
-document.getElementById(
-"studentsToday"
-).textContent =
-
-students.filter(
-student =>
-String(
-student.registrationDate || ""
-).startsWith(today)
-).length;
-
-
-document.getElementById(
-"studentClasses"
-).textContent =
-
-new Set(
-students
-.map(
-student =>
-student.class
-)
-.filter(Boolean)
-).size;
-
-
-document.getElementById(
-"activeStudents"
-).textContent =
-students.length;
-
-}
-
-
-/* =========================
-   DELETE STUDENT
-========================= */
-
-async function deleteStudent(id){
-
-if(
-!id ||
-!confirm(
-"Are you sure you want to remove this student?"
-)
-){
-
-return;
-
-}
-
-
-try{
-
-const response =
-await fetch(
-"/api/students",
-{
-
-method:"DELETE",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-id:id
-})
-
-}
-);
-
-
-const data =
-await response.json();
-
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Unable to delete student."
-);
-
-}
-
-
-showToast(
-"Student removed."
-);
-
-refreshStudents();
-
-
-}catch(error){
-
-alert(
-error.message ||
-"Unable to connect to the server."
-);
-
-}
-
-}
-
-
-/* =========================
-   ADD EMPLOYEE
-========================= */
-
-function addEmployee(){
-
-const name =
-document.getElementById(
-"employeeName"
-)
-.value
-.trim();
-
-
-const username =
-document.getElementById(
-"employeeUsername"
-)
-.value
-.trim();
-
-
-const role =
-document.getElementById(
-"employeeRole"
-)
-.value;
-
-
-if(!name || !username){
-
-showToast(
-"Please enter employee name and username."
-);
-
-return;
-
-}
-
-
-const row =
-document.createElement("tr");
-
-
-row.innerHTML = `
-
-<td>
-${escapeHTML(username)}
-</td>
-
-<td>
-${escapeHTML(name)}
-</td>
-
-<td>
-
-<span class="badge ${
-role === "admin"
-? "badge-admin"
-: "badge-employee"
-}">
-
-${
-role === "admin"
-? "Admin"
-: "Employee"
-}
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge badge-active">
-Active
-</span>
-
-</td>
-
-<td>
-
-<button
-class="danger-button"
-onclick="
-this.closest('tr').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-</td>
-
-`;
-
-
-document
-.getElementById(
-"employeeTableBody"
-)
-.appendChild(row);
-
-
-document.getElementById(
-"employeeName"
-).value = "";
-
-
-document.getElementById(
-"employeeUsername"
-).value = "";
-
-
-closeModal(
-"employeeModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Employee added successfully."
-);
-
-}
-
-
-/* =========================
-   ADD RESOURCE
-========================= */
-
-function addResource(){
-
-const title =
-document.getElementById(
-"resourceTitle"
-)
-.value
-.trim();
-
-
-const description =
-document.getElementById(
-"resourceDescription"
-)
-.value
-.trim();
-
-
-if(!title){
-
-showToast(
-"Please enter a resource title."
-);
-
-return;
-
-}
-
-
-const card =
-document.createElement("div");
-
-
-card.className =
-"resource-card";
-
-
-card.innerHTML = `
-
-<h4>
-${escapeHTML(title)}
-</h4>
-
-<p>
-${escapeHTML(
-description ||
-"VANTARA educational resource."
-)}
-</p>
-
-<div class="resource-actions">
-
-<span class="badge badge-active">
-Active
-</span>
-
-<button
-class="danger-button"
-onclick="
-this.closest('.resource-card').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-</div>
-
-`;
-
-
-document
-.getElementById(
-"resourceGrid"
-)
-.appendChild(card);
-
-
-document.getElementById(
-"resourceTitle"
-).value = "";
-
-
-document.getElementById(
-"resourceDescription"
-).value = "";
-
-
-closeModal(
-"resourceModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Resource added successfully."
-);
-
-}
-
-
-/* =========================
-   ADD ANNOUNCEMENT
-========================= */
-
-function addAnnouncement(){
-
-const title =
-document.getElementById(
-"announcementTitle"
-)
-.value
-.trim();
-
-
-const message =
-document.getElementById(
-"announcementMessage"
-)
-.value
-.trim();
-
-
-if(!title || !message){
-
-showToast(
-"Please enter title and message."
-);
-
-return;
-
-}
-
-
-const announcement =
-document.createElement("div");
-
-
-announcement.className =
-"announcement";
-
-
-announcement.innerHTML = `
-
-<h4>
-${escapeHTML(title)}
-</h4>
-
-<p>
-${escapeHTML(message)}
-</p>
-
-<button
-class="danger-button"
-style="margin-top:10px"
-onclick="
-this.closest('.announcement').remove();
-updateCounts()
-"
->
-Remove
-</button>
-
-`;
-
-
-document
-.getElementById(
-"announcementList"
-)
-.prepend(announcement);
-
-
-document.getElementById(
-"announcementTitle"
-).value = "";
-
-
-document.getElementById(
-"announcementMessage"
-).value = "";
-
-
-closeModal(
-"announcementModal"
-);
-
-
-updateCounts();
-
-
-showToast(
-"Announcement published successfully."
-);
-
-}
-
-
-/* =========================
-   DASHBOARD COUNTS
-========================= */
-
-function updateCounts(){
-
-document.getElementById(
-"studentCount"
-).textContent =
-students.length;
-
-
-document.getElementById(
-"employeeCount"
-).textContent =
-
-document
-.getElementById(
-"employeeTableBody"
-)
-?.querySelectorAll("tr")
-.length || 0;
-
-
-document.getElementById(
-"resourceCount"
-).textContent =
-
-document
-.getElementById(
-"resourceGrid"
-)
-?.querySelectorAll(
-".resource-card"
-)
-.length || 0;
-
-
-document.getElementById(
-"announcementCount"
-).textContent =
-
-document
-.getElementById(
-"announcementList"
-)
-?.querySelectorAll(
-".announcement"
-)
-.length || 0;
-
-}
-
-
-/* =========================
-   HTML SECURITY
-========================= */
-
-function escapeHTML(value){
-
-return String(value)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-/* =========================
-   CLOSE MODAL ON BACKGROUND
-========================= */
-
-document.addEventListener(
-"click",
-function(event){
-
-if(
-event.target.classList.contains(
-"modal-overlay"
-)
-){
-
-event.target.classList.remove(
-"show"
-);
-
-}
-
-}
-);
-
-
-/* =========================
-   START PORTAL
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-checkLogin
+    }
 );
 
 </script>
 
+
+<!-- =========================
+     END OF VANTARA EDUCATION
+========================= -->
+
 </body>
+
 </html>
